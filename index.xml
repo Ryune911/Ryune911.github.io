@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Avatar&#39;s Blog</title>
-    <link>http://example.org/</link>
+    <link>http://blog.ryune.top/</link>
     <description>Recent content on Avatar&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Tue, 09 Jul 2019 00:51:09 +0800</lastBuildDate>
     
-	<atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://blog.ryune.top/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About</title>
-      <link>http://example.org/about/</link>
+      <link>http://blog.ryune.top/about/</link>
       <pubDate>Tue, 09 Jul 2019 00:51:09 +0800</pubDate>
       
-      <guid>http://example.org/about/</guid>
+      <guid>http://blog.ryune.top/about/</guid>
       <description></description>
     </item>
     
     <item>
       <title>归档</title>
-      <link>http://example.org/archives/</link>
+      <link>http://blog.ryune.top/archives/</link>
       <pubDate>Tue, 09 Jul 2019 00:51:09 +0800</pubDate>
       
-      <guid>http://example.org/archives/</guid>
+      <guid>http://blog.ryune.top/archives/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Test</title>
-      <link>http://example.org/posts/test/</link>
+      <link>http://blog.ryune.top/posts/test/</link>
       <pubDate>Tue, 09 Jul 2019 00:01:39 +0800</pubDate>
       
-      <guid>http://example.org/posts/test/</guid>
+      <guid>http://blog.ryune.top/posts/test/</guid>
       <description> test  a b c  </description>
     </item>
     
