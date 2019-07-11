@@ -3,37 +3,65 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://blog.ryune.top/about/</loc>
-    <lastmod>2019-07-09T00:51:09+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://blog.ryune.top/</loc>
-    <lastmod>2019-07-09T00:51:09+08:00</lastmod>
+    <lastmod>2019-07-11T15:01:39+08:00</lastmod>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.ryune.top/archives/</loc>
-    <lastmod>2019-07-09T00:51:09+08:00</lastmod>
   </url>
   
   <url>
     <loc>http://blog.ryune.top/categories/</loc>
-    <lastmod>2019-07-09T00:01:39+08:00</lastmod>
+    <lastmod>2019-07-11T15:01:39+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>http://blog.ryune.top/categories/golang/</loc>
+    <lastmod>2019-07-11T15:01:39+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ryune.top/posts/golang-slice/</loc>
+    <lastmod>2019-07-11T15:01:39+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.ryune.top/posts/</loc>
-    <lastmod>2019-07-09T00:01:39+08:00</lastmod>
+    <lastmod>2019-07-11T15:01:39+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://blog.ryune.top/tags/</loc>
-    <lastmod>2019-07-09T00:01:39+08:00</lastmod>
+    <lastmod>2019-07-11T15:01:39+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ryune.top/tags/go/</loc>
+    <lastmod>2019-07-11T15:01:39+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ryune.top/tags/golang/</loc>
+    <lastmod>2019-07-11T15:01:39+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ryune.top/posts/golang-array/</loc>
+    <lastmod>2019-07-10T21:21:09+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.ryune.top/about/</loc>
+    <lastmod>2019-07-09T00:51:09+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.ryune.top/archives/</loc>
+    <lastmod>2019-07-09T00:51:09+08:00</lastmod>
   </url>
   
   <url>

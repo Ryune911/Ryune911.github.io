@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Avatar&#39;s Blog</title>
-    <link>http://blog.ryune.top/posts/</link>
-    <description>Recent content in Posts on Avatar&#39;s Blog</description>
+    <title>go on Avatar&#39;s Blog</title>
+    <link>http://blog.ryune.top/tags/go/</link>
+    <description>Recent content in go on Avatar&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Thu, 11 Jul 2019 15:01:39 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.ryune.top/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://blog.ryune.top/tags/go/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -29,15 +29,6 @@ package main import &amp;quot;fmt&amp;quot; func main() { // 长度是5，容量
       <guid>http://blog.ryune.top/posts/golang-array/</guid>
       <description>array  必须指定长度 传递数组指针修改数组内元素才有效
 package main import &amp;quot;fmt&amp;quot; func main() { //var arr [5]int arr := [5]int{ 0: 1, } // 同类型，同长度才可相互赋值 // var arr1 [4]int // arr1 = arr fmt.Printf(&amp;quot;%T(%#v)\n&amp;quot;, arr, arr) fmt.Printf(&amp;quot;%T(%#v)\n&amp;quot;, arr[0], arr[0]) fmt.Printf(&amp;quot;%T(%#v)\n&amp;quot;, &amp;amp;arr[0], &amp;amp;arr[0]) for i, v := range arr { fmt.Printf(&amp;quot;索引:%d,值:%d\n&amp;quot;, i, v) } // 指针数组 ptrArr := [5]*int{ // 分配内存 1: new(int), // 其他索引为 nil } fmt.Printf(&amp;quot;%T(%#v)\n&amp;quot;, ptrArr, ptrArr) fmt.Printf(&amp;quot;%T(%#v)\n&amp;quot;, ptrArr[1], ptrArr[1]) fmt.</description>
-    </item>
-    
-    <item>
-      <title>Test</title>
-      <link>http://blog.ryune.top/posts/test/</link>
-      <pubDate>Tue, 09 Jul 2019 00:01:39 +0800</pubDate>
-      
-      <guid>http://blog.ryune.top/posts/test/</guid>
-      <description> test  a b c  </description>
     </item>
     
   </channel>

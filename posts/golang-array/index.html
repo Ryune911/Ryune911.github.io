@@ -7,22 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>标签1 | Avatar&#39;s Blog</title>
-    <meta property="og:title" content="标签1 - Avatar&#39;s Blog">
+    <title>Golang 基础：array | Avatar&#39;s Blog</title>
+    <meta property="og:title" content="Golang 基础：array - Avatar&#39;s Blog">
     <meta property="og:type" content="article">
         
+    <meta property="article:published_time" content="2019-07-10T21:21:09&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-07-10T21:21:09&#43;08:00">
         
     <meta name="Keywords" content="">
-    <meta name="description" content="标签1">
+    <meta name="description" content="Golang 基础：array">
         
     <meta name="author" content="Avatar">
-    <meta property="og:url" content="http://blog.ryune.top/tags/%E6%A0%87%E7%AD%BE1/">
+    <meta property="og:url" content="http://blog.ryune.top/posts/golang-array/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
     
+        <link rel="stylesheet" href="/css/prism.css">
+    
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="alternate" type="application/rss+xml+xml" href="http://blog.ryune.top/tags/%E6%A0%87%E7%AD%BE1/index.xml" title="Avatar's Blog" />
     <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 
     
@@ -31,7 +36,6 @@
     
     
 </head>
-
 
 <body>
 <header id="header" class="clearfix">
@@ -66,50 +70,122 @@
 
             <div class="col-8" id="main">
                 <div class="res-cons">
-                    
-                    <h3 class="archive-title">
-                        包含标签
-                        <span class="keyword">标签1</span>
-                        的文章
-                    </h3>
-                    
-
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="http://blog.ryune.top/posts/test/">Test</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年7月9日
-                            </date>
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Golang 基础：array</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年7月10日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
                             
-                            <div class="post-meta meta-category">
-                                |
-                                
-                                    <a href="http://blog.ryune.top/categories/%E5%88%86%E7%B1%BB1">分类1</a>
-                                
-                                    <a href="http://blog.ryune.top/categories/%E5%88%86%E7%B1%BB2">分类2</a>
-                                
-                            </div>
+                                <span class="meta-category"><a href="http://blog.ryune.top/categories/golang">Golang</a></span>
                             
-                            <div class="post-content">
-                                 test  a b c  ……
-                                <p class="readmore"><a href="http://blog.ryune.top/posts/test/">阅读全文</a></p>
-                            </div>
-                        </article>
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<h2 id="array">array</h2>
+
+<ul>
+<li>必须指定长度</li>
+
+<li><p>传递数组指针修改数组内元素才有效</p>
+
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {
+	//var arr [5]int
+	arr := [5]int{
+		0: 1,
+	}
+
+	// 同类型，同长度才可相互赋值
+	// var arr1 [4]int
+	// arr1 = arr
+
+	fmt.Printf(&quot;%T(%#v)\n&quot;, arr, arr)
+	fmt.Printf(&quot;%T(%#v)\n&quot;, arr[0], arr[0])
+	fmt.Printf(&quot;%T(%#v)\n&quot;, &amp;arr[0], &amp;arr[0])
+
+	for i, v := range arr {
+		fmt.Printf(&quot;索引:%d,值:%d\n&quot;, i, v)
+	}
+
+	// 指针数组
+	ptrArr := [5]*int{
+		// 分配内存
+		1: new(int),
+		// 其他索引为 nil
+	}
+	fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr, ptrArr)
+	fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr[1], ptrArr[1])
+	fmt.Printf(&quot;%T(%#v)\n&quot;, *ptrArr[1], *ptrArr[1])
+
+	// 分配了内存才能赋值
+	*ptrArr[1] = 1
+
+	fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr, ptrArr)
+	fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr[1], ptrArr[1])
+	fmt.Printf(&quot;%T(%#v)\n&quot;, *ptrArr[1], *ptrArr[1])
+
+	// 传递数组，不会改变值
+	// modify(arr)
+	modify(&amp;arr)
+	fmt.Println(&quot;main&quot;, arr)
+}
+
+func modify(a *[5]int) {
+	a[1] = 3
+	fmt.Println(&quot;modify&quot;, *a)
+}
+</code></pre></li>
+</ul>
+
+                        </div>
+
+                        
+
+
+                        
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://blog.ryune.top/tags/golang">golang</a></li>
+                                
+                                <li><a href="http://blog.ryune.top/tags/go">go</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
                     
+    
 
-                    
-
-
-
-
-
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "Ryune911/utteranc"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
                 </div>
             </div>
-
             <div id="secondary">
     <section class="widget">
         <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
@@ -212,9 +288,24 @@
 </footer>
 
 
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
 <a id="rocket" href="#top"></a>
 <script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
-
 
 
 

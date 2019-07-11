@@ -7,22 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>标签1 | Avatar&#39;s Blog</title>
-    <meta property="og:title" content="标签1 - Avatar&#39;s Blog">
+    <title>Golang 基础：slice | Avatar&#39;s Blog</title>
+    <meta property="og:title" content="Golang 基础：slice - Avatar&#39;s Blog">
     <meta property="og:type" content="article">
         
+    <meta property="article:published_time" content="2019-07-11T15:01:39&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-07-11T15:01:39&#43;08:00">
         
     <meta name="Keywords" content="">
-    <meta name="description" content="标签1">
+    <meta name="description" content="Golang 基础：slice">
         
     <meta name="author" content="Avatar">
-    <meta property="og:url" content="http://blog.ryune.top/tags/%E6%A0%87%E7%AD%BE1/">
+    <meta property="og:url" content="http://blog.ryune.top/posts/golang-slice/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
     
+        <link rel="stylesheet" href="/css/prism.css">
+    
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="alternate" type="application/rss+xml+xml" href="http://blog.ryune.top/tags/%E6%A0%87%E7%AD%BE1/index.xml" title="Avatar's Blog" />
     <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 
     
@@ -31,7 +36,6 @@
     
     
 </head>
-
 
 <body>
 <header id="header" class="clearfix">
@@ -66,50 +70,117 @@
 
             <div class="col-8" id="main">
                 <div class="res-cons">
-                    
-                    <h3 class="archive-title">
-                        包含标签
-                        <span class="keyword">标签1</span>
-                        的文章
-                    </h3>
-                    
-
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="http://blog.ryune.top/posts/test/">Test</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年7月9日
-                            </date>
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Golang 基础：slice</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年7月11日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
                             
-                            <div class="post-meta meta-category">
-                                |
-                                
-                                    <a href="http://blog.ryune.top/categories/%E5%88%86%E7%B1%BB1">分类1</a>
-                                
-                                    <a href="http://blog.ryune.top/categories/%E5%88%86%E7%B1%BB2">分类2</a>
-                                
-                            </div>
+                                <span class="meta-category"><a href="http://blog.ryune.top/categories/golang">Golang</a></span>
                             
-                            <div class="post-content">
-                                 test  a b c  ……
-                                <p class="readmore"><a href="http://blog.ryune.top/posts/test/">阅读全文</a></p>
-                            </div>
-                        </article>
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<h2 id="slice">slice</h2>
+
+<p><code>底层基于数组实现</code></p>
+
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {
+	// 长度是5，容量也是5
+	slice := make([]int, 5)
+	fmt.Printf(&quot;slice: %T(%#v)\n&quot;, slice, slice)
+
+	// 长度是5，容量是10，容量必须 &gt;= 长度，剩下5个需要扩充后才能访问
+	slice1 := make([]int, 5, 10)
+	fmt.Printf(&quot;slice1: %T(%#v)\n&quot;, slice1, slice1)
+
+	// 和创建数组很类似，不设置[]，会推导出来，并且长度和容量一致
+	slice2 := []int{
+		4: 4,
+	}
+	fmt.Printf(&quot;slice2: %T(%#v)\n&quot;, slice2, slice2)
+
+	// nil 切片：长度容量都是0，指向底层数组的指针为nil，表示一个不存在的切片
+	var slice3 []int
+	fmt.Printf(&quot;slice3: %T(%#v)\n&quot;, slice3, slice3)
+
+	// 空切片：长度容量都是0，表示一个空的切片
+	slice4 := []int{}
+	fmt.Printf(&quot;slice4: %T(%#v)\n&quot;, slice4, slice4)
+
+	// 基于现有的数组或切片创建
+	slice5 := slice2[:]
+	fmt.Printf(&quot;slice5: %T(%#v)\n&quot;, slice5, slice5)
+	slice6 := slice2[1:]
+	fmt.Printf(&quot;slice6: %T(%#v)\n&quot;, slice6, slice6)
+	slice7 := slice2[:4]
+	fmt.Printf(&quot;slice7: %T(%#v)\n&quot;, slice7, slice7)
+
+	// 使用切片
+	fmt.Printf(&quot;slice7[0]: %T(%#v)\n&quot;, slice7[0], slice7[0])
+}
+
+</code></pre>
+
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/golang-array/">Golang 基础：array</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://blog.ryune.top/tags/golang">golang</a></li>
+                                
+                                <li><a href="http://blog.ryune.top/tags/go">go</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
                     
+    
 
-                    
-
-
-
-
-
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "Ryune911/utteranc"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
                 </div>
             </div>
-
             <div id="secondary">
     <section class="widget">
         <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
@@ -212,9 +283,24 @@
 </footer>
 
 
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
 <a id="rocket" href="#top"></a>
 <script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
-
 
 
 
