@@ -131,6 +131,55 @@ func main() {
 
 	// 使用切片
 	fmt.Printf(&quot;slice7[0]: %T(%#v)\n&quot;, slice7[0], slice7[0])
+
+	// 修改切片
+	slice8 := slice7[:]
+	modify(slice8, 1)
+	// slice8 修改了
+	fmt.Printf(&quot;slice8: %T(%#v)\n&quot;, slice8, slice8)
+	// slice7 修改了
+	fmt.Printf(&quot;slice7: %T(%#v)\n&quot;, slice7, slice7)
+	// slice2 修改了
+	fmt.Printf(&quot;slice2: %T(%#v)\n&quot;, slice2, slice2)
+	// slice6 修改了
+	fmt.Printf(&quot;slice6: %T(%#v)\n&quot;, slice6, slice6)
+	// slice5 修改了
+	fmt.Printf(&quot;slice5: %T(%#v)\n&quot;, slice5, slice5)
+
+	// slice4 未修改
+	fmt.Printf(&quot;slice4: %T(%#v)\n&quot;, slice4, slice4)
+	// slice3 未修改
+	fmt.Printf(&quot;slice3: %T(%#v)\n&quot;, slice3, slice3)
+	// slice1 未修改
+	fmt.Printf(&quot;slice1: %T(%#v)\n&quot;, slice1, slice1)
+	// slice 未修改
+	fmt.Printf(&quot;slice: %T(%#v)\n&quot;, slice, slice)
+
+	// 切片追加
+	slice8 = append(slice8, 8)
+	// slice8 增加了 8
+	fmt.Printf(&quot;slice8: %T(%#v)\n&quot;, slice8, slice8)
+	// slice7 未修改
+	fmt.Printf(&quot;slice7: %T(%#v)\n&quot;, slice7, slice7)
+
+	// 切片copy
+	slice9 := []int{1, 2, 3}
+	// copy slice7 的前3个元素
+	copy(slice9, slice7)
+	fmt.Printf(&quot;slice9: %T(%#v)\n&quot;, slice9, slice9)
+	fmt.Printf(&quot;slice7: %T(%#v)\n&quot;, slice7, slice7)
+	modify(slice9, 9)
+	fmt.Printf(&quot;slice9: %T(%#v)\n&quot;, slice9, slice9)
+	fmt.Printf(&quot;slice7: %T(%#v)\n&quot;, slice7, slice7)
+
+	slice9 = append(slice9, 9)
+	fmt.Printf(&quot;slice9: %T(%#v)\n&quot;, slice9, slice9)
+	fmt.Printf(&quot;slice7: %T(%#v)\n&quot;, slice7, slice7)
+
+}
+
+func modify(slice []int, value int) {
+	slice[1] = value
 }
 
 </code></pre>
@@ -196,15 +245,15 @@ func main() {
 <ul class="widget-list">
     
     <li>
+        <a href="http://blog.ryune.top/posts/golang-map/" title="Golang 基础：map">Golang 基础：map</a>
+    </li>
+    
+    <li>
         <a href="http://blog.ryune.top/posts/golang-slice/" title="Golang 基础：slice">Golang 基础：slice</a>
     </li>
     
     <li>
         <a href="http://blog.ryune.top/posts/golang-array/" title="Golang 基础：array">Golang 基础：array</a>
-    </li>
-    
-    <li>
-        <a href="http://blog.ryune.top/posts/test/" title="Test">Test</a>
     </li>
     
 </ul>
@@ -217,15 +266,7 @@ func main() {
 <ul class="widget-list">
     
     <li>
-        <a href="http://blog.ryune.top/categories/golang/">golang(2)</a>
-    </li>
-    
-    <li>
-        <a href="http://blog.ryune.top/categories/%E5%88%86%E7%B1%BB1/">分类1(1)</a>
-    </li>
-    
-    <li>
-        <a href="http://blog.ryune.top/categories/%E5%88%86%E7%B1%BB2/">分类2(1)</a>
+        <a href="http://blog.ryune.top/categories/golang/">golang(3)</a>
     </li>
     
 </ul>
@@ -238,10 +279,6 @@ func main() {
     <a href="http://blog.ryune.top/tags/go/">go</a>
     
     <a href="http://blog.ryune.top/tags/golang/">golang</a>
-    
-    <a href="http://blog.ryune.top/tags/%E6%A0%87%E7%AD%BE1/">标签1</a>
-    
-    <a href="http://blog.ryune.top/tags/%E6%A0%87%E7%AD%BE2/">标签2</a>
     
 </div>
     </section>
