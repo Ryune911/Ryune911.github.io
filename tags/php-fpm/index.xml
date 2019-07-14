@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>php-fpm on Avatar&#39;s Blog</title>
+    <link>http://blog.ryune.top/tags/php-fpm/</link>
+    <description>Recent content in php-fpm on Avatar&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 08 Dec 2016 23:21:09 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.ryune.top/tags/php-fpm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Nginx: php-fpm 优化</title>
+      <link>http://blog.ryune.top/posts/nginx-3/</link>
+      <pubDate>Thu, 08 Dec 2016 23:21:09 +0800</pubDate>
+      
+      <guid>http://blog.ryune.top/posts/nginx-3/</guid>
+      <description>php.ini # 关闭 php 信息显示 expose_php = Off # 最大执行时间 max_execution_time = 30 # POST data 最大值 post_max_size = 5M # 上传文件最大值 upload_max_filesize = 5M  php-fpm 启用多个 FPM 实例，提高处理效率。
+cp www.conf 9000.conf cp php-fpm.conf php-fpm9000.conf ...  编辑 9000.conf
+user = nginx group = nginx listen = /dev/shm/php-fpm9000.sock listen.backlog = 4096 listen.owner = nginx listen.group = nginx pm = static pm.max_children = 100 pm.max_requests = 2048 pm.status_path = /status9000 slowlog = /var/log/php-fpm/www-slow9000.</description>
+    </item>
+    
+    <item>
+      <title>Nginx: php-fpm 配置</title>
+      <link>http://blog.ryune.top/posts/nginx-1/</link>
+      <pubDate>Sun, 20 Nov 2016 23:21:09 +0800</pubDate>
+      
+      <guid>http://blog.ryune.top/posts/nginx-1/</guid>
+      <description>php-fpm 修改php.ini配置文件
+cgi.fix_pathinfo=0  修改 php-pfm.d/www.conf
+user = nginx group = nginx listen.owner = nobody listen.group = nobody  处理 Request # 根据 request 找到应该被 route 到哪一个 server. # 找不到就 route 到默认 server 上. # 默认 server 为第一个,也可以通过 default_server 参数设置. server { listen 80 default_server; server_name example.org www.example.org; ... } server { listen 80; server_name example.org www.example.org; ... } server { listen 80; server_name example.org www.example.org; ... } # 处理丢弃的 request server { listen 80; server_name &amp;quot;&amp;quot;; return 444; }  选择目录 server { listen 80; server_name example.</description>
+    </item>
+    
+  </channel>
+</rss>

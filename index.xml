@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>Redis 互斥锁</title>
+      <title>Redis: 互斥锁</title>
       <link>http://blog.ryune.top/posts/redis-mutex/</link>
       <pubDate>Sun, 14 Jul 2019 23:21:09 +0800</pubDate>
       
@@ -77,7 +77,61 @@ package main import &amp;quot;fmt&amp;quot; func main() { // 长度是5，容量
     </item>
     
     <item>
-      <title>Ubuntu 完善-1</title>
+      <title>Supervisor: 管理 Laravel Queue</title>
+      <link>http://blog.ryune.top/posts/supervisor-1/</link>
+      <pubDate>Tue, 05 Dec 2017 23:21:09 +0800</pubDate>
+      
+      <guid>http://blog.ryune.top/posts/supervisor-1/</guid>
+      <description>安装 &amp;amp; 配置 安装
+yum install supervisor  配置
+# 文件路径 /etc/supervisord.conf vim /etc/supervisord.conf # 使用 unix [unix_http_server] file=/var/run/supervisor/supervisor.sock ; (the path to the socket file) ;chmod=0700 ; sockef file mode (default 0700) ;chown=nobody:nogroup ; socket file uid:gid owner ;username=user ; (default is no username (open server)) ;password=123 ; (default is no password (open server)) # 添加新任务的配置文件 [include] files=/etc/supervisord.d/conf.d/*.conf  管理 laravel 队列任务 # 新建配置文件 vim /etc/supervisord.d/conf.d/laravel-worker.conf # 编写配置 [program:laravel-worker] process_name=%(program_name)s_%(process_num)02d command=php /codtrade/CodtradeAPIServer/artisan queue:work database autostart=true autorestart=true user=nginx numprocs=8 redirect_stderr=true stdout_logfile=/var/log/supervisor/worker.</description>
+    </item>
+    
+    <item>
+      <title>测试: webbench</title>
+      <link>http://blog.ryune.top/posts/test-webbench/</link>
+      <pubDate>Mon, 31 Jul 2017 23:21:09 +0800</pubDate>
+      
+      <guid>http://blog.ryune.top/posts/test-webbench/</guid>
+      <description> 1. 下载 wget http://home.tiscali.cz/cz210552/distfiles/webbench-1.5.tar.gz  2. 解压 tar xvzf webbench-1.5.tar.gz  3. 安装 gcc ctags yum install gcc ctags  4. 编译安装 make make install  5. 使用 // 并发500 30S测试 webbench -c 500 -t 300 http://localhost:61309/api/common/brands/2/subcategories-list/  </description>
+    </item>
+    
+    <item>
+      <title>Nginx: php-fpm 优化</title>
+      <link>http://blog.ryune.top/posts/nginx-3/</link>
+      <pubDate>Thu, 08 Dec 2016 23:21:09 +0800</pubDate>
+      
+      <guid>http://blog.ryune.top/posts/nginx-3/</guid>
+      <description>php.ini # 关闭 php 信息显示 expose_php = Off # 最大执行时间 max_execution_time = 30 # POST data 最大值 post_max_size = 5M # 上传文件最大值 upload_max_filesize = 5M  php-fpm 启用多个 FPM 实例，提高处理效率。
+cp www.conf 9000.conf cp php-fpm.conf php-fpm9000.conf ...  编辑 9000.conf
+user = nginx group = nginx listen = /dev/shm/php-fpm9000.sock listen.backlog = 4096 listen.owner = nginx listen.group = nginx pm = static pm.max_children = 100 pm.max_requests = 2048 pm.status_path = /status9000 slowlog = /var/log/php-fpm/www-slow9000.</description>
+    </item>
+    
+    <item>
+      <title>Nginx: 多域名 HTTPS 配置</title>
+      <link>http://blog.ryune.top/posts/nginx-2/</link>
+      <pubDate>Fri, 02 Dec 2016 23:21:09 +0800</pubDate>
+      
+      <guid>http://blog.ryune.top/posts/nginx-2/</guid>
+      <description>SSL Server Test  https://www.ssllabs.com/ssltest/index.html
+ SNI  生成 dhparams.pem 文件
+openssl dhparam -out /etc/nginx/ssl/dhparams.pem 2048  添加配置
+ssl_dhparam /etc/nginx/ssl/dhparam.pem;   reverse-proxy.conf server { listen 80; if ($host = &#39;api.aaa.com&#39;) { return 301 https://api.aaa.com$request_uri; } if ($host = &#39;admin.aaa.com&#39;) { return 301 https://admin.aaa.com$request_uri; } if ($host = &#39;www.bbb.com&#39;) { return 301 https://www.bbb.com$request_uri; } return 301 http://www.aaa.com$request_uri; } # Admin Server server { listen 443; server_name admin.aaa.com; ssl on; ssl_certificate /etc/nginx/ssl/cert/admin.</description>
+    </item>
+    
+    <item>
+      <title>Nginx: php-fpm 配置</title>
+      <link>http://blog.ryune.top/posts/nginx-1/</link>
+      <pubDate>Sun, 20 Nov 2016 23:21:09 +0800</pubDate>
+      
+      <guid>http://blog.ryune.top/posts/nginx-1/</guid>
+      <description>php-fpm 修改php.ini配置文件
+cgi.fix_pathinfo=0  修改 php-pfm.d/www.conf
+user = nginx group = nginx listen.owner = nobody listen.group = nobody  处理 Request # 根据 request 找到应该被 route 到哪一个 server. # 找不到就 route 到默认 server 上. # 默认 server 为第一个,也可以通过 default_server 参数设置. server { listen 80 default_server; server_name example.org www.example.org; ... } server { listen 80; server_name example.org www.example.org; ... } server { listen 80; server_name example.org www.example.org; ... } # 处理丢弃的 request server { listen 80; server_name &amp;quot;&amp;quot;; return 444; }  选择目录 server { listen 80; server_name example.</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu: 完善-1</title>
       <link>http://blog.ryune.top/posts/ubuntu-1/</link>
       <pubDate>Mon, 26 Sep 2016 23:21:09 +0800</pubDate>
       

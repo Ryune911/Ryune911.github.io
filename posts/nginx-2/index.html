@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Nginx: 多域名 HTTPS 配置 | Avatar&#39;s Blog</title>
+    <meta property="og:title" content="Nginx: 多域名 HTTPS 配置 - Avatar&#39;s Blog">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2016-12-02T23:21:09&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2016-12-02T23:21:09&#43;08:00">
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="Nginx: 多域名 HTTPS 配置">
+        
+    <meta name="author" content="Avatar">
+    <meta property="og:url" content="http://blog.ryune.top/posts/nginx-2/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://blog.ryune.top/">
+                        Avatar&#39;s Blog
+                    </a>
+                
+                
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://blog.ryune.top/">首页</a>
+                    
+                    <a  href="http://blog.ryune.top/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://blog.ryune.top/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Nginx: 多域名 HTTPS 配置</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2016年12月2日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="http://blog.ryune.top/categories/nginx">Nginx</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<h3 id="ssl-server-test">SSL Server Test</h3>
+
+<blockquote>
+<p><a href="https://www.ssllabs.com/ssltest/index.html">https://www.ssllabs.com/ssltest/index.html</a></p>
+</blockquote>
+
+<h3 id="sni">SNI</h3>
+
+<ul>
+<li><p>生成 dhparams.pem 文件</p>
+
+<pre><code>openssl dhparam -out /etc/nginx/ssl/dhparams.pem 2048
+</code></pre></li>
+
+<li><p>添加配置</p>
+
+<pre><code>ssl_dhparam /etc/nginx/ssl/dhparam.pem;
+</code></pre></li>
+</ul>
+
+<h3 id="reverse-proxy-conf">reverse-proxy.conf</h3>
+
+<pre><code>server {
+    listen 80;
+    if ($host = 'api.aaa.com') {
+        return 301 https://api.aaa.com$request_uri;
+    }
+    if ($host = 'admin.aaa.com') {
+        return 301 https://admin.aaa.com$request_uri;
+    }
+    if ($host = 'www.bbb.com') {
+        return 301 https://www.bbb.com$request_uri;
+    }
+    return 301 http://www.aaa.com$request_uri;
+}
+
+# Admin Server
+server {
+    listen 443;
+    server_name admin.aaa.com;
+    ssl on;
+    ssl_certificate   /etc/nginx/ssl/cert/admin.aaa.pem;
+    ssl_certificate_key  /etc/nginx/ssl/cert/admin.aaa.key;
+    ssl_session_timeout 5m;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_prefer_server_ciphers on;
+    ssl_ciphers &quot;EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH&quot;;
+    ssl_ecdh_curve secp384r1;
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_tickets off;
+    ssl_stapling on;
+    ssl_stapling_verify on;
+    resolver 8.8.8.8 8.8.4.4 valid=300s;
+    resolver_timeout 5s;
+    add_header Strict-Transport-Security &quot;max-age=63072000; includeSubDomains; preload&quot;;
+    add_header X-Frame-Options DENY;
+    add_header X-Content-Type-Options nosniff;
+    ssl_dhparam /etc/nginx/ssl/dhparam.pem;
+    if ($host != 'admin.aaa.com') {
+        return 301 http://www.aaa.com$request_uri;
+    }
+    location / {
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://127.0.0.1:60911;
+    }
+}
+
+# Web Server
+server {
+    listen 443;
+    server_name www.bbb.com;
+    ssl on;
+    ssl_certificate   /etc/nginx/ssl/cert/www.bbb.pem;
+    ssl_certificate_key  /etc/nginx/ssl/cert/www.bbb.key;
+    ssl_session_timeout 5m;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_prefer_server_ciphers on;
+    ssl_ciphers &quot;EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH&quot;;
+    ssl_ecdh_curve secp384r1;
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_tickets off;
+    ssl_stapling on;
+    ssl_stapling_verify on;
+    resolver 8.8.8.8 8.8.4.4 valid=300s;
+    resolver_timeout 5s;
+    add_header Strict-Transport-Security &quot;max-age=63072000; includeSubDomains; preload&quot;;
+    add_header X-Frame-Options DENY;
+    add_header X-Content-Type-Options nosniff;
+    ssl_dhparam /etc/nginx/ssl/dhparam.pem;
+    if ($host != 'www.bbb.com') {
+        return 301 http://www.aaa.com$request_uri;
+    }
+    location / {
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://127.0.0.1:4000;
+    }
+}
+</code></pre>
+
+<h3 id="vhost-conf">vhost.conf</h3>
+
+<pre><code>server {
+    listen 60911;
+    server_name admin.aaa.com;
+    root /aaa/public;
+    index index.php index.html;
+    access_log  /var/log/nginx/cod_admin/access.log;
+    error_log   /var/log/nginx/cod_admin/error.log error;
+    location / {
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+    location ~ \.php($|/) {
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+        fastcgi_pass unix:/dev/shm/php-fpm.sock;
+    }
+}
+server {
+    listen 4000;
+    server_name www.bbb.com;
+    root /aaa/build;
+    index index.html index.php;
+    access_log  /var/log/nginx/bbb/access.log main;
+    error_log   /var/log/nginx/bbb/error.log error;
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+</code></pre>
+
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/nginx-1/">Nginx: php-fpm 配置</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://blog.ryune.top/tags/nginx">Nginx</a></li>
+                                
+                                <li><a href="http://blog.ryune.top/tags/https">HTTPS</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "Ryune911/utteranc"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://blog.ryune.top/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/redis-mutex/" title="Redis: 互斥锁">Redis: 互斥锁</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/golang-map/" title="Golang 基础：map">Golang 基础：map</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/golang-slice/" title="Golang 基础：slice">Golang 基础：slice</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/golang-array/" title="Golang 基础：array">Golang 基础：array</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/oss-path/" title="OSS 踩坑">OSS 踩坑</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/supervisor-1/" title="Supervisor: 管理 Laravel Queue">Supervisor: 管理 Laravel Queue</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/test-webbench/" title="测试: webbench">测试: webbench</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/nginx-3/" title="Nginx: php-fpm 优化">Nginx: php-fpm 优化</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/nginx-2/" title="Nginx: 多域名 HTTPS 配置">Nginx: 多域名 HTTPS 配置</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/nginx-1/" title="Nginx: php-fpm 配置">Nginx: php-fpm 配置</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/golang/">golang(3)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/nginx/">nginx(3)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/oss/">oss(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/redis/">redis(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/supervisor/">supervisor(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/ubuntu/">ubuntu(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/%E6%B5%8B%E8%AF%95/">测试(1)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://blog.ryune.top/tags/go/">go</a>
+    
+    <a href="http://blog.ryune.top/tags/golang/">golang</a>
+    
+    <a href="http://blog.ryune.top/tags/https/">https</a>
+    
+    <a href="http://blog.ryune.top/tags/laravel/">laravel</a>
+    
+    <a href="http://blog.ryune.top/tags/mutex/">mutex</a>
+    
+    <a href="http://blog.ryune.top/tags/nginx/">nginx</a>
+    
+    <a href="http://blog.ryune.top/tags/oss/">oss</a>
+    
+    <a href="http://blog.ryune.top/tags/php-fpm/">php-fpm</a>
+    
+    <a href="http://blog.ryune.top/tags/redis/">redis</a>
+    
+    <a href="http://blog.ryune.top/tags/supervisor/">supervisor</a>
+    
+    <a href="http://blog.ryune.top/tags/ubuntu/">ubuntu</a>
+    
+    <a href="http://blog.ryune.top/tags/webbench/">webbench</a>
+    
+    <a href="http://blog.ryune.top/tags/%E4%BA%92%E6%96%A5%E9%94%81/">互斥锁</a>
+    
+    <a href="http://blog.ryune.top/tags/%E4%BC%98%E5%8C%96/">优化</a>
+    
+    <a href="http://blog.ryune.top/tags/%E6%B5%8B%E8%AF%95/">测试</a>
+    
+    <a href="http://blog.ryune.top/tags/%E8%B8%A9%E5%9D%91/">踩坑</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://totoval.com" title="Totoval">Totoval</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="https://totoval.com/docs/introduction/introduction/" title="Totovali Docs">Totoval Docs</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://blog.ryune.top/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://blog.ryune.top/">Avatar&#39;s Blog By Avatar</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>

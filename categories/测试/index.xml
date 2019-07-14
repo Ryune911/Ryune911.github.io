@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>测试 on Avatar&#39;s Blog</title>
+    <link>http://blog.ryune.top/categories/%E6%B5%8B%E8%AF%95/</link>
+    <description>Recent content in 测试 on Avatar&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 31 Jul 2017 23:21:09 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.ryune.top/categories/%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>测试: webbench</title>
+      <link>http://blog.ryune.top/posts/test-webbench/</link>
+      <pubDate>Mon, 31 Jul 2017 23:21:09 +0800</pubDate>
+      
+      <guid>http://blog.ryune.top/posts/test-webbench/</guid>
+      <description> 1. 下载 wget http://home.tiscali.cz/cz210552/distfiles/webbench-1.5.tar.gz  2. 解压 tar xvzf webbench-1.5.tar.gz  3. 安装 gcc ctags yum install gcc ctags  4. 编译安装 make make install  5. 使用 // 并发500 30S测试 webbench -c 500 -t 300 http://localhost:61309/api/common/brands/2/subcategories-list/  </description>
+    </item>
+    
+  </channel>
+</rss>
