@@ -22,19 +22,6 @@
     </item>
     
     <item>
-      <title>Ubuntu 完善-1</title>
-      <link>http://blog.ryune.top/posts/ubuntu-1/</link>
-      <pubDate>Sun, 14 Jul 2019 23:21:09 +0800</pubDate>
-      
-      <guid>http://blog.ryune.top/posts/ubuntu-1/</guid>
-      <description> Ubuntu 16.04 WPS无法输入中文  安装搜狗linux
-http://pinyin.sogou.com/linux/?r=pinyin  修改配置文件
- 修改wps
-vim /usr/bin/wps # 添加： export XMODIFIERS=&amp;quot;@im=fcitx&amp;quot; export QT_IM_MODULE=&amp;quot;fcitx&amp;quot;  修改et
-vim /usr/bin/et # 添加 export XMODIFIERS=&amp;quot;@im=fcitx&amp;quot; export QT_IM_MODULE=&amp;quot;fcitx&amp;quot;    点击launcher图标最小化 gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ launcher-minimize-window true  开启风扇 sudo find /sys | grep pwm echo 255 | sudo tee /sys/devices/platform/asus-nb-wmi/hwmon/hwmon3/pwm1  </description>
-    </item>
-    
-    <item>
       <title>Golang 基础：map</title>
       <link>http://blog.ryune.top/posts/golang-map/</link>
       <pubDate>Thu, 11 Jul 2019 16:49:09 +0800</pubDate>
@@ -87,6 +74,19 @@ package main import &amp;quot;fmt&amp;quot; func main() { // 长度是5，容量
       
       <guid>http://blog.ryune.top/posts/oss-path/</guid>
       <description> 路径错误  自定义的文件路径，key 不能以 / 开头！  OSSException in OSSExceptionFactory.php line 16: The specified object is not valid. </description>
+    </item>
+    
+    <item>
+      <title>Ubuntu 完善-1</title>
+      <link>http://blog.ryune.top/posts/ubuntu-1/</link>
+      <pubDate>Mon, 26 Sep 2016 23:21:09 +0800</pubDate>
+      
+      <guid>http://blog.ryune.top/posts/ubuntu-1/</guid>
+      <description> Ubuntu 16.04 WPS无法输入中文  安装搜狗linux
+http://pinyin.sogou.com/linux/?r=pinyin  修改配置文件
+ 修改wps
+vim /usr/bin/wps # 添加： export XMODIFIERS=&amp;quot;@im=fcitx&amp;quot; export QT_IM_MODULE=&amp;quot;fcitx&amp;quot;  修改et
+vim /usr/bin/et # 添加 export XMODIFIERS=&amp;quot;@im=fcitx&amp;quot; export QT_IM_MODULE=&amp;quot;fcitx&amp;quot;    点击launcher图标最小化 gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ launcher-minimize-window true  开启风扇 sudo find /sys | grep pwm echo 255 | sudo tee /sys/devices/platform/asus-nb-wmi/hwmon/hwmon3/pwm1  </description>
     </item>
     
   </channel>
