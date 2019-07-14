@@ -6,10 +6,37 @@
     <description>Recent content in Tags on Avatar&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 11 Jul 2019 16:49:09 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 14 Jul 2019 23:21:09 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.ryune.top/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>mutex</title>
+      <link>http://blog.ryune.top/tags/mutex/</link>
+      <pubDate>Sun, 14 Jul 2019 23:21:09 +0800</pubDate>
+      
+      <guid>http://blog.ryune.top/tags/mutex/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>redis</title>
+      <link>http://blog.ryune.top/tags/redis/</link>
+      <pubDate>Sun, 14 Jul 2019 23:21:09 +0800</pubDate>
+      
+      <guid>http://blog.ryune.top/tags/redis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>互斥锁</title>
+      <link>http://blog.ryune.top/tags/%E4%BA%92%E6%96%A5%E9%94%81/</link>
+      <pubDate>Sun, 14 Jul 2019 23:21:09 +0800</pubDate>
+      
+      <guid>http://blog.ryune.top/tags/%E4%BA%92%E6%96%A5%E9%94%81/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>go</title>
@@ -26,6 +53,24 @@
       <pubDate>Thu, 11 Jul 2019 16:49:09 +0800</pubDate>
       
       <guid>http://blog.ryune.top/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>oss</title>
+      <link>http://blog.ryune.top/tags/oss/</link>
+      <pubDate>Tue, 20 Mar 2018 23:21:09 +0800</pubDate>
+      
+      <guid>http://blog.ryune.top/tags/oss/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>踩坑</title>
+      <link>http://blog.ryune.top/tags/%E8%B8%A9%E5%9D%91/</link>
+      <pubDate>Tue, 20 Mar 2018 23:21:09 +0800</pubDate>
+      
+      <guid>http://blog.ryune.top/tags/%E8%B8%A9%E5%9D%91/</guid>
       <description></description>
     </item>
     

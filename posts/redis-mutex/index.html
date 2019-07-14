@@ -7,20 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Golang 基础：slice | Avatar&#39;s Blog</title>
-    <meta property="og:title" content="Golang 基础：slice - Avatar&#39;s Blog">
+    <title>Redis 互斥锁 | Avatar&#39;s Blog</title>
+    <meta property="og:title" content="Redis 互斥锁 - Avatar&#39;s Blog">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content="2019-07-11T15:01:39&#43;08:00">
+    <meta property="article:published_time" content="2019-07-14T23:21:09&#43;08:00">
         
         
-    <meta property="article:modified_time" content="2019-07-11T15:01:39&#43;08:00">
+    <meta property="article:modified_time" content="2019-07-14T23:21:09&#43;08:00">
         
     <meta name="Keywords" content="">
-    <meta name="description" content="Golang 基础：slice">
+    <meta name="description" content="Redis 互斥锁">
         
     <meta name="author" content="Avatar">
-    <meta property="og:url" content="http://blog.ryune.top/posts/golang-slice/">
+    <meta property="og:url" content="http://blog.ryune.top/posts/redis-mutex/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
@@ -72,16 +72,16 @@
                 <div class="res-cons">
                     <article class="post">
                         <header>
-                            <h1 class="post-title">Golang 基础：slice</h1>
+                            <h1 class="post-title">Redis 互斥锁</h1>
                         </header>
                         <date class="post-meta meta-date">
-                            2019年7月11日
+                            2019年7月14日
                         </date>
                         
                         <div class="post-meta">
                             <span>|</span>
                             
-                                <span class="meta-category"><a href="http://blog.ryune.top/categories/golang">Golang</a></span>
+                                <span class="meta-category"><a href="http://blog.ryune.top/categories/redis">Redis</a></span>
                             
                         </div>
                         
@@ -90,99 +90,114 @@
                         <div class="post-content">
                             
 
-<h2 id="slice">slice</h2>
+<h2 id="redis-互斥锁">Redis 互斥锁</h2>
 
-<p><code>底层基于数组实现</code></p>
+<p><code>基于 SETNX</code></p>
 
-<pre><code>package main
+<blockquote>
+<ul>
+<li>SETNX: set if not exists</li>
+<li>如果不存在，则 SET</li>
+<li>成功返回1，失败返回0</li>
+</ul>
+</blockquote>
 
-import &quot;fmt&quot;
+<h3 id="v1-0">v1.0</h3>
 
-func main() {
-	// 长度是5，容量也是5
-	slice := make([]int, 5)
-	fmt.Printf(&quot;slice: %T(%#v)\n&quot;, slice, slice)
+<pre><code>// 伪代码
 
-	// 长度是5，容量是10，容量必须 &gt;= 长度，剩下5个需要扩充后才能访问
-	slice1 := make([]int, 5, 10)
-	fmt.Printf(&quot;slice1: %T(%#v)\n&quot;, slice1, slice1)
+获取锁：
+    setnx key value
+    expire key expiration
+释放锁：
+    del key
+</code></pre>
 
-	// 和创建数组很类似，不设置[]，会推导出来，并且长度和容量一致
-	slice2 := []int{
-		4: 4,
-	}
-	fmt.Printf(&quot;slice2: %T(%#v)\n&quot;, slice2, slice2)
+<ul>
+<li>特点：加过期时间避免异常导致锁无法释放的情况</li>
+<li>缺点：expire key expiration 执行前异常，依然存在锁无法过期的问题</li>
+</ul>
 
-	// nil 切片：长度容量都是0，指向底层数组的指针为nil，表示一个不存在的切片
-	var slice3 []int
-	fmt.Printf(&quot;slice3: %T(%#v)\n&quot;, slice3, slice3)
+<h3 id="v1-1">v1.1</h3>
 
-	// 空切片：长度容量都是0，表示一个空的切片
-	slice4 := []int{}
-	fmt.Printf(&quot;slice4: %T(%#v)\n&quot;, slice4, slice4)
+<pre><code>// 伪代码
+获取锁：
+    过期时间戳=当前时间戳+过期时间
+    setnx key 过期时间戳
+    如果获取锁失败，则通过 get key 检查该锁的过期时间戳是否已过期
+    getset key 过期时间戳 修改该锁的过期时间戳为当前过期时间戳
+    检查 getset 返回的该锁旧的过期时间戳
+    如果与上一条 get 获取的该锁的过期时间戳相等，则获取锁成功
 
-	// 基于现有的数组或切片创建
-	slice5 := slice2[:]
-	fmt.Printf(&quot;slice5: %T(%#v)\n&quot;, slice5, slice5)
-	slice6 := slice2[1:]
-	fmt.Printf(&quot;slice6: %T(%#v)\n&quot;, slice6, slice6)
-	slice7 := slice2[:4]
-	fmt.Printf(&quot;slice7: %T(%#v)\n&quot;, slice7, slice7)
+释放锁：
+    del key
+</code></pre>
 
-	// 使用切片
-	fmt.Printf(&quot;slice7[0]: %T(%#v)\n&quot;, slice7[0], slice7[0])
+<ul>
+<li>特点：锁未加过期时间</li>
+<li>缺点：
 
-	// 修改切片
-	slice8 := slice7[:]
-	modify(slice8, 1)
-	// slice8 修改了
-	fmt.Printf(&quot;slice8: %T(%#v)\n&quot;, slice8, slice8)
-	// slice7 修改了
-	fmt.Printf(&quot;slice7: %T(%#v)\n&quot;, slice7, slice7)
-	// slice2 修改了
-	fmt.Printf(&quot;slice2: %T(%#v)\n&quot;, slice2, slice2)
-	// slice6 修改了
-	fmt.Printf(&quot;slice6: %T(%#v)\n&quot;, slice6, slice6)
-	// slice5 修改了
-	fmt.Printf(&quot;slice5: %T(%#v)\n&quot;, slice5, slice5)
+<ul>
+<li>并发有可能导致该锁的过期时间戳被不停的覆盖，谁都拿不到锁</li>
+<li>获取到锁的进程异常导致未释放，锁的过期时间被其他进程修改，从而延长等待时间</li>
+</ul></li>
+</ul>
 
-	// slice4 未修改
-	fmt.Printf(&quot;slice4: %T(%#v)\n&quot;, slice4, slice4)
-	// slice3 未修改
-	fmt.Printf(&quot;slice3: %T(%#v)\n&quot;, slice3, slice3)
-	// slice1 未修改
-	fmt.Printf(&quot;slice1: %T(%#v)\n&quot;, slice1, slice1)
-	// slice 未修改
-	fmt.Printf(&quot;slice: %T(%#v)\n&quot;, slice, slice)
+<h3 id="v2-0">v2.0</h3>
 
-	// 切片追加
-	slice8 = append(slice8, 8)
-	// slice8 增加了 8
-	fmt.Printf(&quot;slice8: %T(%#v)\n&quot;, slice8, slice8)
-	// slice7 未修改
-	fmt.Printf(&quot;slice7: %T(%#v)\n&quot;, slice7, slice7)
+<pre><code>// 伪代码
+获取锁：
+    setnx key 1 expiration
+    
+释放锁：
+    del key
+</code></pre>
 
-	// 切片copy
-	slice9 := []int{1, 2, 3}
-	// copy slice7 的前3个元素
-	copy(slice9, slice7)
-	fmt.Printf(&quot;slice9: %T(%#v)\n&quot;, slice9, slice9)
-	fmt.Printf(&quot;slice7: %T(%#v)\n&quot;, slice7, slice7)
-	modify(slice9, 9)
-	fmt.Printf(&quot;slice9: %T(%#v)\n&quot;, slice9, slice9)
-	fmt.Printf(&quot;slice7: %T(%#v)\n&quot;, slice7, slice7)
+<ul>
+<li>特点：Redis v2.6.12 增加 SETNX 获取时间参数，解决了两条命令无法保证原子性</li>
+<li>缺点：
 
-	slice9 = append(slice9, 9)
-	fmt.Printf(&quot;slice9: %T(%#v)\n&quot;, slice9, slice9)
-	fmt.Printf(&quot;slice7: %T(%#v)\n&quot;, slice7, slice7)
+<ul>
+<li>获取到锁的任务执行超时，导致其他任务获取到锁</li>
+<li>超时的任务删除了其他任务的锁</li>
+</ul></li>
+</ul>
 
-}
+<h3 id="v3-0">v3.0</h3>
 
-func modify(slice []int, value int) {
-	slice[1] = value
-}
+<pre><code>// 伪代码
+获取锁：
+    setnx key 时间戳 过期时间
+
+释放锁：
+    释放锁时检查锁的时间戳是否是获取到锁的时间戳
 
 </code></pre>
+
+<ul>
+<li>特点：通过检查锁的 value 避免释放其他任务的锁的问题</li>
+<li>缺点：
+
+<ul>
+<li>高并发下时间戳可能重复</li>
+<li>分布式系统中时间戳重复（各系统时间不统一）</li>
+</ul></li>
+</ul>
+
+<h3 id="v3-1">v3.1</h3>
+
+<pre><code>// 伪代码
+获取锁：
+    set key unique 过期时间
+    
+释放锁：
+    释放锁时检查锁的时间戳是是获取到锁的时间戳
+</code></pre>
+
+<ul>
+<li>特点：目前最优解</li>
+<li>缺点：不支持 Redis 集群，集群同步为异步，假设 Master 获取到锁后 crash，新的 Master 依然可以获取锁，导致同时获取到锁</li>
+</ul>
 
                         </div>
 
@@ -191,23 +206,16 @@ func modify(slice []int, value int) {
 
                         
 
-<div class="post-archive">
-    <h2>See Also</h2>
-    <ul class="listing">
-        
-        <li><a href="/posts/golang-array/">Golang 基础：array</a></li>
-        
-    </ul>
-</div>
-
 
                         <div class="post-meta meta-tags">
                             
                             <ul class="clearfix">
                                 
-                                <li><a href="http://blog.ryune.top/tags/golang">golang</a></li>
+                                <li><a href="http://blog.ryune.top/tags/redis">redis</a></li>
                                 
-                                <li><a href="http://blog.ryune.top/tags/go">go</a></li>
+                                <li><a href="http://blog.ryune.top/tags/mutex">mutex</a></li>
+                                
+                                <li><a href="http://blog.ryune.top/tags/%E4%BA%92%E6%96%A5%E9%94%81">互斥锁</a></li>
                                 
                             </ul>
                             

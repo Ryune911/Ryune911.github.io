@@ -7,22 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>golang | Avatar&#39;s Blog</title>
-    <meta property="og:title" content="golang - Avatar&#39;s Blog">
+    <title>Redis | Avatar&#39;s Blog</title>
+    <meta property="og:title" content="Redis - Avatar&#39;s Blog">
     <meta property="og:type" content="article">
         
         
     <meta name="Keywords" content="">
-    <meta name="description" content="golang">
+    <meta name="description" content="Redis">
         
     <meta name="author" content="Avatar">
-    <meta property="og:url" content="http://blog.ryune.top/tags/golang/">
+    <meta property="og:url" content="http://blog.ryune.top/categories/redis/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
     
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="alternate" type="application/rss+xml+xml" href="http://blog.ryune.top/tags/golang/index.xml" title="Avatar's Blog" />
+    <link rel="alternate" type="application/rss+xml+xml" href="http://blog.ryune.top/categories/redis/index.xml" title="Avatar's Blog" />
     <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 
     
@@ -68,9 +68,9 @@
                 <div class="res-cons">
                     
                     <h3 class="archive-title">
-                        包含标签
-                        <span class="keyword">golang</span>
-                        的文章
+                        分类
+                        <span class="keyword">Redis</span>
+                        中的文章
                     </h3>
                     
 
@@ -78,70 +78,24 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://blog.ryune.top/posts/golang-map/">Golang 基础：map</a>
+                                    <a href="http://blog.ryune.top/posts/redis-mutex/">Redis 互斥锁</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
-                                2019年7月11日
+                                2019年7月14日
                             </date>
                             
                             <div class="post-meta meta-category">
                                 |
                                 
-                                    <a href="http://blog.ryune.top/categories/golang">Golang</a>
+                                    <a href="http://blog.ryune.top/categories/redis">Redis</a>
                                 
                             </div>
                             
                             <div class="post-content">
-                                map  无序 键值对集合 map 的传递不会拷贝副本，所以修改会影响所有该 map 的引用 如果要按顺序遍历 map  遍历 map，将所有 key 存入新 slice 对 slice 排序 遍历 slice，使用 map[key] 获取   package main import &quot;fmt&quot; func main() { // 无序 // 键值对集合 dict := map[string]int{&quot;张三&quot;: 1, &quot;李四&quot;: 2} fmt.Printf(&quot;创建 dict: %T(%#v)\n&quot;, dict, dict) for key, value := range dict { fmt.Printf(&quot;无序 key: %#v, value: %#v\n&quot;, key, value) } dict1 := map[int]string{1: &quot;张三&quot;, 2: &quot;李四&quot;} fmt.Printf(&quot;创建 dict1: %T(%#v)\n&quot;, dict1, dict1) for key, value := range dict1 { fmt.……
-                                <p class="readmore"><a href="http://blog.ryune.top/posts/golang-map/">阅读全文</a></p>
-                            </div>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="http://blog.ryune.top/posts/golang-slice/">Golang 基础：slice</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年7月11日
-                            </date>
-                            
-                            <div class="post-meta meta-category">
-                                |
-                                
-                                    <a href="http://blog.ryune.top/categories/golang">Golang</a>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                slice 底层基于数组实现
-package main import &quot;fmt&quot; func main() { // 长度是5，容量也是5 slice := make([]int, 5) fmt.Printf(&quot;slice: %T(%#v)\n&quot;, slice, slice) // 长度是5，容量是10，容量必须 &gt;= 长度，剩下5个需要扩充后才能访问 slice1 := make([]int, 5, 10) fmt.Printf(&quot;slice1: %T(%#v)\n&quot;, slice1, slice1) // 和创建数组很类似，不设置[]，会推导出来，并且长度和容量一致 slice2 := []int{ 4: 4, } fmt.Printf(&quot;slice2: %T(%#v)\n&quot;, slice2, slice2) // nil 切片：长度容量都是0，指向底层数组的指针为nil，表示一个不存在的切片 var slice3 []int fmt.Printf(&quot;slice3: %T(%#v)\n&quot;, slice3, slice3) // 空切片：长度容量都是0，表示一个空的切片 slice4 := []int{} fmt.Printf(&quot;slice4: %T(%#v)\n&quot;, slice4, slice4) // 基于现有的数组或切片创建 slice5 := slice2[:] fmt.Printf(&quot;slice5: %T(%#v)\n&quot;, slice5, slice5) slice6 := slice2[1:] fmt.……
-                                <p class="readmore"><a href="http://blog.ryune.top/posts/golang-slice/">阅读全文</a></p>
-                            </div>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="http://blog.ryune.top/posts/golang-array/">Golang 基础：array</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年7月10日
-                            </date>
-                            
-                            <div class="post-meta meta-category">
-                                |
-                                
-                                    <a href="http://blog.ryune.top/categories/golang">Golang</a>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                array  必须指定长度 传递数组指针修改数组内元素才有效  package main import &quot;fmt&quot; func main() { //var arr [5]int arr := [5]int{ 0: 1, } // 同类型，同长度才可相互赋值 // var arr1 [4]int // arr1 = arr fmt.Printf(&quot;%T(%#v)\n&quot;, arr, arr) fmt.Printf(&quot;%T(%#v)\n&quot;, arr[0], arr[0]) fmt.Printf(&quot;%T(%#v)\n&quot;, &amp;arr[0], &amp;arr[0]) for i, v := range arr { fmt.Printf(&quot;索引:%d,值:%d\n&quot;, i, v) } // 指针数组 ptrArr := [5]*int{ // 分配内存 1: new(int), // 其他索引为 nil } fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr, ptrArr) fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr[1], ptrArr[1]) fmt.……
-                                <p class="readmore"><a href="http://blog.ryune.top/posts/golang-array/">阅读全文</a></p>
+                                Redis 互斥锁 基于 SETNX
+  SETNX: set if not exists 如果不存在，则 SET 成功返回1，失败返回0   v1.0 // 伪代码 获取锁： setnx key value expire key expiration 释放锁： del key   特点：加过期时间避免异常导致锁无法释放的情况 缺点：expire key expiration 执行前异常，依然存在锁无法过期的问题  v1.1 // 伪代码 获取锁： 过期时间戳=当前时间戳+过期时间 setnx key 过期时间戳 如果获取锁失败，则通过 get key 检查该锁的过期时间戳是否已过期 getset key 过期时间戳 修改该锁的过期时间戳为当前过期时间戳 检查 getset 返回的该锁旧的过期时间戳 如果与上一条 get 获取的该锁的过期时间戳相等，则获取锁成功 释放锁： del key   特点：锁未加过期时间 缺点：  并发有可能导致该锁的过期时间戳被不停的覆盖，谁都拿不到锁 获取到锁的进程异常导致未释放，锁的过期时间被其他进程修改，从而延长等待时间   v2.……
+                                <p class="readmore"><a href="http://blog.ryune.top/posts/redis-mutex/">阅读全文</a></p>
                             </div>
                         </article>
                     
