@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>centOS on Avatar&#39;s Blog</title>
+    <link>http://blog.ryune.top/categories/centos/</link>
+    <description>Recent content in centOS on Avatar&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 04 Jan 2017 23:21:09 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.ryune.top/categories/centos/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>centOS: web 环境搭建</title>
+      <link>http://blog.ryune.top/posts/centos-4/</link>
+      <pubDate>Wed, 04 Jan 2017 23:21:09 +0800</pubDate>
+      
+      <guid>http://blog.ryune.top/posts/centos-4/</guid>
+      <description>安装 node 安装 nvm
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.2/install.sh | bash  安装 node
+nvm install 4.4.0 nvm ls  切换node版本
+nvm use 4.4.0 nvm alias default4.4.0  安装 MySQL 5.6 配置yum源
+rpm -ivh http://repo.mysql.com/mysql-community-release-el7.rpm yum list mysql-community-client  安装mysql
+yum install mysql-community-server  启动mysql
+systemctl start mysql  设置密码
+mysql -u root Welcome to the MySQL monitor. Commands endwith ; or \g. Your MySQL connection id is 3 Server version: 5.</description>
+    </item>
+    
+    <item>
+      <title>centOS: 磁盘挂载</title>
+      <link>http://blog.ryune.top/posts/centos-3/</link>
+      <pubDate>Sat, 24 Dec 2016 23:21:09 +0800</pubDate>
+      
+      <guid>http://blog.ryune.top/posts/centos-3/</guid>
+      <description>查看当前同的磁盘状态
+sudo fdisk -l 磁盘 /dev/sdb：107.4 GB, 107374182400字节，209715200个扇区 Units = 扇区 of 1 * 512 = 512 bytes 扇区大小(逻辑/物理)：512字节 / 512字节 I/O 大小(最小/最佳)：512字节 / 512字节 磁盘标签类型：dos 磁盘标识符：0xd80ec383 设备 Boot Start End Blocks Id System /dev/sdb1 2048 209713151 104855552 83 Linux 磁盘 /dev/sda：32.2 GB, 32212254720字节，62914560个扇区 Units = 扇区 of 1 * 512 = 512 bytes 扇区大小(逻辑/物理)：512字节 / 512字节 I/O 大小(最小/最佳)：512字节 / 512字节 磁盘标签类型：dos 磁盘标识符：0x00093e4e 设备 Boot Start End Blocks Id System /dev/sda1 * 2048 62914559 31456256 83 Linux  检查硬件变化和当前的设备变化</description>
+    </item>
+    
+    <item>
+      <title>centOS: 防火墙</title>
+      <link>http://blog.ryune.top/posts/centos-2/</link>
+      <pubDate>Wed, 21 Dec 2016 23:21:09 +0800</pubDate>
+      
+      <guid>http://blog.ryune.top/posts/centos-2/</guid>
+      <description>开启 firewalld 服务：
+sudo systemctl start firewalld  移除
+firewall-cmd --zone=public --remove-port=6022/tcp --permanent  开放 SSH 自定义的端口
+sudo firewall-cmd --permanent --add-port=3333/tcp  开放 HTTP
+sudo firewall-cmd --permanent --add-service=http  开放 HTTPS
+sudo firewall-cmd --permanent --add-service=https  开放 SMTP
+sudo firewall-cmd --permanent --add-service=smtp  查看
+sudo firewall-cmd --get-services sudo firewall-cmd --permanent --list-all  重载服务
+sudo firewall-cmd --reload  开机启动
+sudo systemctl enable firewalld  </description>
+    </item>
+    
+    <item>
+      <title>centOS: 基本配置</title>
+      <link>http://blog.ryune.top/posts/centos-1/</link>
+      <pubDate>Tue, 20 Dec 2016 23:21:09 +0800</pubDate>
+      
+      <guid>http://blog.ryune.top/posts/centos-1/</guid>
+      <description>系统信息 cat /proc/version Linux version 3.10.0-123.20.1.el7.x86_64 (builder@kbuilder.dev.centos.or g) (gcc version 4.8.220140120 (Red Hat 4.8.2-16) (GCC) ) #1 SMP Thu Jan 2918:05:33 UTC 2015  root 用户 设置 root 密码
+sudo passwd root  添加用户
+adduser test  设置密码
+passwd test  root 权限
+gpasswd -a test wheel  ssh 修改端口号
+vi /etc/ssh/sshd_config Port 3333 PermitRootLogin no  重载服务
+systemctl reload sshd.service  swap 添加一个 4G 的 SWAP
+sudo fallocate -l 4G /swapfile sudo chmod 600 /swapfile sudo mkswap /swapfile sudo swapon /swapfile sudo sh -c &#39;echo &amp;quot;/swapfile none swap sw 0 0&amp;quot; &amp;gt;&amp;gt; /etc/fstab&#39;  安装 vim git yum install -y git vim # 设置 vim /etc/vimrc # 显示行数 set nu # 表示一个 tab 显示出来是多少个空格的长度 set tabstop=4 # 表示在编辑模式的时候按退格键的时候退回缩进的长度 set softtabstop=4 # 表示每一级缩进的长度,一般设置成跟 softtabstop 一样。 set shiftwidth=4 # 开启自动缩进 set autoindent set cindent  切换基本源为阿里云源 wget -O /etc/yum.</description>
+    </item>
+    
+  </channel>
+</rss>

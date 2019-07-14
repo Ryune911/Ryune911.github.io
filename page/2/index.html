@@ -68,6 +68,117 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="http://blog.ryune.top/posts/centos-3/" title="centOS: 磁盘挂载" >centOS: 磁盘挂载</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2016年12月24日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="http://blog.ryune.top/categories/centos">centOS</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                查看当前同的磁盘状态
+sudo fdisk -l 磁盘 /dev/sdb：107.4 GB, 107374182400字节，209715200个扇区 Units = 扇区 of 1 * 512 = 512 bytes 扇区大小(逻辑/物理)：512字节 / 512字节 I/O 大小(最小/最佳)：512字节 / 512字节 磁盘标签类型：dos 磁盘标识符：0xd80ec383 设备 Boot Start End Blocks Id System /dev/sdb1 2048 209713151 104855552 83 Linux 磁盘 /dev/sda：32.2 GB, 32212254720字节，62914560个扇区 Units = 扇区 of 1 * 512 = 512 bytes 扇区大小(逻辑/物理)：512字节 / 512字节 I/O 大小(最小/最佳)：512字节 / 512字节 磁盘标签类型：dos 磁盘标识符：0x00093e4e 设备 Boot Start End Blocks Id System /dev/sda1 * 2048 62914559 31456256 83 Linux  检查硬件变化和当前的设备变化……
+                            </div>
+                            <p class="readmore"><a href="http://blog.ryune.top/posts/centos-3/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://blog.ryune.top/posts/centos-2/" title="centOS: 防火墙" >centOS: 防火墙</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2016年12月21日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="http://blog.ryune.top/categories/centos">centOS</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                开启 firewalld 服务：
+sudo systemctl start firewalld  移除
+firewall-cmd --zone=public --remove-port=6022/tcp --permanent  开放 SSH 自定义的端口
+sudo firewall-cmd --permanent --add-port=3333/tcp  开放 HTTP
+sudo firewall-cmd --permanent --add-service=http  开放 HTTPS
+sudo firewall-cmd --permanent --add-service=https  开放 SMTP
+sudo firewall-cmd --permanent --add-service=smtp  查看
+sudo firewall-cmd --get-services sudo firewall-cmd --permanent --list-all  重载服务
+sudo firewall-cmd --reload  开机启动
+sudo systemctl enable firewalld  ……
+                            </div>
+                            <p class="readmore"><a href="http://blog.ryune.top/posts/centos-2/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://blog.ryune.top/posts/centos-1/" title="centOS: 基本配置" >centOS: 基本配置</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2016年12月20日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="http://blog.ryune.top/categories/centos">centOS</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                系统信息 cat /proc/version Linux version 3.10.0-123.20.1.el7.x86_64 (builder@kbuilder.dev.centos.or g) (gcc version 4.8.220140120 (Red Hat 4.8.2-16) (GCC) ) #1 SMP Thu Jan 2918:05:33 UTC 2015  root 用户 设置 root 密码
+sudo passwd root  添加用户
+adduser test  设置密码
+passwd test  root 权限
+gpasswd -a test wheel  ssh 修改端口号
+vi /etc/ssh/sshd_config Port 3333 PermitRootLogin no  重载服务
+systemctl reload sshd.service  swap 添加一个 4G 的 SWAP
+sudo fallocate -l 4G /swapfile sudo chmod 600 /swapfile sudo mkswap /swapfile sudo swapon /swapfile sudo sh -c 'echo &quot;/swapfile none swap sw 0 0&quot; &gt;&gt; /etc/fstab'  安装 vim git yum install -y git vim # 设置 vim /etc/vimrc # 显示行数 set nu # 表示一个 tab 显示出来是多少个空格的长度 set tabstop=4 # 表示在编辑模式的时候按退格键的时候退回缩进的长度 set softtabstop=4 # 表示每一级缩进的长度,一般设置成跟 softtabstop 一样。 set shiftwidth=4 # 开启自动缩进 set autoindent set cindent  切换基本源为阿里云源 wget -O /etc/yum.……
+                            </div>
+                            <p class="readmore"><a href="http://blog.ryune.top/posts/centos-1/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://blog.ryune.top/posts/nginx-3/" title="Nginx: php-fpm 优化" >Nginx: php-fpm 优化</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2016年12月8日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="http://blog.ryune.top/categories/nginx">Nginx</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                php.ini # 关闭 php 信息显示 expose_php = Off # 最大执行时间 max_execution_time = 30 # POST data 最大值 post_max_size = 5M # 上传文件最大值 upload_max_filesize = 5M  php-fpm 启用多个 FPM 实例，提高处理效率。
+cp www.conf 9000.conf cp php-fpm.conf php-fpm9000.conf ...  编辑 9000.conf
+user = nginx group = nginx listen = /dev/shm/php-fpm9000.sock listen.backlog = 4096 listen.owner = nginx listen.group = nginx pm = static pm.max_children = 100 pm.max_requests = 2048 pm.status_path = /status9000 slowlog = /var/log/php-fpm/www-slow9000.……
+                            </div>
+                            <p class="readmore"><a href="http://blog.ryune.top/posts/nginx-3/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="http://blog.ryune.top/posts/nginx-2/" title="Nginx: 多域名 HTTPS 配置" >Nginx: 多域名 HTTPS 配置</a>
                                 </h1>
                             </header>
@@ -215,15 +326,15 @@ vim /usr/bin/et # 添加 export XMODIFIERS=&quot;@im=fcitx&quot; export QT_IM_MO
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/nginx-3/" title="Nginx: php-fpm 优化">Nginx: php-fpm 优化</a>
+        <a href="http://blog.ryune.top/posts/centos-4/" title="centOS: web 环境搭建">centOS: web 环境搭建</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/nginx-2/" title="Nginx: 多域名 HTTPS 配置">Nginx: 多域名 HTTPS 配置</a>
+        <a href="http://blog.ryune.top/posts/centos-3/" title="centOS: 磁盘挂载">centOS: 磁盘挂载</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/nginx-1/" title="Nginx: php-fpm 配置">Nginx: php-fpm 配置</a>
+        <a href="http://blog.ryune.top/posts/centos-2/" title="centOS: 防火墙">centOS: 防火墙</a>
     </li>
     
 </ul>
@@ -234,6 +345,10 @@ vim /usr/bin/et # 添加 export XMODIFIERS=&quot;@im=fcitx&quot; export QT_IM_MO
     <section class="widget">
         <h3 class="widget-title">分类</h3>
 <ul class="widget-list">
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/centos/">centos(4)</a>
+    </li>
     
     <li>
         <a href="http://blog.ryune.top/categories/golang/">golang(3)</a>
@@ -269,6 +384,10 @@ vim /usr/bin/et # 添加 export XMODIFIERS=&quot;@im=fcitx&quot; export QT_IM_MO
     <section class="widget">
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
+    
+    <a href="http://blog.ryune.top/tags/centos/">centos</a>
+    
+    <a href="http://blog.ryune.top/tags/firewalld/">firewalld</a>
     
     <a href="http://blog.ryune.top/tags/go/">go</a>
     

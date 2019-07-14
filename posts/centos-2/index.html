@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>centOS: 防火墙 | Avatar&#39;s Blog</title>
+    <meta property="og:title" content="centOS: 防火墙 - Avatar&#39;s Blog">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2016-12-21T23:21:09&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2016-12-21T23:21:09&#43;08:00">
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="centOS: 防火墙">
+        
+    <meta name="author" content="Avatar">
+    <meta property="og:url" content="http://blog.ryune.top/posts/centos-2/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://blog.ryune.top/">
+                        Avatar&#39;s Blog
+                    </a>
+                
+                
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://blog.ryune.top/">首页</a>
+                    
+                    <a  href="http://blog.ryune.top/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://blog.ryune.top/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">centOS: 防火墙</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2016年12月21日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="http://blog.ryune.top/categories/centos">centOS</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            <p>开启 firewalld 服务：</p>
+
+<pre><code>sudo systemctl start firewalld
+</code></pre>
+
+<p>移除</p>
+
+<pre><code>firewall-cmd --zone=public --remove-port=6022/tcp --permanent
+</code></pre>
+
+<p>开放 SSH 自定义的端口</p>
+
+<pre><code>sudo firewall-cmd --permanent --add-port=3333/tcp
+</code></pre>
+
+<p>开放 HTTP</p>
+
+<pre><code>sudo firewall-cmd --permanent --add-service=http
+</code></pre>
+
+<p>开放 HTTPS</p>
+
+<pre><code>sudo firewall-cmd --permanent --add-service=https
+</code></pre>
+
+<p>开放 SMTP</p>
+
+<pre><code>sudo firewall-cmd --permanent --add-service=smtp
+</code></pre>
+
+<p>查看</p>
+
+<pre><code>sudo firewall-cmd --get-services
+sudo firewall-cmd --permanent --list-all
+</code></pre>
+
+<p>重载服务</p>
+
+<pre><code>sudo firewall-cmd --reload
+</code></pre>
+
+<p>开机启动</p>
+
+<pre><code>sudo systemctl enable firewalld
+</code></pre>
+
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/centos-1/">centOS: 基本配置</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://blog.ryune.top/tags/centos">centOS</a></li>
+                                
+                                <li><a href="http://blog.ryune.top/tags/firewalld">firewalld</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "Ryune911/utteranc"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://blog.ryune.top/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/redis-mutex/" title="Redis: 互斥锁">Redis: 互斥锁</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/golang-map/" title="Golang 基础：map">Golang 基础：map</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/golang-slice/" title="Golang 基础：slice">Golang 基础：slice</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/golang-array/" title="Golang 基础：array">Golang 基础：array</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/oss-path/" title="OSS 踩坑">OSS 踩坑</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/supervisor-1/" title="Supervisor: 管理 Laravel Queue">Supervisor: 管理 Laravel Queue</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/test-webbench/" title="测试: webbench">测试: webbench</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/centos-4/" title="centOS: web 环境搭建">centOS: web 环境搭建</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/centos-3/" title="centOS: 磁盘挂载">centOS: 磁盘挂载</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/centos-2/" title="centOS: 防火墙">centOS: 防火墙</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/centos/">centos(4)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/golang/">golang(3)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/nginx/">nginx(3)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/oss/">oss(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/redis/">redis(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/supervisor/">supervisor(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/ubuntu/">ubuntu(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/%E6%B5%8B%E8%AF%95/">测试(1)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://blog.ryune.top/tags/centos/">centos</a>
+    
+    <a href="http://blog.ryune.top/tags/firewalld/">firewalld</a>
+    
+    <a href="http://blog.ryune.top/tags/go/">go</a>
+    
+    <a href="http://blog.ryune.top/tags/golang/">golang</a>
+    
+    <a href="http://blog.ryune.top/tags/https/">https</a>
+    
+    <a href="http://blog.ryune.top/tags/laravel/">laravel</a>
+    
+    <a href="http://blog.ryune.top/tags/mutex/">mutex</a>
+    
+    <a href="http://blog.ryune.top/tags/nginx/">nginx</a>
+    
+    <a href="http://blog.ryune.top/tags/oss/">oss</a>
+    
+    <a href="http://blog.ryune.top/tags/php-fpm/">php-fpm</a>
+    
+    <a href="http://blog.ryune.top/tags/redis/">redis</a>
+    
+    <a href="http://blog.ryune.top/tags/supervisor/">supervisor</a>
+    
+    <a href="http://blog.ryune.top/tags/ubuntu/">ubuntu</a>
+    
+    <a href="http://blog.ryune.top/tags/webbench/">webbench</a>
+    
+    <a href="http://blog.ryune.top/tags/%E4%BA%92%E6%96%A5%E9%94%81/">互斥锁</a>
+    
+    <a href="http://blog.ryune.top/tags/%E4%BC%98%E5%8C%96/">优化</a>
+    
+    <a href="http://blog.ryune.top/tags/%E6%B5%8B%E8%AF%95/">测试</a>
+    
+    <a href="http://blog.ryune.top/tags/%E8%B8%A9%E5%9D%91/">踩坑</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://totoval.com" title="Totoval">Totoval</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="https://totoval.com/docs/introduction/introduction/" title="Totovali Docs">Totoval Docs</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://blog.ryune.top/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://blog.ryune.top/">Avatar&#39;s Blog By Avatar</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>

@@ -168,6 +168,44 @@
   </url>
   
   <url>
+    <loc>http://blog.ryune.top/categories/centos/</loc>
+    <lastmod>2017-01-04T23:21:09+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ryune.top/tags/centos/</loc>
+    <lastmod>2017-01-04T23:21:09+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ryune.top/posts/centos-4/</loc>
+    <lastmod>2017-01-04T23:21:09+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.ryune.top/posts/centos-3/</loc>
+    <lastmod>2016-12-24T23:21:09+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.ryune.top/posts/centos-2/</loc>
+    <lastmod>2016-12-21T23:21:09+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.ryune.top/tags/firewalld/</loc>
+    <lastmod>2016-12-21T23:21:09+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ryune.top/posts/centos-1/</loc>
+    <lastmod>2016-12-20T23:21:09+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.ryune.top/categories/nginx/</loc>
     <lastmod>2016-12-08T23:21:09+08:00</lastmod>
     <priority>0</priority>
