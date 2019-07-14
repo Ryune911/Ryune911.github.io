@@ -17,7 +17,7 @@
       <pubDate>Tue, 20 Mar 2018 23:21:09 +0800</pubDate>
       
       <guid>http://blog.ryune.top/posts/oss-path/</guid>
-      <description> OSS 踩坑 路径错误  自定义的文件路径，key 不能以 / 开头！  OSSException in OSSExceptionFactory.php line 16: The specified object is not valid. </description>
+      <description> 路径错误  自定义的文件路径，key 不能以 / 开头！  OSSException in OSSExceptionFactory.php line 16: The specified object is not valid. </description>
     </item>
     
   </channel>

@@ -93,7 +93,7 @@
                             </div>
                             
                             <div class="post-content">
-                                Redis 互斥锁 基于 SETNX
+                                基于 SETNX
   SETNX: set if not exists 如果不存在，则 SET 成功返回1，失败返回0   v1.0 // 伪代码 获取锁： setnx key value expire key expiration 释放锁： del key   特点：加过期时间避免异常导致锁无法释放的情况 缺点：expire key expiration 执行前异常，依然存在锁无法过期的问题  v1.1 // 伪代码 获取锁： 过期时间戳=当前时间戳+过期时间 setnx key 过期时间戳 如果获取锁失败，则通过 get key 检查该锁的过期时间戳是否已过期 getset key 过期时间戳 修改该锁的过期时间戳为当前过期时间戳 检查 getset 返回的该锁旧的过期时间戳 如果与上一条 get 获取的该锁的过期时间戳相等，则获取锁成功 释放锁： del key   特点：锁未加过期时间 缺点：  并发有可能导致该锁的过期时间戳被不停的覆盖，谁都拿不到锁 获取到锁的进程异常导致未释放，锁的过期时间被其他进程修改，从而延长等待时间   v2.……
                                 <p class="readmore"><a href="http://blog.ryune.top/posts/redis-mutex/">阅读全文</a></p>
                             </div>
@@ -125,6 +125,10 @@
     
     <li>
         <a href="http://blog.ryune.top/posts/redis-mutex/" title="Redis 互斥锁">Redis 互斥锁</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/ubuntu-1/" title="Ubuntu 完善-1">Ubuntu 完善-1</a>
     </li>
     
     <li>
@@ -164,6 +168,10 @@
         <a href="http://blog.ryune.top/categories/redis/">redis(1)</a>
     </li>
     
+    <li>
+        <a href="http://blog.ryune.top/categories/ubuntu/">ubuntu(1)</a>
+    </li>
+    
 </ul>
     </section>
 
@@ -181,7 +189,11 @@
     
     <a href="http://blog.ryune.top/tags/redis/">redis</a>
     
+    <a href="http://blog.ryune.top/tags/ubuntu/">ubuntu</a>
+    
     <a href="http://blog.ryune.top/tags/%E4%BA%92%E6%96%A5%E9%94%81/">互斥锁</a>
+    
+    <a href="http://blog.ryune.top/tags/%E4%BC%98%E5%8C%96/">优化</a>
     
     <a href="http://blog.ryune.top/tags/%E8%B8%A9%E5%9D%91/">踩坑</a>
     
