@@ -21,6 +21,12 @@
   </url>
   
   <url>
+    <loc>http://blog.ryune.top/tags/rpc/</loc>
+    <lastmod>2019-07-27T15:01:39+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.ryune.top/tags/</loc>
     <lastmod>2019-07-27T15:01:39+08:00</lastmod>
     <priority>0</priority>
@@ -33,15 +39,20 @@
   </url>
   
   <url>
+    <loc>http://blog.ryune.top/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/</loc>
+    <lastmod>2019-07-27T15:01:39+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.ryune.top/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/</loc>
     <lastmod>2019-07-27T15:01:39+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://blog.ryune.top/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/</loc>
+    <loc>http://blog.ryune.top/posts/protocol-2/</loc>
     <lastmod>2019-07-27T15:01:39+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -151,13 +162,13 @@
   </url>
   
   <url>
-    <loc>http://blog.ryune.top/categories/supervisor/</loc>
+    <loc>http://blog.ryune.top/tags/supervisor/</loc>
     <lastmod>2017-12-05T23:21:09+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://blog.ryune.top/tags/supervisor/</loc>
+    <loc>http://blog.ryune.top/categories/supervisor/</loc>
     <lastmod>2017-12-05T23:21:09+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -174,13 +185,13 @@
   </url>
   
   <url>
-    <loc>http://blog.ryune.top/categories/%E6%B5%8B%E8%AF%95/</loc>
+    <loc>http://blog.ryune.top/tags/%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2017-07-31T23:21:09+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://blog.ryune.top/tags/%E6%B5%8B%E8%AF%95/</loc>
+    <loc>http://blog.ryune.top/categories/%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2017-07-31T23:21:09+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -191,13 +202,13 @@
   </url>
   
   <url>
-    <loc>http://blog.ryune.top/categories/centos/</loc>
+    <loc>http://blog.ryune.top/tags/centos/</loc>
     <lastmod>2017-01-04T23:21:09+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://blog.ryune.top/tags/centos/</loc>
+    <loc>http://blog.ryune.top/categories/centos/</loc>
     <lastmod>2017-01-04T23:21:09+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -229,13 +240,13 @@
   </url>
   
   <url>
-    <loc>http://blog.ryune.top/categories/nginx/</loc>
+    <loc>http://blog.ryune.top/tags/nginx/</loc>
     <lastmod>2016-12-08T23:21:09+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://blog.ryune.top/tags/nginx/</loc>
+    <loc>http://blog.ryune.top/categories/nginx/</loc>
     <lastmod>2016-12-08T23:21:09+08:00</lastmod>
     <priority>0</priority>
   </url>

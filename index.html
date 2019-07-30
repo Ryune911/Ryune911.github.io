@@ -68,6 +68,29 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="http://blog.ryune.top/posts/protocol-2/" title="网络协议：RPC" >网络协议：RPC</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年7月27日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="http://blog.ryune.top/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE">网络协议</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                ……
+                            </div>
+                            <p class="readmore"><a href="http://blog.ryune.top/posts/protocol-2/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="http://blog.ryune.top/posts/protocol-1/" title="网络协议：基础" >网络协议：基础</a>
                                 </h1>
                             </header>
@@ -84,7 +107,7 @@
                             
                             <div class="post-content">
                                  概念 互联网协议（Internet Protocol Suite）是对电脑相互如何链接、传输做的详细规定
-网络模型  OSI网络模型将网络通信分成了7层，从上到下依次为：应用层、表示层、会话层、传输层、网络层、链路层及物理层 越靠近上层越接近用户，越靠近下层越接近计算机硬件 各层间的无关性：上层通过低层接口使用其功能而不需要关注低层说使用的协议等  物理层  功能：为数据传输提供环境，确保两个数据终端设备链接起来形成一条通路，提供物理媒体以供数据通过，提供带宽减少拥堵 数据终端（DTE）即计算机等终端 数据通信终端（DCE）即调制解调器等 互联设备即LAN中各种电缆、插头、插座、接收器、发射器等 DTE-&gt;互联设备-&gt;DCE-&gt;DCE-&gt;互联设备-&gt;DTE  链路层  功能：通过物理层建立的物理媒体，为终端设备提供传输媒体及其链接，为网络层数据传输提供服务 包括：建立、拆除、分离、帧（数据传输的单元是帧）界定、帧同步、收发顺序控制 交换机  网络层  建立网络连接和为上层提供服务 功能：寻址、激活与终止网络连接、网络链接复用、检测与恢复、排序、流量控制、服务选择与网络管理 路由器  传输层  数据通信时，第一个端到端的层级 功能：通过合流与分流、网络链接复用（一个网络链接创建多个逻辑链接）与解复用，调节通信子网差异（世界各地网络、子网、局域网性能差异大）为会话层提供稳定的通信环境  会话层  建立和维持会话，并保持会话同步 通过检查点，在通信失效时将其恢复  表示层  为通信提供一种公共语言，如：编码不同  应用层  与其他终端进行通信的一个应用 为对应的应用提供通信服务 HTTP、SMTP 等  ……
+网络模型  OSI网络模型将网络通信分成了7层，从上到下依次为：应用层、表示层、会话层、传输层、网络层、链路层及物理层 越靠近上层越接近用户，越靠近下层越接近计算机硬件 各层间的无关性：上层通过低层接口使用其功能而不需要关注低层说使用的协议等  物理层  功能：为数据传输提供环境，确保两个数据终端设备链接起来形成一条通路，提供物理媒体以供数据通过，提供带宽减少拥堵 数据终端（DTE）即计算机等终端 数据通信终端（DCE）即调制解调器等 互联设备即LAN中各种电缆、插头、插座、接收器、发射器等 DTE-&gt;互联设备-&gt;DCE-&gt;DCE-&gt;互联设备-&gt;DTE  链路层  功能：通过物理层建立的物理媒体，为终端设备提供传输媒体及其链接，为网络层数据传输提供服务 包括：建立、拆除、分离、帧（数据传输的单元是帧，即：定义数据包的组成，如以太网数据包）界定、帧同步、收发顺序控制 相关知识：交换机、MAC地址（与设备网卡一一绑定，用于子网内计算机数据的发送接收，即：广播。子网间的数据发送接收依靠网络层实现，即：通过网络层的 IP 寻址）、以太网数据包的组成（head+data）  网络层  建立网络连接和为上层提供服务 功能：寻址、激活与终止网络连接、网络链接复用、检测与恢复、排序、流量控制、服务选择与网络管理 相关知识点：路由器、IP数据包（head+data，即：以太网数据包的 data）、IP协议与子网掩码（用于确定2个IP的设备是否处于同一个子网）、ARP协议（通过发送 head 为 FF:FF:FF:FF:FF:FF 的以太网数据包，由链路层广播找到对应的设备）  传输层  数据通信时，第一个端到端的层级（也可以理解为端口到端口的通信，即：多个逻辑链接） 功能：通过合流与分流、网络链接复用（一个网络链接创建多个逻辑链接）与解复用进行端（client/port）与端的通信，调节通信子网差异（世界各地网络、子网、局域网性能差异大）为会话层提供稳定的通信环境 相关知识点：TCP/UDP（数据包 head+data，即：IP数据包的 data）  会话层  建立和维持会话，并保持会话同步 通过检查点，在通信失效时将其恢复  表示层  为通信提供一种公共语言，如：编码不同  应用层  与其他终端进行通信的一个应用 为对应的应用提供通信服务 HTTP、SMTP 等  ……
                             </div>
                             <p class="readmore"><a href="http://blog.ryune.top/posts/protocol-1/">阅读全文</a></p>
                         </article>
@@ -263,29 +286,6 @@ yum install supervisor  配置
                             <p class="readmore"><a href="http://blog.ryune.top/posts/supervisor-1/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="http://blog.ryune.top/posts/test-webbench/" title="测试: webbench" >测试: webbench</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2017年7月31日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="http://blog.ryune.top/categories/%E6%B5%8B%E8%AF%95">测试</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                 1. 下载 wget http://home.tiscali.cz/cz210552/distfiles/webbench-1.5.tar.gz  2. 解压 tar xvzf webbench-1.5.tar.gz  3. 安装 gcc ctags yum install gcc ctags  4. 编译安装 make make install  5. 使用 // 并发500 30S测试 webbench -c 500 -t 300 http://localhost:61309/api/common/brands/2/subcategories-list/  ……
-                            </div>
-                            <p class="readmore"><a href="http://blog.ryune.top/posts/test-webbench/">阅读全文</a></p>
-                        </article>
-                    
                     
 
 
@@ -330,6 +330,10 @@ yum install supervisor  配置
 <ul class="widget-list">
     
     <li>
+        <a href="http://blog.ryune.top/posts/protocol-2/" title="网络协议：RPC">网络协议：RPC</a>
+    </li>
+    
+    <li>
         <a href="http://blog.ryune.top/posts/protocol-1/" title="网络协议：基础">网络协议：基础</a>
     </li>
     
@@ -363,10 +367,6 @@ yum install supervisor  配置
     
     <li>
         <a href="http://blog.ryune.top/posts/centos-4/" title="centOS: web 环境搭建">centOS: web 环境搭建</a>
-    </li>
-    
-    <li>
-        <a href="http://blog.ryune.top/posts/centos-3/" title="centOS: 磁盘挂载">centOS: 磁盘挂载</a>
     </li>
     
 </ul>
@@ -411,7 +411,7 @@ yum install supervisor  配置
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议(1)</a>
+        <a href="http://blog.ryune.top/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议(2)</a>
     </li>
     
 </ul>
@@ -442,6 +442,8 @@ yum install supervisor  配置
     <a href="http://blog.ryune.top/tags/php-fpm/">php-fpm</a>
     
     <a href="http://blog.ryune.top/tags/redis/">redis</a>
+    
+    <a href="http://blog.ryune.top/tags/rpc/">rpc</a>
     
     <a href="http://blog.ryune.top/tags/supervisor/">supervisor</a>
     
