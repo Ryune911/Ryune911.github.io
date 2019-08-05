@@ -4,32 +4,49 @@
   
   <url>
     <loc>http://blog.ryune.top/</loc>
-    <lastmod>2019-08-02T15:01:39+08:00</lastmod>
+    <lastmod>2019-08-05T15:01:39+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://blog.ryune.top/categories/</loc>
-    <lastmod>2019-08-02T15:01:39+08:00</lastmod>
+    <lastmod>2019-08-05T15:01:39+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://blog.ryune.top/posts/</loc>
-    <lastmod>2019-08-02T15:01:39+08:00</lastmod>
+    <lastmod>2019-08-05T15:01:39+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://blog.ryune.top/tags/rpc/</loc>
-    <lastmod>2019-08-02T15:01:39+08:00</lastmod>
+    <lastmod>2019-08-05T15:01:39+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://blog.ryune.top/tags/</loc>
-    <lastmod>2019-08-02T15:01:39+08:00</lastmod>
+    <lastmod>2019-08-05T15:01:39+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ryune.top/categories/grpc/</loc>
+    <lastmod>2019-08-05T15:01:39+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ryune.top/tags/grpc/</loc>
+    <lastmod>2019-08-05T15:01:39+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.ryune.top/posts/grpc-1/</loc>
+    <lastmod>2019-08-05T15:01:39+08:00</lastmod>
   </url>
   
   <url>

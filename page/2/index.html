@@ -68,6 +68,31 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="http://blog.ryune.top/posts/supervisor-1-laravel/" title="Supervisor: 管理 Laravel Queue" >Supervisor: 管理 Laravel Queue</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2017年12月5日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="http://blog.ryune.top/categories/supervisor">Supervisor</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                安装 &amp; 配置 安装
+yum install supervisor  配置
+# 文件路径 /etc/supervisord.conf vim /etc/supervisord.conf # 使用 unix [unix_http_server] file=/var/run/supervisor/supervisor.sock ; (the path to the socket file) ;chmod=0700 ; sockef file mode (default 0700) ;chown=nobody:nogroup ; socket file uid:gid owner ;username=user ; (default is no username (open server)) ;password=123 ; (default is no password (open server)) # 添加新任务的配置文件 [include] files=/etc/supervisord.d/conf.d/*.conf  管理 laravel 队列任务 # 新建配置文件 vim /etc/supervisord.d/conf.d/laravel-worker.conf # 编写配置 [program:laravel-worker] process_name=%(program_name)s_%(process_num)02d command=php /codtrade/CodtradeAPIServer/artisan queue:work database autostart=true autorestart=true user=nginx numprocs=8 redirect_stderr=true stdout_logfile=/var/log/supervisor/worker.……
+                            </div>
+                            <p class="readmore"><a href="http://blog.ryune.top/posts/supervisor-1-laravel/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="http://blog.ryune.top/posts/test-webbench/" title="测试: webbench" >测试: webbench</a>
                                 </h1>
                             </header>
@@ -351,6 +376,10 @@ vim /usr/bin/et # 添加 export XMODIFIERS=&quot;@im=fcitx&quot; export QT_IM_MO
 <ul class="widget-list">
     
     <li>
+        <a href="http://blog.ryune.top/posts/grpc-1/" title="gRPC: 基础">gRPC: 基础</a>
+    </li>
+    
+    <li>
         <a href="http://blog.ryune.top/posts/protocol-2-rpc/" title="网络协议：RPC">网络协议：RPC</a>
     </li>
     
@@ -386,10 +415,6 @@ vim /usr/bin/et # 添加 export XMODIFIERS=&quot;@im=fcitx&quot; export QT_IM_MO
         <a href="http://blog.ryune.top/posts/test-webbench/" title="测试: webbench">测试: webbench</a>
     </li>
     
-    <li>
-        <a href="http://blog.ryune.top/posts/centos-4-webserver/" title="centOS: web 环境搭建">centOS: web 环境搭建</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -405,6 +430,10 @@ vim /usr/bin/et # 添加 export XMODIFIERS=&quot;@im=fcitx&quot; export QT_IM_MO
     
     <li>
         <a href="http://blog.ryune.top/categories/golang/">golang(3)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/grpc/">grpc(1)</a>
     </li>
     
     <li>
@@ -449,6 +478,8 @@ vim /usr/bin/et # 添加 export XMODIFIERS=&quot;@im=fcitx&quot; export QT_IM_MO
     <a href="http://blog.ryune.top/tags/go/">go</a>
     
     <a href="http://blog.ryune.top/tags/golang/">golang</a>
+    
+    <a href="http://blog.ryune.top/tags/grpc/">grpc</a>
     
     <a href="http://blog.ryune.top/tags/https/">https</a>
     

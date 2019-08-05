@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Avatar&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 02 Aug 2019 15:01:39 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 05 Aug 2019 15:01:39 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.ryune.top/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,18 @@
     <item>
       <title>RPC</title>
       <link>http://blog.ryune.top/tags/rpc/</link>
-      <pubDate>Fri, 02 Aug 2019 15:01:39 +0800</pubDate>
+      <pubDate>Mon, 05 Aug 2019 15:01:39 +0800</pubDate>
       
       <guid>http://blog.ryune.top/tags/rpc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gRPC</title>
+      <link>http://blog.ryune.top/tags/grpc/</link>
+      <pubDate>Mon, 05 Aug 2019 15:01:39 +0800</pubDate>
+      
+      <guid>http://blog.ryune.top/tags/grpc/</guid>
       <description></description>
     </item>
     
