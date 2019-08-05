@@ -13,10 +13,10 @@
     
     <item>
       <title>网络协议：RPC</title>
-      <link>http://blog.ryune.top/posts/protocol-2/</link>
+      <link>http://blog.ryune.top/posts/protocol-2-rpc/</link>
       <pubDate>Fri, 02 Aug 2019 15:01:39 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/posts/protocol-2/</guid>
+      <guid>http://blog.ryune.top/posts/protocol-2-rpc/</guid>
       <description>概念  RPC：Remote Procedure Call Protocol，远程过程调用。通过网络从远程计算机请求服务，而不需要了解底层网络技术的协议。 PRC 横跨了传输层与应用层 多用于微服务、分布式系统 C/S 模式  原理 &amp;amp; 框架 原理结构  这里 user 就是 client 端，当 user 想发起一个远程调用时，它实际是通过本地调用user-stub。user-stub 负责将调用的接口、方法和参数通过约定的协议规范进行编码并通过本地的 RPCRuntime 实例传输到远端的实例。
 远端 RPCRuntime 实例收到请求后交给 server-stub 进行解码后发起本地端调用，调用结果再返回给 user 端。
   User: 发起远程调用 User-stub: 将调用的接口、参数等按照协议编码后交给 client 的 RPCRuntime RPCRuntime: 发送/接收 Server-stub: 将接收到的内容解码后交给 Server Server: 发起本地调用  实现结构  RPC 服务方通过 RpcServer 去导出（export）远程接口方法，而客户方通过 RpcClient 去引入（import）远程接口方法。客户方像调用本地方法一样去调用远程接口方法，RPC 框架提供接口的代理实现，实际的调用将委托给代理RpcProxy 。代理封装调用信息并将调用转交给RpcInvoker 去实际执行。在客户端的RpcInvoker 通过连接器RpcConnector 去维持与服务端的通道RpcChannel，并使用RpcProtocol 执行协议编码（encode）并将编码后的请求消息通过通道发送给服务方。

@@ -13,10 +13,10 @@
     
     <item>
       <title>centOS: web 环境搭建</title>
-      <link>http://blog.ryune.top/posts/centos-4/</link>
+      <link>http://blog.ryune.top/posts/centos-4-webserver/</link>
       <pubDate>Wed, 04 Jan 2017 23:21:09 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/posts/centos-4/</guid>
+      <guid>http://blog.ryune.top/posts/centos-4-webserver/</guid>
       <description>安装 node 安装 nvm
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.2/install.sh | bash  安装 node
 nvm install 4.4.0 nvm ls  切换node版本
@@ -29,20 +29,20 @@ mysql -u root Welcome to the MySQL monitor. Commands endwith ; or \g. Your MySQL
     
     <item>
       <title>centOS: 磁盘挂载</title>
-      <link>http://blog.ryune.top/posts/centos-3/</link>
+      <link>http://blog.ryune.top/posts/centos-3-disk/</link>
       <pubDate>Sat, 24 Dec 2016 23:21:09 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/posts/centos-3/</guid>
+      <guid>http://blog.ryune.top/posts/centos-3-disk/</guid>
       <description>查看当前同的磁盘状态
 sudo fdisk -l 磁盘 /dev/sdb：107.4 GB, 107374182400字节，209715200个扇区 Units = 扇区 of 1 * 512 = 512 bytes 扇区大小(逻辑/物理)：512字节 / 512字节 I/O 大小(最小/最佳)：512字节 / 512字节 磁盘标签类型：dos 磁盘标识符：0xd80ec383 设备 Boot Start End Blocks Id System /dev/sdb1 2048 209713151 104855552 83 Linux 磁盘 /dev/sda：32.2 GB, 32212254720字节，62914560个扇区 Units = 扇区 of 1 * 512 = 512 bytes 扇区大小(逻辑/物理)：512字节 / 512字节 I/O 大小(最小/最佳)：512字节 / 512字节 磁盘标签类型：dos 磁盘标识符：0x00093e4e 设备 Boot Start End Blocks Id System /dev/sda1 * 2048 62914559 31456256 83 Linux  检查硬件变化和当前的设备变化</description>
     </item>
     
     <item>
       <title>centOS: 防火墙</title>
-      <link>http://blog.ryune.top/posts/centos-2/</link>
+      <link>http://blog.ryune.top/posts/centos-2-firewalld/</link>
       <pubDate>Wed, 21 Dec 2016 23:21:09 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/posts/centos-2/</guid>
+      <guid>http://blog.ryune.top/posts/centos-2-firewalld/</guid>
       <description>开启 firewalld 服务：
 sudo systemctl start firewalld  移除
 firewall-cmd --zone=public --remove-port=6022/tcp --permanent  开放 SSH 自定义的端口
@@ -57,10 +57,10 @@ sudo systemctl enable firewalld  </description>
     
     <item>
       <title>centOS: 基本配置</title>
-      <link>http://blog.ryune.top/posts/centos-1/</link>
+      <link>http://blog.ryune.top/posts/centos-1-config/</link>
       <pubDate>Tue, 20 Dec 2016 23:21:09 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/posts/centos-1/</guid>
+      <guid>http://blog.ryune.top/posts/centos-1-config/</guid>
       <description>系统信息 cat /proc/version Linux version 3.10.0-123.20.1.el7.x86_64 (builder@kbuilder.dev.centos.or g) (gcc version 4.8.220140120 (Red Hat 4.8.2-16) (GCC) ) #1 SMP Thu Jan 2918:05:33 UTC 2015  root 用户 设置 root 密码
 sudo passwd root  添加用户
 adduser test  设置密码

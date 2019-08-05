@@ -7,20 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Golang 基础：array | Avatar&#39;s Blog</title>
-    <meta property="og:title" content="Golang 基础：array - Avatar&#39;s Blog">
+    <title>Supervisor: 管理 Laravel Queue | Avatar&#39;s Blog</title>
+    <meta property="og:title" content="Supervisor: 管理 Laravel Queue - Avatar&#39;s Blog">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content="2019-07-10T21:21:09&#43;08:00">
+    <meta property="article:published_time" content="2017-12-05T23:21:09&#43;08:00">
         
         
-    <meta property="article:modified_time" content="2019-07-10T21:21:09&#43;08:00">
+    <meta property="article:modified_time" content="2017-12-05T23:21:09&#43;08:00">
         
     <meta name="Keywords" content="">
-    <meta name="description" content="Golang 基础：array">
+    <meta name="description" content="Supervisor: 管理 Laravel Queue">
         
     <meta name="author" content="Avatar">
-    <meta property="og:url" content="http://blog.ryune.top/posts/golang-array/">
+    <meta property="og:url" content="http://blog.ryune.top/posts/supervisor-1-laravel/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
@@ -72,16 +72,16 @@
                 <div class="res-cons">
                     <article class="post">
                         <header>
-                            <h1 class="post-title">Golang 基础：array</h1>
+                            <h1 class="post-title">Supervisor: 管理 Laravel Queue</h1>
                         </header>
                         <date class="post-meta meta-date">
-                            2019年7月10日
+                            2017年12月5日
                         </date>
                         
                         <div class="post-meta">
                             <span>|</span>
                             
-                                <span class="meta-category"><a href="http://blog.ryune.top/categories/golang">Golang</a></span>
+                                <span class="meta-category"><a href="http://blog.ryune.top/categories/supervisor">Supervisor</a></span>
                             
                         </div>
                         
@@ -90,64 +90,51 @@
                         <div class="post-content">
                             
 
-<h2 id="array">array</h2>
+<h3 id="安装-配置">安装 &amp; 配置</h3>
 
-<ul>
-<li>必须指定长度</li>
-<li>传递数组指针修改数组内元素才有效</li>
-</ul>
+<p>安装</p>
 
-<hr />
+<pre><code>yum install supervisor
+</code></pre>
 
-<pre><code>package main
+<p>配置</p>
 
-import &quot;fmt&quot;
+<pre><code># 文件路径 /etc/supervisord.conf
+vim /etc/supervisord.conf
+# 使用 unix 
+[unix_http_server]
+file=/var/run/supervisor/supervisor.sock   ; (the path to the socket file)
+;chmod=0700                 ; sockef file mode (default 0700)
+;chown=nobody:nogroup       ; socket file uid:gid owner
+;username=user              ; (default is no username (open server))
+;password=123               ; (default is no password (open server))
+# 添加新任务的配置文件
+[include]
+files=/etc/supervisord.d/conf.d/*.conf
+</code></pre>
 
-func main() {
-	//var arr [5]int
-	arr := [5]int{
-		0: 1,
-	}
+<h3 id="管理-laravel-队列任务">管理 laravel 队列任务</h3>
 
-	// 同类型，同长度才可相互赋值
-	// var arr1 [4]int
-	// arr1 = arr
+<pre><code># 新建配置文件
+vim /etc/supervisord.d/conf.d/laravel-worker.conf
+# 编写配置
+[program:laravel-worker]
+process_name=%(program_name)s_%(process_num)02d
+command=php /codtrade/CodtradeAPIServer/artisan queue:work database
+autostart=true
+autorestart=true
+user=nginx
+numprocs=8
+redirect_stderr=true
+stdout_logfile=/var/log/supervisor/worker.log  
+</code></pre>
 
-	fmt.Printf(&quot;%T(%#v)\n&quot;, arr, arr)
-	fmt.Printf(&quot;%T(%#v)\n&quot;, arr[0], arr[0])
-	fmt.Printf(&quot;%T(%#v)\n&quot;, &amp;arr[0], &amp;arr[0])
+<h3 id="命令">命令</h3>
 
-	for i, v := range arr {
-		fmt.Printf(&quot;索引:%d,值:%d\n&quot;, i, v)
-	}
-
-	// 指针数组
-	ptrArr := [5]*int{
-		// 分配内存
-		1: new(int),
-		// 其他索引为 nil
-	}
-	fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr, ptrArr)
-	fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr[1], ptrArr[1])
-	fmt.Printf(&quot;%T(%#v)\n&quot;, *ptrArr[1], *ptrArr[1])
-
-	// 分配了内存才能赋值
-	*ptrArr[1] = 1
-
-	fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr, ptrArr)
-	fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr[1], ptrArr[1])
-	fmt.Printf(&quot;%T(%#v)\n&quot;, *ptrArr[1], *ptrArr[1])
-
-	// 传递数组，不会改变值
-	// modify(arr)
-	modify(&amp;arr)
-	fmt.Println(&quot;main&quot;, arr)
-}
-
-func modify(a *[5]int) {
-	a[1] = 3
-	fmt.Println(&quot;modify&quot;, *a)
-}
+<pre><code># supervisord
+supervisord -c /etc/supervisord.conf
+# supervisorctl 进入命令行
+supervisorctl 
 </code></pre>
 
                         </div>
@@ -162,9 +149,9 @@ func modify(a *[5]int) {
                             
                             <ul class="clearfix">
                                 
-                                <li><a href="http://blog.ryune.top/tags/golang">golang</a></li>
+                                <li><a href="http://blog.ryune.top/tags/supervisor">Supervisor</a></li>
                                 
-                                <li><a href="http://blog.ryune.top/tags/go">go</a></li>
+                                <li><a href="http://blog.ryune.top/tags/laravel">Laravel</a></li>
                                 
                             </ul>
                             

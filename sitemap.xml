@@ -51,12 +51,12 @@
   </url>
   
   <url>
-    <loc>http://blog.ryune.top/posts/protocol-2/</loc>
+    <loc>http://blog.ryune.top/posts/protocol-2-rpc/</loc>
     <lastmod>2019-08-02T15:01:39+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.ryune.top/posts/protocol-1/</loc>
+    <loc>http://blog.ryune.top/posts/protocol-1-osi/</loc>
     <lastmod>2019-07-27T15:01:39+08:00</lastmod>
   </url>
   
@@ -174,7 +174,7 @@
   </url>
   
   <url>
-    <loc>http://blog.ryune.top/posts/supervisor-1/</loc>
+    <loc>http://blog.ryune.top/posts/supervisor-1-laravel/</loc>
     <lastmod>2017-12-05T23:21:09+08:00</lastmod>
   </url>
   
@@ -214,17 +214,17 @@
   </url>
   
   <url>
-    <loc>http://blog.ryune.top/posts/centos-4/</loc>
+    <loc>http://blog.ryune.top/posts/centos-4-webserver/</loc>
     <lastmod>2017-01-04T23:21:09+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.ryune.top/posts/centos-3/</loc>
+    <loc>http://blog.ryune.top/posts/centos-3-disk/</loc>
     <lastmod>2016-12-24T23:21:09+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.ryune.top/posts/centos-2/</loc>
+    <loc>http://blog.ryune.top/posts/centos-2-firewalld/</loc>
     <lastmod>2016-12-21T23:21:09+08:00</lastmod>
   </url>
   
@@ -235,7 +235,7 @@
   </url>
   
   <url>
-    <loc>http://blog.ryune.top/posts/centos-1/</loc>
+    <loc>http://blog.ryune.top/posts/centos-1-config/</loc>
     <lastmod>2016-12-20T23:21:09+08:00</lastmod>
   </url>
   

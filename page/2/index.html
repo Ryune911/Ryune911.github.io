@@ -91,7 +91,7 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://blog.ryune.top/posts/centos-4/" title="centOS: web 环境搭建" >centOS: web 环境搭建</a>
+                                    <a href="http://blog.ryune.top/posts/centos-4-webserver/" title="centOS: web 环境搭建" >centOS: web 环境搭建</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
@@ -115,13 +115,13 @@ yum install mysql-community-server  启动mysql
 systemctl start mysql  设置密码
 mysql -u root Welcome to the MySQL monitor. Commands endwith ; or \g. Your MySQL connection id is 3 Server version: 5.……
                             </div>
-                            <p class="readmore"><a href="http://blog.ryune.top/posts/centos-4/">阅读全文</a></p>
+                            <p class="readmore"><a href="http://blog.ryune.top/posts/centos-4-webserver/">阅读全文</a></p>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://blog.ryune.top/posts/centos-3/" title="centOS: 磁盘挂载" >centOS: 磁盘挂载</a>
+                                    <a href="http://blog.ryune.top/posts/centos-3-disk/" title="centOS: 磁盘挂载" >centOS: 磁盘挂载</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
@@ -139,13 +139,13 @@ mysql -u root Welcome to the MySQL monitor. Commands endwith ; or \g. Your MySQL
                                 查看当前同的磁盘状态
 sudo fdisk -l 磁盘 /dev/sdb：107.4 GB, 107374182400字节，209715200个扇区 Units = 扇区 of 1 * 512 = 512 bytes 扇区大小(逻辑/物理)：512字节 / 512字节 I/O 大小(最小/最佳)：512字节 / 512字节 磁盘标签类型：dos 磁盘标识符：0xd80ec383 设备 Boot Start End Blocks Id System /dev/sdb1 2048 209713151 104855552 83 Linux 磁盘 /dev/sda：32.2 GB, 32212254720字节，62914560个扇区 Units = 扇区 of 1 * 512 = 512 bytes 扇区大小(逻辑/物理)：512字节 / 512字节 I/O 大小(最小/最佳)：512字节 / 512字节 磁盘标签类型：dos 磁盘标识符：0x00093e4e 设备 Boot Start End Blocks Id System /dev/sda1 * 2048 62914559 31456256 83 Linux  检查硬件变化和当前的设备变化……
                             </div>
-                            <p class="readmore"><a href="http://blog.ryune.top/posts/centos-3/">阅读全文</a></p>
+                            <p class="readmore"><a href="http://blog.ryune.top/posts/centos-3-disk/">阅读全文</a></p>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://blog.ryune.top/posts/centos-2/" title="centOS: 防火墙" >centOS: 防火墙</a>
+                                    <a href="http://blog.ryune.top/posts/centos-2-firewalld/" title="centOS: 防火墙" >centOS: 防火墙</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
@@ -171,13 +171,13 @@ sudo firewall-cmd --get-services sudo firewall-cmd --permanent --list-all  重�
 sudo firewall-cmd --reload  开机启动
 sudo systemctl enable firewalld  ……
                             </div>
-                            <p class="readmore"><a href="http://blog.ryune.top/posts/centos-2/">阅读全文</a></p>
+                            <p class="readmore"><a href="http://blog.ryune.top/posts/centos-2-firewalld/">阅读全文</a></p>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://blog.ryune.top/posts/centos-1/" title="centOS: 基本配置" >centOS: 基本配置</a>
+                                    <a href="http://blog.ryune.top/posts/centos-1-config/" title="centOS: 基本配置" >centOS: 基本配置</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
@@ -201,7 +201,7 @@ vi /etc/ssh/sshd_config Port 3333 PermitRootLogin no  重载服务
 systemctl reload sshd.service  swap 添加一个 4G 的 SWAP
 sudo fallocate -l 4G /swapfile sudo chmod 600 /swapfile sudo mkswap /swapfile sudo swapon /swapfile sudo sh -c 'echo &quot;/swapfile none swap sw 0 0&quot; &gt;&gt; /etc/fstab'  安装 vim git yum install -y git vim # 设置 vim /etc/vimrc # 显示行数 set nu # 表示一个 tab 显示出来是多少个空格的长度 set tabstop=4 # 表示在编辑模式的时候按退格键的时候退回缩进的长度 set softtabstop=4 # 表示每一级缩进的长度,一般设置成跟 softtabstop 一样。 set shiftwidth=4 # 开启自动缩进 set autoindent set cindent  切换基本源为阿里云源 wget -O /etc/yum.……
                             </div>
-                            <p class="readmore"><a href="http://blog.ryune.top/posts/centos-1/">阅读全文</a></p>
+                            <p class="readmore"><a href="http://blog.ryune.top/posts/centos-1-config/">阅读全文</a></p>
                         </article>
                     
                         <article class="post">
@@ -351,11 +351,11 @@ vim /usr/bin/et # 添加 export XMODIFIERS=&quot;@im=fcitx&quot; export QT_IM_MO
 <ul class="widget-list">
     
     <li>
-        <a href="http://blog.ryune.top/posts/protocol-2/" title="网络协议：RPC">网络协议：RPC</a>
+        <a href="http://blog.ryune.top/posts/protocol-2-rpc/" title="网络协议：RPC">网络协议：RPC</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/protocol-1/" title="网络协议：基础">网络协议：基础</a>
+        <a href="http://blog.ryune.top/posts/protocol-1-osi/" title="网络协议：基础">网络协议：基础</a>
     </li>
     
     <li>
@@ -379,7 +379,7 @@ vim /usr/bin/et # 添加 export XMODIFIERS=&quot;@im=fcitx&quot; export QT_IM_MO
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/supervisor-1/" title="Supervisor: 管理 Laravel Queue">Supervisor: 管理 Laravel Queue</a>
+        <a href="http://blog.ryune.top/posts/supervisor-1-laravel/" title="Supervisor: 管理 Laravel Queue">Supervisor: 管理 Laravel Queue</a>
     </li>
     
     <li>
@@ -387,7 +387,7 @@ vim /usr/bin/et # 添加 export XMODIFIERS=&quot;@im=fcitx&quot; export QT_IM_MO
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/centos-4/" title="centOS: web 环境搭建">centOS: web 环境搭建</a>
+        <a href="http://blog.ryune.top/posts/centos-4-webserver/" title="centOS: web 环境搭建">centOS: web 环境搭建</a>
     </li>
     
 </ul>

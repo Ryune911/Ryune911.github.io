@@ -7,20 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Golang 基础：array | Avatar&#39;s Blog</title>
-    <meta property="og:title" content="Golang 基础：array - Avatar&#39;s Blog">
+    <title>centOS: 防火墙 | Avatar&#39;s Blog</title>
+    <meta property="og:title" content="centOS: 防火墙 - Avatar&#39;s Blog">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content="2019-07-10T21:21:09&#43;08:00">
+    <meta property="article:published_time" content="2016-12-21T23:21:09&#43;08:00">
         
         
-    <meta property="article:modified_time" content="2019-07-10T21:21:09&#43;08:00">
+    <meta property="article:modified_time" content="2016-12-21T23:21:09&#43;08:00">
         
     <meta name="Keywords" content="">
-    <meta name="description" content="Golang 基础：array">
+    <meta name="description" content="centOS: 防火墙">
         
     <meta name="author" content="Avatar">
-    <meta property="og:url" content="http://blog.ryune.top/posts/golang-array/">
+    <meta property="og:url" content="http://blog.ryune.top/posts/centos-2-firewalld/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
@@ -72,82 +72,66 @@
                 <div class="res-cons">
                     <article class="post">
                         <header>
-                            <h1 class="post-title">Golang 基础：array</h1>
+                            <h1 class="post-title">centOS: 防火墙</h1>
                         </header>
                         <date class="post-meta meta-date">
-                            2019年7月10日
+                            2016年12月21日
                         </date>
                         
                         <div class="post-meta">
                             <span>|</span>
                             
-                                <span class="meta-category"><a href="http://blog.ryune.top/categories/golang">Golang</a></span>
+                                <span class="meta-category"><a href="http://blog.ryune.top/categories/centos">centOS</a></span>
                             
                         </div>
                         
                         
                         
                         <div class="post-content">
-                            
+                            <p>开启 firewalld 服务：</p>
 
-<h2 id="array">array</h2>
+<pre><code>sudo systemctl start firewalld
+</code></pre>
 
-<ul>
-<li>必须指定长度</li>
-<li>传递数组指针修改数组内元素才有效</li>
-</ul>
+<p>移除</p>
 
-<hr />
+<pre><code>firewall-cmd --zone=public --remove-port=6022/tcp --permanent
+</code></pre>
 
-<pre><code>package main
+<p>开放 SSH 自定义的端口</p>
 
-import &quot;fmt&quot;
+<pre><code>sudo firewall-cmd --permanent --add-port=3333/tcp
+</code></pre>
 
-func main() {
-	//var arr [5]int
-	arr := [5]int{
-		0: 1,
-	}
+<p>开放 HTTP</p>
 
-	// 同类型，同长度才可相互赋值
-	// var arr1 [4]int
-	// arr1 = arr
+<pre><code>sudo firewall-cmd --permanent --add-service=http
+</code></pre>
 
-	fmt.Printf(&quot;%T(%#v)\n&quot;, arr, arr)
-	fmt.Printf(&quot;%T(%#v)\n&quot;, arr[0], arr[0])
-	fmt.Printf(&quot;%T(%#v)\n&quot;, &amp;arr[0], &amp;arr[0])
+<p>开放 HTTPS</p>
 
-	for i, v := range arr {
-		fmt.Printf(&quot;索引:%d,值:%d\n&quot;, i, v)
-	}
+<pre><code>sudo firewall-cmd --permanent --add-service=https
+</code></pre>
 
-	// 指针数组
-	ptrArr := [5]*int{
-		// 分配内存
-		1: new(int),
-		// 其他索引为 nil
-	}
-	fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr, ptrArr)
-	fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr[1], ptrArr[1])
-	fmt.Printf(&quot;%T(%#v)\n&quot;, *ptrArr[1], *ptrArr[1])
+<p>开放 SMTP</p>
 
-	// 分配了内存才能赋值
-	*ptrArr[1] = 1
+<pre><code>sudo firewall-cmd --permanent --add-service=smtp
+</code></pre>
 
-	fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr, ptrArr)
-	fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr[1], ptrArr[1])
-	fmt.Printf(&quot;%T(%#v)\n&quot;, *ptrArr[1], *ptrArr[1])
+<p>查看</p>
 
-	// 传递数组，不会改变值
-	// modify(arr)
-	modify(&amp;arr)
-	fmt.Println(&quot;main&quot;, arr)
-}
+<pre><code>sudo firewall-cmd --get-services
+sudo firewall-cmd --permanent --list-all
+</code></pre>
 
-func modify(a *[5]int) {
-	a[1] = 3
-	fmt.Println(&quot;modify&quot;, *a)
-}
+<p>重载服务</p>
+
+<pre><code>sudo firewall-cmd --reload
+</code></pre>
+
+<p>开机启动</p>
+
+<pre><code>sudo systemctl enable firewalld
 </code></pre>
 
                         </div>
@@ -157,14 +141,23 @@ func modify(a *[5]int) {
 
                         
 
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/centos-1-config/">centOS: 基本配置</a></li>
+        
+    </ul>
+</div>
+
 
                         <div class="post-meta meta-tags">
                             
                             <ul class="clearfix">
                                 
-                                <li><a href="http://blog.ryune.top/tags/golang">golang</a></li>
+                                <li><a href="http://blog.ryune.top/tags/centos">centOS</a></li>
                                 
-                                <li><a href="http://blog.ryune.top/tags/go">go</a></li>
+                                <li><a href="http://blog.ryune.top/tags/firewalld">firewalld</a></li>
                                 
                             </ul>
                             

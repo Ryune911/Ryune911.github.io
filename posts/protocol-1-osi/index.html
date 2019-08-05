@@ -7,20 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Golang 基础：array | Avatar&#39;s Blog</title>
-    <meta property="og:title" content="Golang 基础：array - Avatar&#39;s Blog">
+    <title>网络协议：基础 | Avatar&#39;s Blog</title>
+    <meta property="og:title" content="网络协议：基础 - Avatar&#39;s Blog">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content="2019-07-10T21:21:09&#43;08:00">
+    <meta property="article:published_time" content="2019-07-27T15:01:39&#43;08:00">
         
         
-    <meta property="article:modified_time" content="2019-07-10T21:21:09&#43;08:00">
+    <meta property="article:modified_time" content="2019-07-27T15:01:39&#43;08:00">
         
     <meta name="Keywords" content="">
-    <meta name="description" content="Golang 基础：array">
+    <meta name="description" content="网络协议：基础">
         
     <meta name="author" content="Avatar">
-    <meta property="og:url" content="http://blog.ryune.top/posts/golang-array/">
+    <meta property="og:url" content="http://blog.ryune.top/posts/protocol-1-osi/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
@@ -72,16 +72,16 @@
                 <div class="res-cons">
                     <article class="post">
                         <header>
-                            <h1 class="post-title">Golang 基础：array</h1>
+                            <h1 class="post-title">网络协议：基础</h1>
                         </header>
                         <date class="post-meta meta-date">
-                            2019年7月10日
+                            2019年7月27日
                         </date>
                         
                         <div class="post-meta">
                             <span>|</span>
                             
-                                <span class="meta-category"><a href="http://blog.ryune.top/categories/golang">Golang</a></span>
+                                <span class="meta-category"><a href="http://blog.ryune.top/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE">网络协议</a></span>
                             
                         </div>
                         
@@ -90,65 +90,72 @@
                         <div class="post-content">
                             
 
-<h2 id="array">array</h2>
+<h2 id="概念">概念</h2>
 
-<ul>
-<li>必须指定长度</li>
-<li>传递数组指针修改数组内元素才有效</li>
-</ul>
+<p>互联网协议（Internet Protocol Suite）是对电脑相互如何链接、传输做的详细规定</p>
 
-<hr />
+<h2 id="网络模型">网络模型</h2>
 
-<pre><code>package main
+<ol>
+<li>OSI网络模型将网络通信分成了7层，从上到下依次为：应用层、表示层、会话层、传输层、网络层、链路层及物理层</li>
+<li>越靠近上层越接近用户，越靠近下层越接近计算机硬件</li>
+<li>各层间的无关性：上层通过低层接口使用其功能而不需要关注低层说使用的协议等</li>
+</ol>
 
-import &quot;fmt&quot;
+<h3 id="物理层">物理层</h3>
 
-func main() {
-	//var arr [5]int
-	arr := [5]int{
-		0: 1,
-	}
+<ol>
+<li>功能：为数据传输提供环境，确保两个数据终端设备链接起来形成一条通路，提供物理媒体以供数据通过，提供带宽减少拥堵</li>
+<li>数据终端（DTE）即计算机等终端</li>
+<li>数据通信终端（DCE）即调制解调器等</li>
+<li>互联设备即LAN中各种电缆、插头、插座、接收器、发射器等</li>
+<li>DTE-&gt;互联设备-&gt;DCE-&gt;DCE-&gt;互联设备-&gt;DTE</li>
+</ol>
 
-	// 同类型，同长度才可相互赋值
-	// var arr1 [4]int
-	// arr1 = arr
+<h3 id="链路层">链路层</h3>
 
-	fmt.Printf(&quot;%T(%#v)\n&quot;, arr, arr)
-	fmt.Printf(&quot;%T(%#v)\n&quot;, arr[0], arr[0])
-	fmt.Printf(&quot;%T(%#v)\n&quot;, &amp;arr[0], &amp;arr[0])
+<ol>
+<li>功能：通过物理层建立的物理媒体，为终端设备提供传输媒体及其链接，为网络层数据传输提供服务</li>
+<li>包括：建立、拆除、分离、帧（数据传输的单元是帧，即：定义数据包的组成，如以太网数据包）界定、帧同步、收发顺序控制</li>
+<li>相关知识：交换机、MAC地址（与设备网卡一一绑定，用于子网内计算机数据的发送接收，即：广播。子网间的数据发送接收依靠网络层实现，即：通过网络层的 IP 寻址）、以太网数据包的组成（head+data）</li>
+</ol>
 
-	for i, v := range arr {
-		fmt.Printf(&quot;索引:%d,值:%d\n&quot;, i, v)
-	}
+<h3 id="网络层">网络层</h3>
 
-	// 指针数组
-	ptrArr := [5]*int{
-		// 分配内存
-		1: new(int),
-		// 其他索引为 nil
-	}
-	fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr, ptrArr)
-	fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr[1], ptrArr[1])
-	fmt.Printf(&quot;%T(%#v)\n&quot;, *ptrArr[1], *ptrArr[1])
+<ol>
+<li>建立网络连接和为上层提供服务</li>
+<li>功能：寻址、激活与终止网络连接、网络链接复用、检测与恢复、排序、流量控制、服务选择与网络管理</li>
+<li>相关知识点：路由器、IP数据包（head+data，即：以太网数据包的 data）、IP协议与子网掩码（用于确定2个IP的设备是否处于同一个子网）、ARP协议（通过发送 head 为 FF:FF:FF:FF:FF:FF 的以太网数据包，由链路层广播找到对应的设备）</li>
+</ol>
 
-	// 分配了内存才能赋值
-	*ptrArr[1] = 1
+<h3 id="传输层">传输层</h3>
 
-	fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr, ptrArr)
-	fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr[1], ptrArr[1])
-	fmt.Printf(&quot;%T(%#v)\n&quot;, *ptrArr[1], *ptrArr[1])
+<ol>
+<li>数据通信时，第一个端到端的层级（也可以理解为端口到端口的通信，即：多个逻辑链接）</li>
+<li>功能：通过合流与分流、网络链接复用（一个网络链接创建多个逻辑链接）与解复用进行端（client/port）与端的通信，调节通信子网差异（世界各地网络、子网、局域网性能差异大）为会话层提供稳定的通信环境</li>
+<li>相关知识点：TCP/UDP（数据包 head+data，即：IP数据包的 data）</li>
+</ol>
 
-	// 传递数组，不会改变值
-	// modify(arr)
-	modify(&amp;arr)
-	fmt.Println(&quot;main&quot;, arr)
-}
+<h3 id="会话层">会话层</h3>
 
-func modify(a *[5]int) {
-	a[1] = 3
-	fmt.Println(&quot;modify&quot;, *a)
-}
-</code></pre>
+<ol>
+<li>建立和维持会话，并保持会话同步</li>
+<li>通过检查点，在通信失效时将其恢复</li>
+</ol>
+
+<h3 id="表示层">表示层</h3>
+
+<ol>
+<li>为通信提供一种公共语言，如：编码不同</li>
+</ol>
+
+<h3 id="应用层">应用层</h3>
+
+<ol>
+<li>与其他终端进行通信的一个应用</li>
+<li>为对应的应用提供通信服务</li>
+<li>HTTP、SMTP 等</li>
+</ol>
 
                         </div>
 
@@ -162,9 +169,9 @@ func modify(a *[5]int) {
                             
                             <ul class="clearfix">
                                 
-                                <li><a href="http://blog.ryune.top/tags/golang">golang</a></li>
+                                <li><a href="http://blog.ryune.top/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE">网络协议</a></li>
                                 
-                                <li><a href="http://blog.ryune.top/tags/go">go</a></li>
+                                <li><a href="http://blog.ryune.top/tags/%E5%8D%8F%E8%AE%AE">协议</a></li>
                                 
                             </ul>
                             

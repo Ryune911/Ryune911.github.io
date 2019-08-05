@@ -7,20 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Golang 基础：array | Avatar&#39;s Blog</title>
-    <meta property="og:title" content="Golang 基础：array - Avatar&#39;s Blog">
+    <title>centOS: web 环境搭建 | Avatar&#39;s Blog</title>
+    <meta property="og:title" content="centOS: web 环境搭建 - Avatar&#39;s Blog">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content="2019-07-10T21:21:09&#43;08:00">
+    <meta property="article:published_time" content="2017-01-04T23:21:09&#43;08:00">
         
         
-    <meta property="article:modified_time" content="2019-07-10T21:21:09&#43;08:00">
+    <meta property="article:modified_time" content="2017-01-04T23:21:09&#43;08:00">
         
     <meta name="Keywords" content="">
-    <meta name="description" content="Golang 基础：array">
+    <meta name="description" content="centOS: web 环境搭建">
         
     <meta name="author" content="Avatar">
-    <meta property="og:url" content="http://blog.ryune.top/posts/golang-array/">
+    <meta property="og:url" content="http://blog.ryune.top/posts/centos-4-webserver/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
@@ -72,16 +72,16 @@
                 <div class="res-cons">
                     <article class="post">
                         <header>
-                            <h1 class="post-title">Golang 基础：array</h1>
+                            <h1 class="post-title">centOS: web 环境搭建</h1>
                         </header>
                         <date class="post-meta meta-date">
-                            2019年7月10日
+                            2017年1月4日
                         </date>
                         
                         <div class="post-meta">
                             <span>|</span>
                             
-                                <span class="meta-category"><a href="http://blog.ryune.top/categories/golang">Golang</a></span>
+                                <span class="meta-category"><a href="http://blog.ryune.top/categories/centos">centOS</a></span>
                             
                         </div>
                         
@@ -90,64 +90,160 @@
                         <div class="post-content">
                             
 
-<h2 id="array">array</h2>
+<h3 id="安装-node">安装 node</h3>
 
-<ul>
-<li>必须指定长度</li>
-<li>传递数组指针修改数组内元素才有效</li>
-</ul>
+<p>安装 nvm</p>
 
-<hr />
+<pre><code>curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.2/install.sh | bash
+</code></pre>
 
-<pre><code>package main
+<p>安装 node</p>
 
-import &quot;fmt&quot;
+<pre><code>nvm install 4.4.0
+nvm ls
+</code></pre>
 
-func main() {
-	//var arr [5]int
-	arr := [5]int{
-		0: 1,
-	}
+<p>切换node版本</p>
 
-	// 同类型，同长度才可相互赋值
-	// var arr1 [4]int
-	// arr1 = arr
+<pre><code>nvm use 4.4.0
+nvm alias default4.4.0
+</code></pre>
 
-	fmt.Printf(&quot;%T(%#v)\n&quot;, arr, arr)
-	fmt.Printf(&quot;%T(%#v)\n&quot;, arr[0], arr[0])
-	fmt.Printf(&quot;%T(%#v)\n&quot;, &amp;arr[0], &amp;arr[0])
+<h3 id="安装-mysql-5-6">安装 MySQL 5.6</h3>
 
-	for i, v := range arr {
-		fmt.Printf(&quot;索引:%d,值:%d\n&quot;, i, v)
-	}
+<p>配置yum源</p>
 
-	// 指针数组
-	ptrArr := [5]*int{
-		// 分配内存
-		1: new(int),
-		// 其他索引为 nil
-	}
-	fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr, ptrArr)
-	fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr[1], ptrArr[1])
-	fmt.Printf(&quot;%T(%#v)\n&quot;, *ptrArr[1], *ptrArr[1])
+<pre><code>rpm -ivh http://repo.mysql.com/mysql-community-release-el7.rpm
+yum list mysql-community-client
+</code></pre>
 
-	// 分配了内存才能赋值
-	*ptrArr[1] = 1
+<p>安装mysql</p>
 
-	fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr, ptrArr)
-	fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr[1], ptrArr[1])
-	fmt.Printf(&quot;%T(%#v)\n&quot;, *ptrArr[1], *ptrArr[1])
+<pre><code>yum install mysql-community-server
+</code></pre>
 
-	// 传递数组，不会改变值
-	// modify(arr)
-	modify(&amp;arr)
-	fmt.Println(&quot;main&quot;, arr)
-}
+<p>启动mysql</p>
 
-func modify(a *[5]int) {
-	a[1] = 3
-	fmt.Println(&quot;modify&quot;, *a)
-}
+<pre><code>systemctl start mysql
+</code></pre>
+
+<p>设置密码</p>
+
+<pre><code>mysql -u root
+Welcome to the MySQL monitor.  Commands endwith ; or \g.
+Your MySQL connection id is 3
+Server version: 5.6.33 MySQL Community Server (GPL)
+Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.
+Oracle is a registered trademark of Oracle Corporation and/or itsaffiliates. Other names may be trademarks of their respectiveowners.
+Type 'help;' or '\h' for help. Type'\c'toclear the currentinputstatement.
+mysql&gt; showdatabases
+    -&gt; ;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
++--------------------+
+3 rows in set (0.00 sec)
+mysql&gt; setpasswordfor'root'@'localhost' =password('demo');
+Query OK, 0 rows affected (0.00 sec)
+</code></pre>
+
+<p>配置文件</p>
+
+<pre><code># mysql的默认配置文件在/etc/my.cnf
+[mysql]
+default-character-set =utf8
+# 符编码必须和/usr/share/mysql/charsets/Index.xml中一致。
+&lt;charsetname=&quot;utf8&quot;&gt;  
+    &lt;family&gt;Unicode&lt;/family&gt;
+    &lt;description&gt;UTF-8Unicode&lt;/description&gt;  
+    &lt;alias&gt;utf-8&lt;/alias&gt;  
+    &lt;collationname=&quot;utf8_general_ci&quot;id=&quot;33&quot;&gt;   
+        &lt;flag&gt;primary&lt;/flag&gt;   
+        &lt;flag&gt;compiled&lt;/flag&gt;
+    &lt;/collation&gt;  
+    &lt;collationname=&quot;utf8_bin&quot;id=&quot;83&quot;&gt;  
+      &lt;flag&gt;binary&lt;/flag&gt;    
+      &lt;flag&gt;compiled&lt;/flag&gt;
+    &lt;/collation&gt;
+&lt;/charset&gt;
+</code></pre>
+
+<p>导出数据库</p>
+
+<pre><code># 导出数据和表结构：
+# mysqldump -u用户名 -p 数据库名 &gt; 数据库名.sql
+/usr/local/mysql/bin/mysqldump -uroot -p abc &gt; abc.sql
+
+# 只导出表结构
+# mysqldump -u用户名 -p -d数据库名 &gt; 数据库名.sql
+/usr/local/mysql/bin/mysqldump -uroot -p -d abc &gt; abc.sql
+</code></pre>
+
+<p>导入数据库</p>
+
+<pre><code># 创建空数据库
+mysql&gt;create database demo;
+
+# mysql -u用户名 -p 数据库名 &lt; 数据库名.sql
+mysql -u root -p demo &lt; /demo/tmp/demo.sql
+</code></pre>
+
+<p>开启远程访问</p>
+
+<pre><code>mysql -h localhost -u root -p
+# 赋予任何主机访问数据的权限
+mysql&gt;GRANT ALL PRIVILEGES ON *.* TO'root'@'%'WITH GRANT OPTION;
+# 使修改生效
+mysql&gt;FLUSH PRIVILEGES;
+</code></pre>
+
+<h3 id="安装php-7">安装PHP 7</h3>
+
+<pre><code># 添加源
+sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+sudo rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+# 安装
+yum install php71w php71w-opcache php71w-fpm
+</code></pre>
+
+<h3 id="composer">Composer</h3>
+
+<pre><code># 安装
+curl -sS https://getcomposer.org/installer | php
+echo $PATH
+sudo mv composer.phar /usr/local/bin/composer
+
+# 添加
+export PATH=&quot;$HOME/.composer/vendor/bin:$PATH&quot;
+
+# 执行
+source ~/.bash_profile
+</code></pre>
+
+<h3 id="nginx">Nginx</h3>
+
+<pre><code># 建立nginx的yum仓库
+rpm -Uvhhttp://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+// http://nginx.org/en/linux_packages.html
+
+# 下载并安装nginx
+yum install nginx
+
+# 启动nginx服务
+systemctl start nginx
+</code></pre>
+
+<h3 id="selinux">SELinux</h3>
+
+<pre><code>sudo vim /etc/selinux/config
+// 设置为 
+disabledSELINUX=disabled
+// 重启reboot
+// 查看 SELinux 状态
+getenforce
 </code></pre>
 
                         </div>
@@ -157,14 +253,25 @@ func modify(a *[5]int) {
 
                         
 
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/centos-3-disk/">centOS: 磁盘挂载</a></li>
+        
+        <li><a href="/posts/centos-2-firewalld/">centOS: 防火墙</a></li>
+        
+        <li><a href="/posts/centos-1-config/">centOS: 基本配置</a></li>
+        
+    </ul>
+</div>
+
 
                         <div class="post-meta meta-tags">
                             
                             <ul class="clearfix">
                                 
-                                <li><a href="http://blog.ryune.top/tags/golang">golang</a></li>
-                                
-                                <li><a href="http://blog.ryune.top/tags/go">go</a></li>
+                                <li><a href="http://blog.ryune.top/tags/centos">centOS</a></li>
                                 
                             </ul>
                             

@@ -13,10 +13,10 @@
     
     <item>
       <title>centOS: 防火墙</title>
-      <link>http://blog.ryune.top/posts/centos-2/</link>
+      <link>http://blog.ryune.top/posts/centos-2-firewalld/</link>
       <pubDate>Wed, 21 Dec 2016 23:21:09 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/posts/centos-2/</guid>
+      <guid>http://blog.ryune.top/posts/centos-2-firewalld/</guid>
       <description>开启 firewalld 服务：
 sudo systemctl start firewalld  移除
 firewall-cmd --zone=public --remove-port=6022/tcp --permanent  开放 SSH 自定义的端口
