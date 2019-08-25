@@ -45,7 +45,12 @@
   </url>
   
   <url>
-    <loc>http://blog.ryune.top/posts/grpc-1/</loc>
+    <loc>http://blog.ryune.top/posts/grpc-helloworld/</loc>
+    <lastmod>2019-08-05T15:01:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.ryune.top/posts/grpc-service/</loc>
     <lastmod>2019-08-05T15:01:39+08:00</lastmod>
   </url>
   

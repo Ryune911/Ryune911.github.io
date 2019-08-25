@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Avatar&#39;s Blog | </title>
-    <meta property="og:title" content="Avatar&#39;s Blog | ">
+    <title>Avatar&#39;s Blog | Molly 的小跟班儿</title>
+    <meta property="og:title" content="Avatar&#39;s Blog | Molly 的小跟班儿">
     <meta property="og:type" content="website">
     <meta name="Keywords" content="">
     <meta name="description" content="">
@@ -41,7 +41,7 @@
                         </a>
                     </h1>
                 
-                
+                <p class="description">Molly 的小跟班儿</p>
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
@@ -64,6 +64,29 @@
 
             <div class="col-8" id="main">
                 <div class="res-cons">
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://blog.ryune.top/posts/oss-path/" title="OSS 踩坑" >OSS 踩坑</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2018年3月20日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="http://blog.ryune.top/categories/oss">OSS</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                 路径错误  自定义的文件路径，key 不能以 / 开头！  OSSException in OSSExceptionFactory.php line 16: The specified object is not valid. ……
+                            </div>
+                            <p class="readmore"><a href="http://blog.ryune.top/posts/oss-path/">阅读全文</a></p>
+                        </article>
                     
                         <article class="post">
                             <header>
@@ -305,33 +328,6 @@ user = nginx group = nginx listen.owner = nobody listen.group = nobody  处理 R
                             <p class="readmore"><a href="http://blog.ryune.top/posts/nginx-1/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="http://blog.ryune.top/posts/ubuntu-1/" title="Ubuntu: 完善-1" >Ubuntu: 完善-1</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2016年9月26日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="http://blog.ryune.top/categories/ubuntu">Ubuntu</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                 Ubuntu 16.04 WPS无法输入中文  安装搜狗linux
-http://pinyin.sogou.com/linux/?r=pinyin  修改配置文件
- 修改wps
-vim /usr/bin/wps # 添加： export XMODIFIERS=&quot;@im=fcitx&quot; export QT_IM_MODULE=&quot;fcitx&quot;  修改et
-vim /usr/bin/et # 添加 export XMODIFIERS=&quot;@im=fcitx&quot; export QT_IM_MODULE=&quot;fcitx&quot;    点击launcher图标最小化 gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ launcher-minimize-window true  开启风扇 sudo find /sys | grep pwm echo 255 | sudo tee /sys/devices/platform/asus-nb-wmi/hwmon/hwmon3/pwm1  ……
-                            </div>
-                            <p class="readmore"><a href="http://blog.ryune.top/posts/ubuntu-1/">阅读全文</a></p>
-                        </article>
-                    
                     
 
 
@@ -352,7 +348,15 @@ vim /usr/bin/et # 添加 export XMODIFIERS=&quot;@im=fcitx&quot; export QT_IM_MO
         <a href="http://blog.ryune.top/page/2/">2</a>
     </li>
     
+    <li >
+        <a href="http://blog.ryune.top/page/3/">3</a>
+    </li>
+    
 
+    
+    <li class="next">
+        <a href="http://blog.ryune.top/page/3/">下一页</a>
+    </li>
     
 </ol>
 
@@ -376,7 +380,11 @@ vim /usr/bin/et # 添加 export XMODIFIERS=&quot;@im=fcitx&quot; export QT_IM_MO
 <ul class="widget-list">
     
     <li>
-        <a href="http://blog.ryune.top/posts/grpc-1/" title="gRPC: 基础">gRPC: 基础</a>
+        <a href="http://blog.ryune.top/posts/grpc-helloworld/" title="gRPC: helloworld ">gRPC: helloworld </a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/grpc-service/" title="gRPC: service ">gRPC: service </a>
     </li>
     
     <li>
@@ -411,10 +419,6 @@ vim /usr/bin/et # 添加 export XMODIFIERS=&quot;@im=fcitx&quot; export QT_IM_MO
         <a href="http://blog.ryune.top/posts/supervisor-1-laravel/" title="Supervisor: 管理 Laravel Queue">Supervisor: 管理 Laravel Queue</a>
     </li>
     
-    <li>
-        <a href="http://blog.ryune.top/posts/test-webbench/" title="测试: webbench">测试: webbench</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -433,7 +437,7 @@ vim /usr/bin/et # 添加 export XMODIFIERS=&quot;@im=fcitx&quot; export QT_IM_MO
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/grpc/">grpc(1)</a>
+        <a href="http://blog.ryune.top/categories/grpc/">grpc(2)</a>
     </li>
     
     <li>

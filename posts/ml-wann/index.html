@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>ML: 个人浅析 | Avatar&#39;s Blog</title>
+    <meta property="og:title" content="ML: 个人浅析 - Avatar&#39;s Blog">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-08-15T15:01:39&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-08-15T15:01:39&#43;08:00">
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="ML: 个人浅析">
+        
+    <meta name="author" content="Avatar">
+    <meta property="og:url" content="http://blog.ryune.top/posts/ml-wann/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://blog.ryune.top/">
+                        Avatar&#39;s Blog
+                    </a>
+                
+                <p class="description">Molly 的小跟班儿</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://blog.ryune.top/">首页</a>
+                    
+                    <a  href="http://blog.ryune.top/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://blog.ryune.top/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">ML: 个人浅析</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年8月15日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="http://blog.ryune.top/categories/ml">ML</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<h2 id="ml-本质">ML 本质</h2>
+
+<p>关键词: 数据模型</p>
+
+<h2 id="wann">WANN</h2>
+
+<p><code>权重不可知神经网络</code></p>
+
+<blockquote>
+<ol>
+<li>只靠神经网络架构搜索出的网络，不训练，不调参，就能直接执行任务</li>
+<li>它在MNIST数字分类任务上，未经训练和权重调整，就达到了92%的准确率，和训练后的线性分类器表现相当</li>
+<li>除了监督学习，WANN还能胜任许多强化学习任务</li>
+</ol>
+</blockquote>
+
+<h4 id="强化学习">强化学习</h4>
+
+<p>WANN处理了3种强化学习任务。给每一组神经元，共享同一个权重。
+* Cart-Pole Swing-Up
+* Bipedal Waker-v2
+* CarRacing-v0</p>
+
+<h4 id="实现原理">实现原理</h4>
+
+<p>目的: 权重对网络的影响最小化</p>
+
+<p>步骤:
+1. 权重共享, 让权重值减少到1个
+2. 最小神经网络拓扑群开始
+3. 通过分配不同的共享权重根据性能与复杂度进行排序
+4. 迭代 &amp; 竞争</p>
+
+<p>关键词: 调不出明天 神经网络架构</p>
+
+<pre><code>results: 
+ {'mean_fit_time': array([1.13031559, 1.14794617, 1.15004916, 1.11991968, 1.1085814 ,
+       1.12418618, 1.10943542, 1.10974827, 1.47658706, 1.4929059 ,
+       1.49251971, 1.51477184, 1.49152155, 1.49738503, 1.51293812,
+       1.54513607, 2.0294167 , 2.08700633, 2.23434725, 2.01368504,
+       2.06274705, 2.18829951, 1.95969872, 1.97349663, 2.32398968,
+       2.30022879, 2.39830103, 2.20417447, 2.25026479, 2.20698848,
+       2.23729506, 2.10553899, 2.37808537, 2.43472519, 2.35171046,
+       2.52422347, 2.3516222 , 2.42611623, 2.44711275, 2.41726933,
+       2.54425564, 2.64560089, 2.57970657, 2.60400062, 2.59045677,
+       2.48349605, 2.42131319, 2.60144801]), 'std_fit_time': array([0.02801977, 0.05614705, 0.02883542, 0.02113743, 0.01388231,
+       0.01695669, 0.02754896, 0.00957768, 0.02736421, 0.02466109,
+       0.01440524, 0.02061717, 0.0242277 , 0.0270545 , 0.02255434,
+       0.0373403 , 0.21216453, 0.10591862, 0.13956948, 0.18277068,
+       0.08482003, 0.17217352, 0.04553   , 0.1087445 , 0.10488569,
+       0.10973943, 0.18424938, 0.10070202, 0.15856694, 0.10560248,
+       0.13425354, 0.06428795, 0.03030284, 0.06500123, 0.06530917,
+       0.22078396, 0.07350349, 0.12016345, 0.2014407 , 0.07958693,
+       0.06406271, 0.15789156, 0.04217674, 0.0918613 , 0.15456949,
+       0.04311039, 0.07130654, 0.15107725]), 'mean_score_time': array([0.07001572, 0.07071757, 0.07197104, 0.06913843, 0.06912894,
+       0.07091584, 0.06889138, 0.0686615 , 0.07901869, 0.08160615,
+       0.08142047, 0.07945743, 0.08019753, 0.08195343, 0.08078661,
+       0.08395176, 0.10203605, 0.10008526, 0.11199923, 0.10170302,
+       0.09762778, 0.10077291, 0.09334836, 0.10211482, 0.10708513,
+       0.10647182, 0.12124147, 0.10344443, 0.11004024, 0.10645723,
+       0.1040431 , 0.10163016, 0.11347842, 0.12177467, 0.11519542,
+       0.14334474, 0.11548533, 0.11676078, 0.11834178, 0.12595253,
+       0.1273766 , 0.12669311, 0.12088451, 0.12534857, 0.12569141,
+       0.11827021, 0.11885786, 0.12049394]), 'std_score_time': array([0.00393306, 0.00107476, 0.00206303, 0.00145806, 0.00260912,
+       0.00379044, 0.00182073, 0.00132558, 0.00207856, 0.00223202,
+       0.00344826, 0.00309178, 0.00295965, 0.00146029, 0.00251034,
+       0.00736023, 0.0122255 , 0.00774638, 0.01919968, 0.00830528,
+       0.0051327 , 0.00943337, 0.00441552, 0.01691489, 0.00743449,
+       0.00640545, 0.01889208, 0.0043743 , 0.01139124, 0.00970806,
+       0.00719352, 0.00566159, 0.00361549, 0.00869471, 0.00483896,
+       0.05826404, 0.00526072, 0.00994636, 0.0137717 , 0.01685891,
+       0.01106292, 0.01175582, 0.00739774, 0.00961933, 0.00191338,
+       0.00754814, 0.0057209 , 0.00644805]), 'param_max_depth': masked_array(data=[3, 3, 3, 3, 3, 3, 3, 3, 5, 5, 5, 5, 5, 5, 5, 5, 7, 7,
+                   7, 7, 7, 7, 7, 7, 9, 9, 9, 9, 9, 9, 9, 9, 11, 11, 11,
+                   11, 11, 11, 11, 11, 13, 13, 13, 13, 13, 13, 13, 13],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False, False, False, False, False, False, False,
+                   False, False, False, False, False, False, False, False,
+                   False, False, False, False, False, False, False, False,
+                   False, False, False, False, False, False, False, False,
+                   False, False, False, False, False, False, False, False],
+       fill_value='?',
+            dtype=object), 'param_min_samples_split': masked_array(data=[50, 70, 90, 110, 130, 150, 170, 190, 50, 70, 90, 110,
+                   130, 150, 170, 190, 50, 70, 90, 110, 130, 150, 170,
+                   190, 50, 70, 90, 110, 130, 150, 170, 190, 50, 70, 90,
+                   110, 130, 150, 170, 190, 50, 70, 90, 110, 130, 150,
+                   170, 190],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False, False, False, False, False, False, False,
+                   False, False, False, False, False, False, False, False,
+                   False, False, False, False, False, False, False, False,
+                   False, False, False, False, False, False, False, False,
+                   False, False, False, False, False, False, False, False],
+       fill_value='?',
+            dtype=object), 'params': [{'max_depth': 3, 'min_samples_split': 50}, {'max_depth': 3, 'min_samples_split': 70}, {'max_depth': 3, 'min_samples_split': 90}, {'max_depth': 3, 'min_samples_split': 110}, {'max_depth': 3, 'min_samples_split': 130}, {'max_depth': 3, 'min_samples_split': 150}, {'max_depth': 3, 'min_samples_split': 170}, {'max_depth': 3, 'min_samples_split': 190}, {'max_depth': 5, 'min_samples_split': 50}, {'max_depth': 5, 'min_samples_split': 70}, {'max_depth': 5, 'min_samples_split': 90}, {'max_depth': 5, 'min_samples_split': 110}, {'max_depth': 5, 'min_samples_split': 130}, {'max_depth': 5, 'min_samples_split': 150}, {'max_depth': 5, 'min_samples_split': 170}, {'max_depth': 5, 'min_samples_split': 190}, {'max_depth': 7, 'min_samples_split': 50}, {'max_depth': 7, 'min_samples_split': 70}, {'max_depth': 7, 'min_samples_split': 90}, {'max_depth': 7, 'min_samples_split': 110}, {'max_depth': 7, 'min_samples_split': 130}, {'max_depth': 7, 'min_samples_split': 150}, {'max_depth': 7, 'min_samples_split': 170}, {'max_depth': 7, 'min_samples_split': 190}, {'max_depth': 9, 'min_samples_split': 50}, {'max_depth': 9, 'min_samples_split': 70}, {'max_depth': 9, 'min_samples_split': 90}, {'max_depth': 9, 'min_samples_split': 110}, {'max_depth': 9, 'min_samples_split': 130}, {'max_depth': 9, 'min_samples_split': 150}, {'max_depth': 9, 'min_samples_split': 170}, {'max_depth': 9, 'min_samples_split': 190}, {'max_depth': 11, 'min_samples_split': 50}, {'max_depth': 11, 'min_samples_split': 70}, {'max_depth': 11, 'min_samples_split': 90}, {'max_depth': 11, 'min_samples_split': 110}, {'max_depth': 11, 'min_samples_split': 130}, {'max_depth': 11, 'min_samples_split': 150}, {'max_depth': 11, 'min_samples_split': 170}, {'max_depth': 11, 'min_samples_split': 190}, {'max_depth': 13, 'min_samples_split': 50}, {'max_depth': 13, 'min_samples_split': 70}, {'max_depth': 13, 'min_samples_split': 90}, {'max_depth': 13, 'min_samples_split': 110}, {'max_depth': 13, 'min_samples_split': 130}, {'max_depth': 13, 'min_samples_split': 150}, {'max_depth': 13, 'min_samples_split': 170}, {'max_depth': 13, 'min_samples_split': 190}], 'split0_test_score': array([0.78262414, 0.78262414, 0.78270005, 0.78270005, 0.78261465,
+       0.7828911 , 0.78289224, 0.78289224, 0.79583925, 0.79542766,
+       0.79439753, 0.79447733, 0.79438998, 0.79349728, 0.79366044,
+       0.79365106, 0.80868336, 0.80874784, 0.80649368, 0.80554473,
+       0.80637283, 0.80820751, 0.80962316, 0.80864083, 0.8209222 ,
+       0.81759218, 0.81833693, 0.8121508 , 0.81339553, 0.81641228,
+       0.81430344, 0.81507597, 0.81920574, 0.81549385, 0.8190674 ,
+       0.8207379 , 0.81635511, 0.82222203, 0.81798765, 0.819996  ,
+       0.81919705, 0.82195244, 0.82190305, 0.82420808, 0.81819242,
+       0.81688035, 0.81905608, 0.8208975 ]), 'split1_test_score': array([0.79130715, 0.79108866, 0.79107517, 0.79107517, 0.79109026,
+       0.79116481, 0.79103424, 0.79103424, 0.80673584, 0.80693649,
+       0.80677574, 0.8081867 , 0.80697719, 0.80621792, 0.80619413,
+       0.80662757, 0.82065832, 0.81783628, 0.81953056, 0.82001269,
+       0.81756908, 0.81857977, 0.8180606 , 0.81577008, 0.82572172,
+       0.82702087, 0.82638187, 0.82240073, 0.82595758, 0.82576939,
+       0.82646876, 0.82489613, 0.82744366, 0.83362259, 0.82849906,
+       0.82924747, 0.82978997, 0.82861293, 0.82837432, 0.82881347,
+       0.8306741 , 0.8312445 , 0.83163471, 0.83202161, 0.83361539,
+       0.83335689, 0.83374984, 0.83373669]), 'split2_test_score': array([0.80384416, 0.80384416, 0.80407055, 0.80406941, 0.80406941,
+       0.80409388, 0.80409388, 0.80409388, 0.8161833 , 0.81696103,
+       0.81789849, 0.81723784, 0.81719176, 0.81644925, 0.81569051,
+       0.81617873, 0.83131435, 0.83258979, 0.83082018, 0.82994561,
+       0.8301489 , 0.832239  , 0.83169898, 0.83180452, 0.8375874 ,
+       0.83766446, 0.83868504, 0.84157654, 0.83988674, 0.84123204,
+       0.83969854, 0.83876519, 0.84408226, 0.84176177, 0.84083254,
+       0.83982717, 0.84066344, 0.84074656, 0.84334764, 0.84200737,
+       0.84466516, 0.84105584, 0.84220266, 0.84349753, 0.84283723,
+       0.84210741, 0.83978075, 0.84291647]), 'split3_test_score': array([0.8414657 , 0.8414657 , 0.84084917, 0.84074655, 0.84074655,
+       0.84074655, 0.84084114, 0.84084114, 0.84551681, 0.84576245,
+       0.84558499, 0.84509519, 0.84537286, 0.84572331, 0.84536839,
+       0.84561656, 0.84909809, 0.84937541, 0.84927325, 0.84975479,
+       0.85011764, 0.84995716, 0.85026215, 0.84960051, 0.84797557,
+       0.84914457, 0.84637772, 0.84807831, 0.85097304, 0.85066185,
+       0.85111916, 0.84909992, 0.84811688, 0.84834576, 0.84645256,
+       0.84866729, 0.84577118, 0.84531753, 0.84659375, 0.84624858,
+       0.84283673, 0.84660695, 0.84673586, 0.84682815, 0.84224878,
+       0.84379636, 0.8442593 , 0.84185322]), 'split4_test_score': array([0.81898384, 0.81898384, 0.81847614, 0.81847614, 0.81847614,
+       0.81847614, 0.81853077, 0.81853077, 0.82354989, 0.82387819,
+       0.82452375, 0.82355265, 0.82420292, 0.82433975, 0.82457725,
+       0.82320094, 0.83033698, 0.82967878, 0.82932156, 0.83096475,
+       0.83040815, 0.82932787, 0.8315038 , 0.83040516, 0.83217405,
+       0.83241637, 0.82943796, 0.82869837, 0.83013943, 0.83039426,
+       0.83194068, 0.83213479, 0.83023034, 0.831257  , 0.83247055,
+       0.83220917, 0.83391424, 0.83226186, 0.82959556, 0.82944909,
+       0.83064828, 0.82813201, 0.82780865, 0.83065827, 0.83024629,
+       0.83237918, 0.83093709, 0.83004255]), 'mean_test_score': array([0.807645  , 0.8076013 , 0.80743422, 0.80741346, 0.8073994 ,
+       0.80747449, 0.80747845, 0.80747845, 0.81756502, 0.81779316,
+       0.8178361 , 0.81770994, 0.81762694, 0.8172455 , 0.81709814,
+       0.81705497, 0.82801822, 0.82764562, 0.82708785, 0.82724452,
+       0.82692332, 0.82766226, 0.82822974, 0.82724422, 0.83287619,
+       0.83276769, 0.8318439 , 0.83058095, 0.83207046, 0.83289396,
+       0.83270612, 0.8319944 , 0.83381578, 0.8340962 , 0.83346442,
+       0.8341378 , 0.83329879, 0.83383218, 0.83317978, 0.8333029 ,
+       0.83360426, 0.83379835, 0.83405698, 0.83544273, 0.83342802,
+       0.83370404, 0.83355661, 0.83388929]), 'std_test_score': array([0.02087977, 0.02091412, 0.02063587, 0.02060268, 0.0206208 ,
+       0.02054188, 0.02059889, 0.02059889, 0.01678279, 0.01695927,
+       0.01724197, 0.01682117, 0.01712683, 0.0175928 , 0.01746624,
+       0.01738263, 0.01333122, 0.01381385, 0.0140879 , 0.01449847,
+       0.01463112, 0.01401258, 0.01384051, 0.01420094, 0.00943148,
+       0.0105416 , 0.00975801, 0.01293979, 0.01271417, 0.01194885,
+       0.01237807, 0.01161965, 0.0107409 , 0.01110084, 0.0095488 ,
+       0.00949386, 0.01009532, 0.00829728, 0.01048866, 0.00954399,
+       0.00930025, 0.00889592, 0.00916224, 0.00842995, 0.00904015,
+       0.00956435, 0.00860758, 0.00810582]), 'rank_test_score': array([41, 42, 46, 47, 48, 45, 43, 43, 37, 34, 33, 35, 36, 38, 39, 40, 26,
+       28, 31, 29, 32, 27, 25, 30, 18, 19, 23, 24, 21, 17, 20, 22,  7,  3,
+       12,  2, 15,  6, 16, 14, 10,  8,  4,  1, 13,  9, 11,  5],
+      dtype=int32)}
+best params: 
+ {'max_depth': 13, 'min_samples_split': 110}
+best score: 
+ 0.8354427286560128
+</code></pre>
+
+<pre><code>results: 
+ {'mean_fit_time': array([2.7314291 , 2.57670879, 2.60573444, 2.70202084, 2.56149974,
+       2.93215308, 2.77365327, 2.58540525, 2.83569856, 2.72686043,
+       2.82196002, 2.62864623, 2.46065497, 2.78152642, 2.53575644,
+       2.50559535, 2.67252798, 2.74728804, 2.625175  , 2.62912588,
+       2.42987361, 2.51810622, 2.64416418, 2.58750668, 2.64391375,
+       2.54314694, 2.55422378, 2.64550772, 2.54756126, 2.56923156,
+       2.45395145, 2.44451718, 2.67304039, 2.7589817 , 2.64437366,
+       2.70839233, 2.55101461, 2.51020465, 2.48054738, 2.45796237]), 'std_fit_time': array([0.1957943 , 0.04214852, 0.15138045, 0.21680474, 0.02684197,
+       0.10934976, 0.28545526, 0.18072979, 0.14405997, 0.32608834,
+       0.16491226, 0.13196477, 0.10395657, 0.12040258, 0.08004473,
+       0.10011977, 0.08286777, 0.21982126, 0.08890971, 0.15650535,
+       0.10173741, 0.10530232, 0.20830068, 0.16504678, 0.14493338,
+       0.18653238, 0.04526547, 0.21466203, 0.15112079, 0.17301175,
+       0.05967025, 0.03070503, 0.161242  , 0.18999847, 0.17127397,
+       0.17275708, 0.07348437, 0.1313256 , 0.09233557, 0.12584099]), 'mean_score_time': array([0.14989409, 0.12590437, 0.1276691 , 0.13173742, 0.12495594,
+       0.15020213, 0.14188743, 0.128087  , 0.14852524, 0.12919393,
+       0.15048656, 0.12859731, 0.12049351, 0.1270052 , 0.11922097,
+       0.12216191, 0.12873659, 0.12459798, 0.12965302, 0.15801454,
+       0.11955214, 0.12419882, 0.11901879, 0.12303877, 0.13073068,
+       0.11917057, 0.12395658, 0.12454438, 0.11862774, 0.12449808,
+       0.11531258, 0.12314177, 0.13507504, 0.12159019, 0.11848674,
+       0.12511401, 0.11791921, 0.12965922, 0.12050295, 0.12347026]), 'std_score_time': array([0.03191878, 0.0118804 , 0.01382154, 0.00954287, 0.00712228,
+       0.03719717, 0.02760883, 0.01158837, 0.02048222, 0.00357328,
+       0.03486264, 0.02154554, 0.00524017, 0.0074862 , 0.00769395,
+       0.00321201, 0.0096239 , 0.00978852, 0.01362137, 0.05216945,
+       0.00778816, 0.00358815, 0.00532345, 0.00718448, 0.02315375,
+       0.00662037, 0.00950474, 0.00263811, 0.00930156, 0.01397253,
+       0.00651331, 0.00479073, 0.01940329, 0.00775496, 0.00653652,
+       0.00938119, 0.00712052, 0.02008205, 0.00945314, 0.00727359]), 'param_min_samples_leaf': masked_array(data=[10, 10, 10, 10, 10, 10, 10, 10, 20, 20, 20, 20, 20, 20,
+                   20, 20, 30, 30, 30, 30, 30, 30, 30, 30, 40, 40, 40, 40,
+                   40, 40, 40, 40, 50, 50, 50, 50, 50, 50, 50, 50],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False, False, False, False, False, False, False,
+                   False, False, False, False, False, False, False, False,
+                   False, False, False, False, False, False, False, False,
+                   False, False, False, False, False, False, False, False],
+       fill_value='?',
+            dtype=object), 'param_min_samples_split': masked_array(data=[50, 70, 90, 110, 130, 150, 170, 190, 50, 70, 90, 110,
+                   130, 150, 170, 190, 50, 70, 90, 110, 130, 150, 170,
+                   190, 50, 70, 90, 110, 130, 150, 170, 190, 50, 70, 90,
+                   110, 130, 150, 170, 190],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False, False, False, False, False, False, False,
+                   False, False, False, False, False, False, False, False,
+                   False, False, False, False, False, False, False, False,
+                   False, False, False, False, False, False, False, False],
+       fill_value='?',
+            dtype=object), 'params': [{'min_samples_leaf': 10, 'min_samples_split': 50}, {'min_samples_leaf': 10, 'min_samples_split': 70}, {'min_samples_leaf': 10, 'min_samples_split': 90}, {'min_samples_leaf': 10, 'min_samples_split': 110}, {'min_samples_leaf': 10, 'min_samples_split': 130}, {'min_samples_leaf': 10, 'min_samples_split': 150}, {'min_samples_leaf': 10, 'min_samples_split': 170}, {'min_samples_leaf': 10, 'min_samples_split': 190}, {'min_samples_leaf': 20, 'min_samples_split': 50}, {'min_samples_leaf': 20, 'min_samples_split': 70}, {'min_samples_leaf': 20, 'min_samples_split': 90}, {'min_samples_leaf': 20, 'min_samples_split': 110}, {'min_samples_leaf': 20, 'min_samples_split': 130}, {'min_samples_leaf': 20, 'min_samples_split': 150}, {'min_samples_leaf': 20, 'min_samples_split': 170}, {'min_samples_leaf': 20, 'min_samples_split': 190}, {'min_samples_leaf': 30, 'min_samples_split': 50}, {'min_samples_leaf': 30, 'min_samples_split': 70}, {'min_samples_leaf': 30, 'min_samples_split': 90}, {'min_samples_leaf': 30, 'min_samples_split': 110}, {'min_samples_leaf': 30, 'min_samples_split': 130}, {'min_samples_leaf': 30, 'min_samples_split': 150}, {'min_samples_leaf': 30, 'min_samples_split': 170}, {'min_samples_leaf': 30, 'min_samples_split': 190}, {'min_samples_leaf': 40, 'min_samples_split': 50}, {'min_samples_leaf': 40, 'min_samples_split': 70}, {'min_samples_leaf': 40, 'min_samples_split': 90}, {'min_samples_leaf': 40, 'min_samples_split': 110}, {'min_samples_leaf': 40, 'min_samples_split': 130}, {'min_samples_leaf': 40, 'min_samples_split': 150}, {'min_samples_leaf': 40, 'min_samples_split': 170}, {'min_samples_leaf': 40, 'min_samples_split': 190}, {'min_samples_leaf': 50, 'min_samples_split': 50}, {'min_samples_leaf': 50, 'min_samples_split': 70}, {'min_samples_leaf': 50, 'min_samples_split': 90}, {'min_samples_leaf': 50, 'min_samples_split': 110}, {'min_samples_leaf': 50, 'min_samples_split': 130}, {'min_samples_leaf': 50, 'min_samples_split': 150}, {'min_samples_leaf': 50, 'min_samples_split': 170}, {'min_samples_leaf': 50, 'min_samples_split': 190}], 'split0_test_score': array([0.82100394, 0.82228972, 0.81818796, 0.81911645, 0.8222449 ,
+       0.81825027, 0.81778597, 0.81636735, 0.81919705, 0.82195244,
+       0.82190305, 0.82420808, 0.81819242, 0.81688035, 0.81905608,
+       0.8208975 , 0.81762819, 0.81954793, 0.82046819, 0.82062242,
+       0.81845092, 0.82135094, 0.81983205, 0.8166765 , 0.8166007 ,
+       0.8166007 , 0.81870051, 0.82046201, 0.81643869, 0.81950895,
+       0.81702052, 0.81750026, 0.8205313 , 0.8205313 , 0.8205313 ,
+       0.8179178 , 0.81861785, 0.81864837, 0.81481793, 0.81743509]), 'split1_test_score': array([0.82890665, 0.83761219, 0.83324187, 0.83219413, 0.83285703,
+       0.83068485, 0.83035431, 0.83331172, 0.8306741 , 0.8312445 ,
+       0.83163471, 0.83202161, 0.83361539, 0.83335689, 0.83374984,
+       0.83373669, 0.83261773, 0.83309667, 0.83426159, 0.83234917,
+       0.83508203, 0.83281324, 0.83179409, 0.8314049 , 0.83213983,
+       0.83213983, 0.83139473, 0.83177751, 0.83472726, 0.8336825 ,
+       0.83046933, 0.83290585, 0.83021334, 0.83021334, 0.83021334,
+       0.82926039, 0.83115749, 0.83180015, 0.83086812, 0.83086194]), 'split2_test_score': array([0.84314995, 0.84397753, 0.84404281, 0.84123867, 0.84170837,
+       0.84087485, 0.83992447, 0.84060398, 0.84466516, 0.84105584,
+       0.84220266, 0.84349753, 0.84283723, 0.84210741, 0.83978075,
+       0.84291647, 0.84256419, 0.84355196, 0.84517167, 0.84205802,
+       0.84100028, 0.84371809, 0.84189772, 0.84317979, 0.84315669,
+       0.84315669, 0.84397867, 0.84200039, 0.84217041, 0.84248793,
+       0.84388731, 0.84390675, 0.84397249, 0.84397249, 0.84397249,
+       0.84414377, 0.8431344 , 0.84100519, 0.8442963 , 0.8403713 ]), 'split3_test_score': array([0.84400011, 0.84396338, 0.84377593, 0.84488306, 0.84451459,
+       0.84222388, 0.84424289, 0.84316812, 0.84283673, 0.84660695,
+       0.84673586, 0.84682815, 0.84224878, 0.84379636, 0.8442593 ,
+       0.84185322, 0.8456223 , 0.84658273, 0.84561748, 0.84607996,
+       0.84343707, 0.84665918, 0.84450564, 0.84530812, 0.84475874,
+       0.84475874, 0.84290273, 0.84747796, 0.84709905, 0.84387843,
+       0.84645945, 0.84615721, 0.84481832, 0.84481832, 0.84481832,
+       0.84505547, 0.8442484 , 0.84556513, 0.84818908, 0.84951316]), 'split4_test_score': array([0.83007526, 0.82544769, 0.83082873, 0.82992523, 0.82954322,
+       0.82883715, 0.82904297, 0.82797705, 0.83064828, 0.82813201,
+       0.82780865, 0.83065827, 0.83024629, 0.83237918, 0.83093709,
+       0.83004255, 0.83154949, 0.82989366, 0.83305321, 0.82913308,
+       0.83032045, 0.82980333, 0.83212825, 0.83440243, 0.82940008,
+       0.82940008, 0.83074677, 0.83133667, 0.83216647, 0.83100883,
+       0.83303106, 0.82984534, 0.83119146, 0.83119146, 0.83119146,
+       0.83175128, 0.82990285, 0.83293854, 0.8316404 , 0.83156682]), 'mean_test_score': array([0.83342718, 0.8346581 , 0.83401546, 0.83347151, 0.83417362,
+       0.8321742 , 0.83227012, 0.83228564, 0.83360426, 0.83379835,
+       0.83405698, 0.83544273, 0.83342802, 0.83370404, 0.83355661,
+       0.83388929, 0.83399638, 0.83453459, 0.83571443, 0.83404853,
+       0.83365815, 0.83486896, 0.83403155, 0.83419435, 0.83321121,
+       0.83321121, 0.83354468, 0.83461091, 0.83452038, 0.83411333,
+       0.83417353, 0.83406308, 0.83414538, 0.83414538, 0.83414538,
+       0.83362574, 0.8334122 , 0.83399148, 0.83396236, 0.83394966]), 'std_test_score': array([0.00885806, 0.00916488, 0.00956115, 0.00906452, 0.0081139 ,
+       0.00876273, 0.00922834, 0.00959825, 0.00930025, 0.00889592,
+       0.00916224, 0.00842995, 0.00904015, 0.00956435, 0.00860758,
+       0.00810582, 0.00984251, 0.00974347, 0.00926445, 0.00912378,
+       0.0088765 , 0.00927297, 0.00873885, 0.01018777, 0.01023562,
+       0.01023562, 0.00926543, 0.00937129, 0.01048119, 0.00881593,
+       0.01053141, 0.01035974, 0.0091653 , 0.0091653 , 0.0091653 ,
+       0.01010522, 0.00946801, 0.00921372, 0.011753  , 0.01069021]), 'rank_test_score': array([34,  4, 19, 32,  9, 40, 39, 38, 29, 25, 16,  2, 33, 26, 30, 24, 20,
+        6,  1, 17, 27,  3, 18,  8, 36, 36, 31,  5,  7, 14, 10, 15, 11, 11,
+       11, 28, 35, 21, 22, 23], dtype=int32)}
+best params: 
+ {'min_samples_leaf': 30, 'min_samples_split': 90}
+best score: 
+ 0.835714427641868
+
+</code></pre>
+
+                        </div>
+
+                        
+
+
+                        
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://blog.ryune.top/tags/ml">ML</a></li>
+                                
+                                <li><a href="http://blog.ryune.top/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0">机器学习</a></li>
+                                
+                                <li><a href="http://blog.ryune.top/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">神经网络</a></li>
+                                
+                                <li><a href="http://blog.ryune.top/tags/wann">WANN</a></li>
+                                
+                                <li><a href="http://blog.ryune.top/tags/ai">AI</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "Ryune911/utteranc"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://blog.ryune.top/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/ml-wann/" title="ML: 个人浅析">ML: 个人浅析</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/grpc-helloworld/" title="gRPC: helloworld ">gRPC: helloworld </a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/grpc-service/" title="gRPC: service ">gRPC: service </a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/protocol-2-rpc/" title="网络协议：RPC">网络协议：RPC</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/protocol-1-osi/" title="网络协议：OSI 网络模型">网络协议：OSI 网络模型</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/redis-mutex/" title="Redis: 互斥锁">Redis: 互斥锁</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/golang-map/" title="Golang 基础：map">Golang 基础：map</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/golang-slice/" title="Golang 基础：slice">Golang 基础：slice</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/golang-array/" title="Golang 基础：array">Golang 基础：array</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/posts/oss-path/" title="OSS 踩坑">OSS 踩坑</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/centos/">centos(4)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/golang/">golang(3)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/grpc/">grpc(2)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/ml/">ml(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/nginx/">nginx(3)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/oss/">oss(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/redis/">redis(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/supervisor/">supervisor(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/ubuntu/">ubuntu(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/%E6%B5%8B%E8%AF%95/">测试(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://blog.ryune.top/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议(2)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://blog.ryune.top/tags/ai/">ai</a>
+    
+    <a href="http://blog.ryune.top/tags/centos/">centos</a>
+    
+    <a href="http://blog.ryune.top/tags/firewalld/">firewalld</a>
+    
+    <a href="http://blog.ryune.top/tags/go/">go</a>
+    
+    <a href="http://blog.ryune.top/tags/golang/">golang</a>
+    
+    <a href="http://blog.ryune.top/tags/grpc/">grpc</a>
+    
+    <a href="http://blog.ryune.top/tags/https/">https</a>
+    
+    <a href="http://blog.ryune.top/tags/laravel/">laravel</a>
+    
+    <a href="http://blog.ryune.top/tags/ml/">ml</a>
+    
+    <a href="http://blog.ryune.top/tags/mutex/">mutex</a>
+    
+    <a href="http://blog.ryune.top/tags/nginx/">nginx</a>
+    
+    <a href="http://blog.ryune.top/tags/oss/">oss</a>
+    
+    <a href="http://blog.ryune.top/tags/php-fpm/">php-fpm</a>
+    
+    <a href="http://blog.ryune.top/tags/redis/">redis</a>
+    
+    <a href="http://blog.ryune.top/tags/rpc/">rpc</a>
+    
+    <a href="http://blog.ryune.top/tags/supervisor/">supervisor</a>
+    
+    <a href="http://blog.ryune.top/tags/ubuntu/">ubuntu</a>
+    
+    <a href="http://blog.ryune.top/tags/wann/">wann</a>
+    
+    <a href="http://blog.ryune.top/tags/webbench/">webbench</a>
+    
+    <a href="http://blog.ryune.top/tags/%E4%BA%92%E6%96%A5%E9%94%81/">互斥锁</a>
+    
+    <a href="http://blog.ryune.top/tags/%E4%BC%98%E5%8C%96/">优化</a>
+    
+    <a href="http://blog.ryune.top/tags/%E5%8D%8F%E8%AE%AE/">协议</a>
+    
+    <a href="http://blog.ryune.top/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+    
+    <a href="http://blog.ryune.top/tags/%E6%B5%8B%E8%AF%95/">测试</a>
+    
+    <a href="http://blog.ryune.top/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">神经网络</a>
+    
+    <a href="http://blog.ryune.top/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议</a>
+    
+    <a href="http://blog.ryune.top/tags/%E8%B8%A9%E5%9D%91/">踩坑</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://totoval.com" title="Totoval">Totoval</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="https://totoval.com/docs/introduction/introduction/" title="Totovali Docs">Totoval Docs</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://blog.ryune.top/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://blog.ryune.top/">Avatar&#39;s Blog By Avatar</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>
