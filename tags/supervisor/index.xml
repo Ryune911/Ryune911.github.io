@@ -1,25 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Supervisor on Avatar&#39;s Blog</title>
-    <link>http://blog.ryune.top/tags/supervisor/</link>
+    <link>https://ryune911.github.io/tags/supervisor/</link>
     <description>Recent content in Supervisor on Avatar&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Tue, 05 Dec 2017 23:21:09 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.ryune.top/tags/supervisor/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ryune911.github.io/tags/supervisor/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Supervisor: 管理 Laravel Queue</title>
-      <link>http://blog.ryune.top/posts/supervisor-1-laravel/</link>
+      <link>https://ryune911.github.io/posts/supervisor-1-laravel/</link>
       <pubDate>Tue, 05 Dec 2017 23:21:09 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/posts/supervisor-1-laravel/</guid>
+      <guid>https://ryune911.github.io/posts/supervisor-1-laravel/</guid>
       <description>安装 &amp;amp; 配置 安装
-yum install supervisor  配置
-# 文件路径 /etc/supervisord.conf vim /etc/supervisord.conf # 使用 unix [unix_http_server] file=/var/run/supervisor/supervisor.sock ; (the path to the socket file) ;chmod=0700 ; sockef file mode (default 0700) ;chown=nobody:nogroup ; socket file uid:gid owner ;username=user ; (default is no username (open server)) ;password=123 ; (default is no password (open server)) # 添加新任务的配置文件 [include] files=/etc/supervisord.d/conf.d/*.conf  管理 laravel 队列任务 # 新建配置文件 vim /etc/supervisord.d/conf.d/laravel-worker.conf # 编写配置 [program:laravel-worker] process_name=%(program_name)s_%(process_num)02d command=php /codtrade/CodtradeAPIServer/artisan queue:work database autostart=true autorestart=true user=nginx numprocs=8 redirect_stderr=true stdout_logfile=/var/log/supervisor/worker.</description>
+yum install supervisor 配置
+# 文件路径 /etc/supervisord.conf vim /etc/supervisord.conf # 使用 unix [unix_http_server] file=/var/run/supervisor/supervisor.sock ; (the path to the socket file) ;chmod=0700 ; sockef file mode (default 0700) ;chown=nobody:nogroup ; socket file uid:gid owner ;username=user ; (default is no username (open server)) ;password=123 ; (default is no password (open server)) # 添加新任务的配置文件 [include] files=/etc/supervisord.d/conf.d/*.conf 管理 laravel 队列任务 # 新建配置文件 vim /etc/supervisord.d/conf.d/laravel-worker.conf # 编写配置 [program:laravel-worker] process_name=%(program_name)s_%(process_num)02d command=php /codtrade/CodtradeAPIServer/artisan queue:work database autostart=true autorestart=true user=nginx numprocs=8 redirect_stderr=true stdout_logfile=/var/log/supervisor/worker.</description>
     </item>
     
   </channel>

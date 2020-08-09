@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.74.3" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,7 +20,7 @@
     <meta name="description" content="centOS: 基本配置">
         
     <meta name="author" content="Avatar">
-    <meta property="og:url" content="http://blog.ryune.top/posts/centos-1-config/">
+    <meta property="og:url" content="https://ryune911.github.io/posts/centos-1-config/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
@@ -43,7 +43,7 @@
         <div class="col-group">
             <div class="site-name ">
                 
-                    <a id="logo" href="http://blog.ryune.top/">
+                    <a id="logo" href="https://ryune911.github.io/">
                         Avatar&#39;s Blog
                     </a>
                 
@@ -51,11 +51,11 @@
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
-                    <a class="" href="http://blog.ryune.top/">首页</a>
+                    <a class="" href="https://ryune911.github.io/">首页</a>
                     
-                    <a  href="http://blog.ryune.top/archives/" title="归档">归档</a>
+                    <a  href="https://ryune911.github.io/archives/" title="归档">归档</a>
                     
-                    <a  href="http://blog.ryune.top/about/" title="关于">关于</a>
+                    <a  href="https://ryune911.github.io/about/" title="关于">关于</a>
                     
                 </nav>
             </div>
@@ -81,72 +81,42 @@
                         <div class="post-meta">
                             <span>|</span>
                             
-                                <span class="meta-category"><a href="http://blog.ryune.top/categories/centos">centOS</a></span>
+                                <span class="meta-category"><a href="https://ryune911.github.io/categories/centos">centOS</a></span>
                             
                         </div>
                         
                         
                         
                         <div class="post-content">
-                            
-
-<h3 id="系统信息">系统信息</h3>
-
+                            <h3 id="系统信息">系统信息</h3>
 <pre><code>cat /proc/version
 Linux version 3.10.0-123.20.1.el7.x86_64 (builder@kbuilder.dev.centos.or
 g) (gcc version 4.8.220140120 (Red Hat 4.8.2-16) (GCC) ) #1 SMP Thu Jan
 2918:05:33 UTC 2015
-</code></pre>
-
-<h3 id="root-用户">root 用户</h3>
-
+</code></pre><h3 id="root-用户">root 用户</h3>
 <p>设置 root 密码</p>
-
 <pre><code>sudo passwd root
-</code></pre>
-
-<p>添加用户</p>
-
+</code></pre><p>添加用户</p>
 <pre><code>adduser test
-</code></pre>
-
-<p>设置密码</p>
-
+</code></pre><p>设置密码</p>
 <pre><code>passwd test
-</code></pre>
-
-<p>root 权限</p>
-
+</code></pre><p>root 权限</p>
 <pre><code>gpasswd -a test wheel    
-</code></pre>
-
-<h3 id="ssh">ssh</h3>
-
+</code></pre><h3 id="ssh">ssh</h3>
 <p>修改端口号</p>
-
 <pre><code>vi /etc/ssh/sshd_config
 Port 3333
 PermitRootLogin no
-</code></pre>
-
-<p>重载服务</p>
-
+</code></pre><p>重载服务</p>
 <pre><code>systemctl reload sshd.service
-</code></pre>
-
-<h3 id="swap">swap</h3>
-
+</code></pre><h3 id="swap">swap</h3>
 <p>添加一个 4G 的 SWAP</p>
-
 <pre><code>sudo fallocate -l 4G /swapfile
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
 sudo swapon /swapfile
 sudo sh -c 'echo &quot;/swapfile none swap sw 0 0&quot; &gt;&gt; /etc/fstab'
-</code></pre>
-
-<h3 id="安装-vim-git">安装 vim git</h3>
-
+</code></pre><h3 id="安装-vim-git">安装 vim git</h3>
 <pre><code>yum install -y git vim 
 # 设置
 vim /etc/vimrc
@@ -161,15 +131,11 @@ set shiftwidth=4
 # 开启自动缩进
 set autoindent
 set cindent
-</code></pre>
-
-<h3 id="切换基本源为阿里云源">切换基本源为阿里云源</h3>
-
+</code></pre><h3 id="切换基本源为阿里云源">切换基本源为阿里云源</h3>
 <pre><code>wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
 # 生成缓存
 yum makecache
 </code></pre>
-
                         </div>
 
                         
@@ -182,7 +148,7 @@ yum makecache
                             
                             <ul class="clearfix">
                                 
-                                <li><a href="http://blog.ryune.top/tags/centos">centOS</a></li>
+                                <li><a href="https://ryune911.github.io/tags/centos">centOS</a></li>
                                 
                             </ul>
                             
@@ -210,7 +176,7 @@ yum makecache
         <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
       
       <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://blog.ryune.top/">
+      <input type="hidden" name="sitesearch" value="https://ryune911.github.io/">
       <button type="submit" class="submit icon-search"></button>
 </form>
     </section>
@@ -220,43 +186,43 @@ yum makecache
 <ul class="widget-list">
     
     <li>
-        <a href="http://blog.ryune.top/posts/grpc-helloworld/" title="gRPC: helloworld ">gRPC: helloworld </a>
+        <a href="https://ryune911.github.io/posts/grpc-helloworld/" title="gRPC: helloworld ">gRPC: helloworld </a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/grpc-service/" title="gRPC: service ">gRPC: service </a>
+        <a href="https://ryune911.github.io/posts/grpc-service/" title="gRPC: service ">gRPC: service </a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/protocol-2-rpc/" title="网络协议：RPC">网络协议：RPC</a>
+        <a href="https://ryune911.github.io/posts/protocol-2-rpc/" title="网络协议：RPC">网络协议：RPC</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/protocol-1-osi/" title="网络协议：OSI 网络模型">网络协议：OSI 网络模型</a>
+        <a href="https://ryune911.github.io/posts/protocol-1-osi/" title="网络协议：OSI 网络模型">网络协议：OSI 网络模型</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/redis-mutex/" title="Redis: 互斥锁">Redis: 互斥锁</a>
+        <a href="https://ryune911.github.io/posts/redis-mutex/" title="Redis: 互斥锁">Redis: 互斥锁</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/golang-map/" title="Golang 基础：map">Golang 基础：map</a>
+        <a href="https://ryune911.github.io/posts/golang-map/" title="Golang 基础：map">Golang 基础：map</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/golang-slice/" title="Golang 基础：slice">Golang 基础：slice</a>
+        <a href="https://ryune911.github.io/posts/golang-slice/" title="Golang 基础：slice">Golang 基础：slice</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/golang-array/" title="Golang 基础：array">Golang 基础：array</a>
+        <a href="https://ryune911.github.io/posts/golang-array/" title="Golang 基础：array">Golang 基础：array</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/oss-path/" title="OSS 踩坑">OSS 踩坑</a>
+        <a href="https://ryune911.github.io/posts/oss-path/" title="OSS 踩坑">OSS 踩坑</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/supervisor-1-laravel/" title="Supervisor: 管理 Laravel Queue">Supervisor: 管理 Laravel Queue</a>
+        <a href="https://ryune911.github.io/posts/supervisor-1-laravel/" title="Supervisor: 管理 Laravel Queue">Supervisor: 管理 Laravel Queue</a>
     </li>
     
 </ul>
@@ -269,43 +235,43 @@ yum makecache
 <ul class="widget-list">
     
     <li>
-        <a href="http://blog.ryune.top/categories/centos/">centos(4)</a>
+        <a href="https://ryune911.github.io/categories/centos/">centos(4)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/golang/">golang(3)</a>
+        <a href="https://ryune911.github.io/categories/golang/">golang(3)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/grpc/">grpc(2)</a>
+        <a href="https://ryune911.github.io/categories/grpc/">grpc(2)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/nginx/">nginx(3)</a>
+        <a href="https://ryune911.github.io/categories/nginx/">nginx(3)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/oss/">oss(1)</a>
+        <a href="https://ryune911.github.io/categories/oss/">oss(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/redis/">redis(1)</a>
+        <a href="https://ryune911.github.io/categories/redis/">redis(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/supervisor/">supervisor(1)</a>
+        <a href="https://ryune911.github.io/categories/supervisor/">supervisor(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/ubuntu/">ubuntu(1)</a>
+        <a href="https://ryune911.github.io/categories/ubuntu/">ubuntu(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/%E6%B5%8B%E8%AF%95/">测试(1)</a>
+        <a href="https://ryune911.github.io/categories/%E6%B5%8B%E8%AF%95/">测试(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议(2)</a>
+        <a href="https://ryune911.github.io/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议(2)</a>
     </li>
     
 </ul>
@@ -315,49 +281,49 @@ yum makecache
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
-    <a href="http://blog.ryune.top/tags/centos/">centos</a>
+    <a href="https://ryune911.github.io/tags/centos/">centos</a>
     
-    <a href="http://blog.ryune.top/tags/firewalld/">firewalld</a>
+    <a href="https://ryune911.github.io/tags/firewalld/">firewalld</a>
     
-    <a href="http://blog.ryune.top/tags/go/">go</a>
+    <a href="https://ryune911.github.io/tags/go/">go</a>
     
-    <a href="http://blog.ryune.top/tags/golang/">golang</a>
+    <a href="https://ryune911.github.io/tags/golang/">golang</a>
     
-    <a href="http://blog.ryune.top/tags/grpc/">grpc</a>
+    <a href="https://ryune911.github.io/tags/grpc/">grpc</a>
     
-    <a href="http://blog.ryune.top/tags/https/">https</a>
+    <a href="https://ryune911.github.io/tags/https/">https</a>
     
-    <a href="http://blog.ryune.top/tags/laravel/">laravel</a>
+    <a href="https://ryune911.github.io/tags/laravel/">laravel</a>
     
-    <a href="http://blog.ryune.top/tags/mutex/">mutex</a>
+    <a href="https://ryune911.github.io/tags/mutex/">mutex</a>
     
-    <a href="http://blog.ryune.top/tags/nginx/">nginx</a>
+    <a href="https://ryune911.github.io/tags/nginx/">nginx</a>
     
-    <a href="http://blog.ryune.top/tags/oss/">oss</a>
+    <a href="https://ryune911.github.io/tags/oss/">oss</a>
     
-    <a href="http://blog.ryune.top/tags/php-fpm/">php-fpm</a>
+    <a href="https://ryune911.github.io/tags/php-fpm/">php-fpm</a>
     
-    <a href="http://blog.ryune.top/tags/redis/">redis</a>
+    <a href="https://ryune911.github.io/tags/redis/">redis</a>
     
-    <a href="http://blog.ryune.top/tags/rpc/">rpc</a>
+    <a href="https://ryune911.github.io/tags/rpc/">rpc</a>
     
-    <a href="http://blog.ryune.top/tags/supervisor/">supervisor</a>
+    <a href="https://ryune911.github.io/tags/supervisor/">supervisor</a>
     
-    <a href="http://blog.ryune.top/tags/ubuntu/">ubuntu</a>
+    <a href="https://ryune911.github.io/tags/ubuntu/">ubuntu</a>
     
-    <a href="http://blog.ryune.top/tags/webbench/">webbench</a>
+    <a href="https://ryune911.github.io/tags/webbench/">webbench</a>
     
-    <a href="http://blog.ryune.top/tags/%E4%BA%92%E6%96%A5%E9%94%81/">互斥锁</a>
+    <a href="https://ryune911.github.io/tags/%E4%BA%92%E6%96%A5%E9%94%81/">互斥锁</a>
     
-    <a href="http://blog.ryune.top/tags/%E4%BC%98%E5%8C%96/">优化</a>
+    <a href="https://ryune911.github.io/tags/%E4%BC%98%E5%8C%96/">优化</a>
     
-    <a href="http://blog.ryune.top/tags/%E5%8D%8F%E8%AE%AE/">协议</a>
+    <a href="https://ryune911.github.io/tags/%E5%8D%8F%E8%AE%AE/">协议</a>
     
-    <a href="http://blog.ryune.top/tags/%E6%B5%8B%E8%AF%95/">测试</a>
+    <a href="https://ryune911.github.io/tags/%E6%B5%8B%E8%AF%95/">测试</a>
     
-    <a href="http://blog.ryune.top/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议</a>
+    <a href="https://ryune911.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议</a>
     
-    <a href="http://blog.ryune.top/tags/%E8%B8%A9%E5%9D%91/">踩坑</a>
+    <a href="https://ryune911.github.io/tags/%E8%B8%A9%E5%9D%91/">踩坑</a>
     
 </div>
     </section>
@@ -382,7 +348,7 @@ yum makecache
     <section class="widget">
         <h3 class="widget-title">其它</h3>
         <ul class="widget-list">
-            <li><a href="http://blog.ryune.top/index.xml">文章 RSS</a></li>
+            <li><a href="https://ryune911.github.io/index.xml">文章 RSS</a></li>
         </ul>
     </section>
 </div>
@@ -391,7 +357,7 @@ yum makecache
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="http://blog.ryune.top/">Avatar&#39;s Blog By Avatar</a>.
+        &copy; 2020 <a href="https://ryune911.github.io/">Avatar&#39;s Blog By Avatar</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

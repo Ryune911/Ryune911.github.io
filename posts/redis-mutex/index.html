@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.74.3" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,7 +20,7 @@
     <meta name="description" content="Redis: 互斥锁">
         
     <meta name="author" content="Avatar">
-    <meta property="og:url" content="http://blog.ryune.top/posts/redis-mutex/">
+    <meta property="og:url" content="https://ryune911.github.io/posts/redis-mutex/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
@@ -43,7 +43,7 @@
         <div class="col-group">
             <div class="site-name ">
                 
-                    <a id="logo" href="http://blog.ryune.top/">
+                    <a id="logo" href="https://ryune911.github.io/">
                         Avatar&#39;s Blog
                     </a>
                 
@@ -51,11 +51,11 @@
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
-                    <a class="" href="http://blog.ryune.top/">首页</a>
+                    <a class="" href="https://ryune911.github.io/">首页</a>
                     
-                    <a  href="http://blog.ryune.top/archives/" title="归档">归档</a>
+                    <a  href="https://ryune911.github.io/archives/" title="归档">归档</a>
                     
-                    <a  href="http://blog.ryune.top/about/" title="关于">关于</a>
+                    <a  href="https://ryune911.github.io/about/" title="关于">关于</a>
                     
                 </nav>
             </div>
@@ -81,17 +81,14 @@
                         <div class="post-meta">
                             <span>|</span>
                             
-                                <span class="meta-category"><a href="http://blog.ryune.top/categories/redis">Redis</a></span>
+                                <span class="meta-category"><a href="https://ryune911.github.io/categories/redis">Redis</a></span>
                             
                         </div>
                         
                         
                         
                         <div class="post-content">
-                            
-
-<p><code>基于 SETNX</code></p>
-
+                            <p><code>基于 SETNX</code></p>
 <blockquote>
 <ul>
 <li>SETNX: set if not exists</li>
@@ -99,9 +96,7 @@
 <li>成功返回1，失败返回0</li>
 </ul>
 </blockquote>
-
-<h2 id="v1-0">v1.0</h2>
-
+<h2 id="v10">v1.0</h2>
 <pre><code>// 伪代码
 
 获取锁：
@@ -109,15 +104,11 @@
     expire key expiration
 释放锁：
     del key
-</code></pre>
-
-<ul>
+</code></pre><ul>
 <li>特点：加过期时间避免异常导致锁无法释放的情况</li>
 <li>缺点：expire key expiration 执行前异常，依然存在锁无法过期的问题</li>
 </ul>
-
-<h2 id="v1-1">v1.1</h2>
-
+<h2 id="v11">v1.1</h2>
 <pre><code>// 伪代码
 获取锁：
     过期时间戳=当前时间戳+过期时间
@@ -129,40 +120,32 @@
 
 释放锁：
     del key
-</code></pre>
-
-<ul>
+</code></pre><ul>
 <li>特点：锁未加过期时间</li>
 <li>缺点：
-
 <ul>
 <li>并发有可能导致该锁的过期时间戳被不停的覆盖，谁都拿不到锁</li>
 <li>获取到锁的进程异常导致未释放，锁的过期时间被其他进程修改，从而延长等待时间</li>
-</ul></li>
 </ul>
-
-<h2 id="v2-0">v2.0</h2>
-
+</li>
+</ul>
+<h2 id="v20">v2.0</h2>
 <pre><code>// 伪代码
 获取锁：
     setnx key 1 expiration
     
 释放锁：
     del key
-</code></pre>
-
-<ul>
+</code></pre><ul>
 <li>特点：Redis v2.6.12 增加 SETNX 获取时间参数，解决了两条命令无法保证原子性</li>
 <li>缺点：
-
 <ul>
 <li>获取到锁的任务执行超时，导致其他任务获取到锁</li>
 <li>超时的任务删除了其他任务的锁</li>
-</ul></li>
 </ul>
-
-<h2 id="v3-0">v3.0</h2>
-
+</li>
+</ul>
+<h2 id="v30">v3.0</h2>
 <pre><code>// 伪代码
 获取锁：
     setnx key 时间戳 过期时间
@@ -170,29 +153,23 @@
 释放锁：
     释放锁时检查锁的时间戳是否是获取到锁的时间戳
 
-</code></pre>
-
-<ul>
+</code></pre><ul>
 <li>特点：通过检查锁的 value 避免释放其他任务的锁的问题</li>
 <li>缺点：
-
 <ul>
 <li>高并发下时间戳可能重复</li>
 <li>分布式系统中时间戳重复（各系统时间不统一）</li>
-</ul></li>
 </ul>
-
-<h2 id="v3-1">v3.1</h2>
-
+</li>
+</ul>
+<h2 id="v31">v3.1</h2>
 <pre><code>// 伪代码
 获取锁：
     set key unique 过期时间
     
 释放锁：
     释放锁时检查锁的时间戳是是获取到锁的时间戳
-</code></pre>
-
-<ul>
+</code></pre><ul>
 <li>特点：目前最优解</li>
 <li>缺点：不支持 Redis 集群，集群同步为异步，假设 Master 获取到锁后 crash，新的 Master 依然可以获取锁，导致同时获取到锁</li>
 </ul>
@@ -209,11 +186,11 @@
                             
                             <ul class="clearfix">
                                 
-                                <li><a href="http://blog.ryune.top/tags/redis">redis</a></li>
+                                <li><a href="https://ryune911.github.io/tags/redis">redis</a></li>
                                 
-                                <li><a href="http://blog.ryune.top/tags/mutex">mutex</a></li>
+                                <li><a href="https://ryune911.github.io/tags/mutex">mutex</a></li>
                                 
-                                <li><a href="http://blog.ryune.top/tags/%E4%BA%92%E6%96%A5%E9%94%81">互斥锁</a></li>
+                                <li><a href="https://ryune911.github.io/tags/%E4%BA%92%E6%96%A5%E9%94%81">互斥锁</a></li>
                                 
                             </ul>
                             
@@ -241,7 +218,7 @@
         <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
       
       <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://blog.ryune.top/">
+      <input type="hidden" name="sitesearch" value="https://ryune911.github.io/">
       <button type="submit" class="submit icon-search"></button>
 </form>
     </section>
@@ -251,43 +228,43 @@
 <ul class="widget-list">
     
     <li>
-        <a href="http://blog.ryune.top/posts/grpc-helloworld/" title="gRPC: helloworld ">gRPC: helloworld </a>
+        <a href="https://ryune911.github.io/posts/grpc-helloworld/" title="gRPC: helloworld ">gRPC: helloworld </a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/grpc-service/" title="gRPC: service ">gRPC: service </a>
+        <a href="https://ryune911.github.io/posts/grpc-service/" title="gRPC: service ">gRPC: service </a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/protocol-2-rpc/" title="网络协议：RPC">网络协议：RPC</a>
+        <a href="https://ryune911.github.io/posts/protocol-2-rpc/" title="网络协议：RPC">网络协议：RPC</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/protocol-1-osi/" title="网络协议：OSI 网络模型">网络协议：OSI 网络模型</a>
+        <a href="https://ryune911.github.io/posts/protocol-1-osi/" title="网络协议：OSI 网络模型">网络协议：OSI 网络模型</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/redis-mutex/" title="Redis: 互斥锁">Redis: 互斥锁</a>
+        <a href="https://ryune911.github.io/posts/redis-mutex/" title="Redis: 互斥锁">Redis: 互斥锁</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/golang-map/" title="Golang 基础：map">Golang 基础：map</a>
+        <a href="https://ryune911.github.io/posts/golang-map/" title="Golang 基础：map">Golang 基础：map</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/golang-slice/" title="Golang 基础：slice">Golang 基础：slice</a>
+        <a href="https://ryune911.github.io/posts/golang-slice/" title="Golang 基础：slice">Golang 基础：slice</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/golang-array/" title="Golang 基础：array">Golang 基础：array</a>
+        <a href="https://ryune911.github.io/posts/golang-array/" title="Golang 基础：array">Golang 基础：array</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/oss-path/" title="OSS 踩坑">OSS 踩坑</a>
+        <a href="https://ryune911.github.io/posts/oss-path/" title="OSS 踩坑">OSS 踩坑</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/supervisor-1-laravel/" title="Supervisor: 管理 Laravel Queue">Supervisor: 管理 Laravel Queue</a>
+        <a href="https://ryune911.github.io/posts/supervisor-1-laravel/" title="Supervisor: 管理 Laravel Queue">Supervisor: 管理 Laravel Queue</a>
     </li>
     
 </ul>
@@ -300,43 +277,43 @@
 <ul class="widget-list">
     
     <li>
-        <a href="http://blog.ryune.top/categories/centos/">centos(4)</a>
+        <a href="https://ryune911.github.io/categories/centos/">centos(4)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/golang/">golang(3)</a>
+        <a href="https://ryune911.github.io/categories/golang/">golang(3)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/grpc/">grpc(2)</a>
+        <a href="https://ryune911.github.io/categories/grpc/">grpc(2)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/nginx/">nginx(3)</a>
+        <a href="https://ryune911.github.io/categories/nginx/">nginx(3)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/oss/">oss(1)</a>
+        <a href="https://ryune911.github.io/categories/oss/">oss(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/redis/">redis(1)</a>
+        <a href="https://ryune911.github.io/categories/redis/">redis(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/supervisor/">supervisor(1)</a>
+        <a href="https://ryune911.github.io/categories/supervisor/">supervisor(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/ubuntu/">ubuntu(1)</a>
+        <a href="https://ryune911.github.io/categories/ubuntu/">ubuntu(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/%E6%B5%8B%E8%AF%95/">测试(1)</a>
+        <a href="https://ryune911.github.io/categories/%E6%B5%8B%E8%AF%95/">测试(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议(2)</a>
+        <a href="https://ryune911.github.io/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议(2)</a>
     </li>
     
 </ul>
@@ -346,49 +323,49 @@
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
-    <a href="http://blog.ryune.top/tags/centos/">centos</a>
+    <a href="https://ryune911.github.io/tags/centos/">centos</a>
     
-    <a href="http://blog.ryune.top/tags/firewalld/">firewalld</a>
+    <a href="https://ryune911.github.io/tags/firewalld/">firewalld</a>
     
-    <a href="http://blog.ryune.top/tags/go/">go</a>
+    <a href="https://ryune911.github.io/tags/go/">go</a>
     
-    <a href="http://blog.ryune.top/tags/golang/">golang</a>
+    <a href="https://ryune911.github.io/tags/golang/">golang</a>
     
-    <a href="http://blog.ryune.top/tags/grpc/">grpc</a>
+    <a href="https://ryune911.github.io/tags/grpc/">grpc</a>
     
-    <a href="http://blog.ryune.top/tags/https/">https</a>
+    <a href="https://ryune911.github.io/tags/https/">https</a>
     
-    <a href="http://blog.ryune.top/tags/laravel/">laravel</a>
+    <a href="https://ryune911.github.io/tags/laravel/">laravel</a>
     
-    <a href="http://blog.ryune.top/tags/mutex/">mutex</a>
+    <a href="https://ryune911.github.io/tags/mutex/">mutex</a>
     
-    <a href="http://blog.ryune.top/tags/nginx/">nginx</a>
+    <a href="https://ryune911.github.io/tags/nginx/">nginx</a>
     
-    <a href="http://blog.ryune.top/tags/oss/">oss</a>
+    <a href="https://ryune911.github.io/tags/oss/">oss</a>
     
-    <a href="http://blog.ryune.top/tags/php-fpm/">php-fpm</a>
+    <a href="https://ryune911.github.io/tags/php-fpm/">php-fpm</a>
     
-    <a href="http://blog.ryune.top/tags/redis/">redis</a>
+    <a href="https://ryune911.github.io/tags/redis/">redis</a>
     
-    <a href="http://blog.ryune.top/tags/rpc/">rpc</a>
+    <a href="https://ryune911.github.io/tags/rpc/">rpc</a>
     
-    <a href="http://blog.ryune.top/tags/supervisor/">supervisor</a>
+    <a href="https://ryune911.github.io/tags/supervisor/">supervisor</a>
     
-    <a href="http://blog.ryune.top/tags/ubuntu/">ubuntu</a>
+    <a href="https://ryune911.github.io/tags/ubuntu/">ubuntu</a>
     
-    <a href="http://blog.ryune.top/tags/webbench/">webbench</a>
+    <a href="https://ryune911.github.io/tags/webbench/">webbench</a>
     
-    <a href="http://blog.ryune.top/tags/%E4%BA%92%E6%96%A5%E9%94%81/">互斥锁</a>
+    <a href="https://ryune911.github.io/tags/%E4%BA%92%E6%96%A5%E9%94%81/">互斥锁</a>
     
-    <a href="http://blog.ryune.top/tags/%E4%BC%98%E5%8C%96/">优化</a>
+    <a href="https://ryune911.github.io/tags/%E4%BC%98%E5%8C%96/">优化</a>
     
-    <a href="http://blog.ryune.top/tags/%E5%8D%8F%E8%AE%AE/">协议</a>
+    <a href="https://ryune911.github.io/tags/%E5%8D%8F%E8%AE%AE/">协议</a>
     
-    <a href="http://blog.ryune.top/tags/%E6%B5%8B%E8%AF%95/">测试</a>
+    <a href="https://ryune911.github.io/tags/%E6%B5%8B%E8%AF%95/">测试</a>
     
-    <a href="http://blog.ryune.top/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议</a>
+    <a href="https://ryune911.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议</a>
     
-    <a href="http://blog.ryune.top/tags/%E8%B8%A9%E5%9D%91/">踩坑</a>
+    <a href="https://ryune911.github.io/tags/%E8%B8%A9%E5%9D%91/">踩坑</a>
     
 </div>
     </section>
@@ -413,7 +390,7 @@
     <section class="widget">
         <h3 class="widget-title">其它</h3>
         <ul class="widget-list">
-            <li><a href="http://blog.ryune.top/index.xml">文章 RSS</a></li>
+            <li><a href="https://ryune911.github.io/index.xml">文章 RSS</a></li>
         </ul>
     </section>
 </div>
@@ -422,7 +399,7 @@
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="http://blog.ryune.top/">Avatar&#39;s Blog By Avatar</a>.
+        &copy; 2020 <a href="https://ryune911.github.io/">Avatar&#39;s Blog By Avatar</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

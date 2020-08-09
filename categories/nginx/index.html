@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.74.3" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,13 +16,13 @@
     <meta name="description" content="Nginx">
         
     <meta name="author" content="Avatar">
-    <meta property="og:url" content="http://blog.ryune.top/categories/nginx/">
+    <meta property="og:url" content="https://ryune911.github.io/categories/nginx/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
     
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="alternate" type="application/rss+xml+xml" href="http://blog.ryune.top/categories/nginx/index.xml" title="Avatar's Blog" />
+    <link rel="alternate" type="application/rss+xml+xml" href="https://ryune911.github.io/categories/nginx/index.xml" title="Avatar's Blog" />
     <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 
     
@@ -39,7 +39,7 @@
         <div class="col-group">
             <div class="site-name ">
                 
-                    <a id="logo" href="http://blog.ryune.top/">
+                    <a id="logo" href="https://ryune911.github.io/">
                         Avatar&#39;s Blog
                     </a>
                 
@@ -47,11 +47,11 @@
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
-                    <a class="" href="http://blog.ryune.top/">首页</a>
+                    <a class="" href="https://ryune911.github.io/">首页</a>
                     
-                    <a  href="http://blog.ryune.top/archives/" title="归档">归档</a>
+                    <a  href="https://ryune911.github.io/archives/" title="归档">归档</a>
                     
-                    <a  href="http://blog.ryune.top/about/" title="关于">关于</a>
+                    <a  href="https://ryune911.github.io/about/" title="关于">关于</a>
                     
                 </nav>
             </div>
@@ -78,7 +78,7 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://blog.ryune.top/posts/nginx-3/">Nginx: php-fpm 优化</a>
+                                    <a href="https://ryune911.github.io/posts/nginx-3/">Nginx: php-fpm 优化</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
@@ -88,22 +88,22 @@
                             <div class="post-meta meta-category">
                                 |
                                 
-                                    <a href="http://blog.ryune.top/categories/nginx">Nginx</a>
+                                    <a href="https://ryune911.github.io/categories/nginx">Nginx</a>
                                 
                             </div>
                             
                             <div class="post-content">
-                                php.ini # 关闭 php 信息显示 expose_php = Off # 最大执行时间 max_execution_time = 30 # POST data 最大值 post_max_size = 5M # 上传文件最大值 upload_max_filesize = 5M  php-fpm 启用多个 FPM 实例，提高处理效率。
-cp www.conf 9000.conf cp php-fpm.conf php-fpm9000.conf ...  编辑 9000.conf
+                                php.ini # 关闭 php 信息显示 expose_php = Off # 最大执行时间 max_execution_time = 30 # POST data 最大值 post_max_size = 5M # 上传文件最大值 upload_max_filesize = 5M php-fpm 启用多个 FPM 实例，提高处理效率。
+cp www.conf 9000.conf cp php-fpm.conf php-fpm9000.conf ... 编辑 9000.conf
 user = nginx group = nginx listen = /dev/shm/php-fpm9000.sock listen.backlog = 4096 listen.owner = nginx listen.group = nginx pm = static pm.max_children = 100 pm.max_requests = 2048 pm.status_path = /status9000 slowlog = /var/log/php-fpm/www-slow9000.……
-                                <p class="readmore"><a href="http://blog.ryune.top/posts/nginx-3/">阅读全文</a></p>
+                                <p class="readmore"><a href="https://ryune911.github.io/posts/nginx-3/">阅读全文</a></p>
                             </div>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://blog.ryune.top/posts/nginx-2/">Nginx: 多域名 HTTPS 配置</a>
+                                    <a href="https://ryune911.github.io/posts/nginx-2/">Nginx: 多域名 HTTPS 配置</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
@@ -113,23 +113,21 @@ user = nginx group = nginx listen = /dev/shm/php-fpm9000.sock listen.backlog = 4
                             <div class="post-meta meta-category">
                                 |
                                 
-                                    <a href="http://blog.ryune.top/categories/nginx">Nginx</a>
+                                    <a href="https://ryune911.github.io/categories/nginx">Nginx</a>
                                 
                             </div>
                             
                             <div class="post-content">
                                 SSL Server Test  https://www.ssllabs.com/ssltest/index.html
- SNI  生成 dhparams.pem 文件
-openssl dhparam -out /etc/nginx/ssl/dhparams.pem 2048  添加配置
-ssl_dhparam /etc/nginx/ssl/dhparam.pem;   reverse-proxy.conf server { listen 80; if ($host = 'api.aaa.com') { return 301 https://api.aaa.com$request_uri; } if ($host = 'admin.aaa.com') { return 301 https://admin.aaa.com$request_uri; } if ($host = 'www.bbb.com') { return 301 https://www.bbb.com$request_uri; } return 301 http://www.aaa.com$request_uri; } # Admin Server server { listen 443; server_name admin.aaa.com; ssl on; ssl_certificate /etc/nginx/ssl/cert/admin.……
-                                <p class="readmore"><a href="http://blog.ryune.top/posts/nginx-2/">阅读全文</a></p>
+ SNI  生成 dhparams.pem 文件  openssl dhparam -out /etc/nginx/ssl/dhparams.pem 2048  添加配置  ssl_dhparam /etc/nginx/ssl/dhparam.pem; reverse-proxy.conf server { listen 80; if ($host = 'api.aaa.com') { return 301 https://api.aaa.com$request_uri; } if ($host = 'admin.aaa.com') { return 301 https://admin.aaa.com$request_uri; } if ($host = 'www.bbb.com') { return 301 https://www.bbb.com$request_uri; } return 301 http://www.aaa.com$request_uri; } # Admin Server server { listen 443; server_name admin.aaa.com; ssl on; ssl_certificate /etc/nginx/ssl/cert/admin.……
+                                <p class="readmore"><a href="https://ryune911.github.io/posts/nginx-2/">阅读全文</a></p>
                             </div>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://blog.ryune.top/posts/nginx-1/">Nginx: php-fpm 配置</a>
+                                    <a href="https://ryune911.github.io/posts/nginx-1/">Nginx: php-fpm 配置</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
@@ -139,15 +137,15 @@ ssl_dhparam /etc/nginx/ssl/dhparam.pem;   reverse-proxy.conf server { listen 80;
                             <div class="post-meta meta-category">
                                 |
                                 
-                                    <a href="http://blog.ryune.top/categories/nginx">Nginx</a>
+                                    <a href="https://ryune911.github.io/categories/nginx">Nginx</a>
                                 
                             </div>
                             
                             <div class="post-content">
                                 php-fpm 修改php.ini配置文件
-cgi.fix_pathinfo=0  修改 php-pfm.d/www.conf
-user = nginx group = nginx listen.owner = nobody listen.group = nobody  处理 Request # 根据 request 找到应该被 route 到哪一个 server. # 找不到就 route 到默认 server 上. # 默认 server 为第一个,也可以通过 default_server 参数设置. server { listen 80 default_server; server_name example.org www.example.org; ... } server { listen 80; server_name example.org www.example.org; ... } server { listen 80; server_name example.org www.example.org; ... } # 处理丢弃的 request server { listen 80; server_name &quot;&quot;; return 444; }  选择目录 server { listen 80; server_name example.……
-                                <p class="readmore"><a href="http://blog.ryune.top/posts/nginx-1/">阅读全文</a></p>
+cgi.fix_pathinfo=0 修改 php-pfm.d/www.conf
+user = nginx group = nginx listen.owner = nobody listen.group = nobody 处理 Request # 根据 request 找到应该被 route 到哪一个 server. # 找不到就 route 到默认 server 上. # 默认 server 为第一个,也可以通过 default_server 参数设置. server { listen 80 default_server; server_name example.org www.example.org; ... } server { listen 80; server_name example.org www.example.org; ... } server { listen 80; server_name example.org www.example.org; ... } # 处理丢弃的 request server { listen 80; server_name &quot;&quot;; return 444; } 选择目录 server { listen 80; server_name example.……
+                                <p class="readmore"><a href="https://ryune911.github.io/posts/nginx-1/">阅读全文</a></p>
                             </div>
                         </article>
                     
@@ -166,7 +164,7 @@ user = nginx group = nginx listen.owner = nobody listen.group = nobody  处理 R
         <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
       
       <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://blog.ryune.top/">
+      <input type="hidden" name="sitesearch" value="https://ryune911.github.io/">
       <button type="submit" class="submit icon-search"></button>
 </form>
     </section>
@@ -176,43 +174,43 @@ user = nginx group = nginx listen.owner = nobody listen.group = nobody  处理 R
 <ul class="widget-list">
     
     <li>
-        <a href="http://blog.ryune.top/posts/grpc-helloworld/" title="gRPC: helloworld ">gRPC: helloworld </a>
+        <a href="https://ryune911.github.io/posts/grpc-helloworld/" title="gRPC: helloworld ">gRPC: helloworld </a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/grpc-service/" title="gRPC: service ">gRPC: service </a>
+        <a href="https://ryune911.github.io/posts/grpc-service/" title="gRPC: service ">gRPC: service </a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/protocol-2-rpc/" title="网络协议：RPC">网络协议：RPC</a>
+        <a href="https://ryune911.github.io/posts/protocol-2-rpc/" title="网络协议：RPC">网络协议：RPC</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/protocol-1-osi/" title="网络协议：OSI 网络模型">网络协议：OSI 网络模型</a>
+        <a href="https://ryune911.github.io/posts/protocol-1-osi/" title="网络协议：OSI 网络模型">网络协议：OSI 网络模型</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/redis-mutex/" title="Redis: 互斥锁">Redis: 互斥锁</a>
+        <a href="https://ryune911.github.io/posts/redis-mutex/" title="Redis: 互斥锁">Redis: 互斥锁</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/golang-map/" title="Golang 基础：map">Golang 基础：map</a>
+        <a href="https://ryune911.github.io/posts/golang-map/" title="Golang 基础：map">Golang 基础：map</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/golang-slice/" title="Golang 基础：slice">Golang 基础：slice</a>
+        <a href="https://ryune911.github.io/posts/golang-slice/" title="Golang 基础：slice">Golang 基础：slice</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/golang-array/" title="Golang 基础：array">Golang 基础：array</a>
+        <a href="https://ryune911.github.io/posts/golang-array/" title="Golang 基础：array">Golang 基础：array</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/oss-path/" title="OSS 踩坑">OSS 踩坑</a>
+        <a href="https://ryune911.github.io/posts/oss-path/" title="OSS 踩坑">OSS 踩坑</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/supervisor-1-laravel/" title="Supervisor: 管理 Laravel Queue">Supervisor: 管理 Laravel Queue</a>
+        <a href="https://ryune911.github.io/posts/supervisor-1-laravel/" title="Supervisor: 管理 Laravel Queue">Supervisor: 管理 Laravel Queue</a>
     </li>
     
 </ul>
@@ -225,43 +223,43 @@ user = nginx group = nginx listen.owner = nobody listen.group = nobody  处理 R
 <ul class="widget-list">
     
     <li>
-        <a href="http://blog.ryune.top/categories/centos/">centos(4)</a>
+        <a href="https://ryune911.github.io/categories/centos/">centos(4)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/golang/">golang(3)</a>
+        <a href="https://ryune911.github.io/categories/golang/">golang(3)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/grpc/">grpc(2)</a>
+        <a href="https://ryune911.github.io/categories/grpc/">grpc(2)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/nginx/">nginx(3)</a>
+        <a href="https://ryune911.github.io/categories/nginx/">nginx(3)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/oss/">oss(1)</a>
+        <a href="https://ryune911.github.io/categories/oss/">oss(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/redis/">redis(1)</a>
+        <a href="https://ryune911.github.io/categories/redis/">redis(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/supervisor/">supervisor(1)</a>
+        <a href="https://ryune911.github.io/categories/supervisor/">supervisor(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/ubuntu/">ubuntu(1)</a>
+        <a href="https://ryune911.github.io/categories/ubuntu/">ubuntu(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/%E6%B5%8B%E8%AF%95/">测试(1)</a>
+        <a href="https://ryune911.github.io/categories/%E6%B5%8B%E8%AF%95/">测试(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议(2)</a>
+        <a href="https://ryune911.github.io/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议(2)</a>
     </li>
     
 </ul>
@@ -271,49 +269,49 @@ user = nginx group = nginx listen.owner = nobody listen.group = nobody  处理 R
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
-    <a href="http://blog.ryune.top/tags/centos/">centos</a>
+    <a href="https://ryune911.github.io/tags/centos/">centos</a>
     
-    <a href="http://blog.ryune.top/tags/firewalld/">firewalld</a>
+    <a href="https://ryune911.github.io/tags/firewalld/">firewalld</a>
     
-    <a href="http://blog.ryune.top/tags/go/">go</a>
+    <a href="https://ryune911.github.io/tags/go/">go</a>
     
-    <a href="http://blog.ryune.top/tags/golang/">golang</a>
+    <a href="https://ryune911.github.io/tags/golang/">golang</a>
     
-    <a href="http://blog.ryune.top/tags/grpc/">grpc</a>
+    <a href="https://ryune911.github.io/tags/grpc/">grpc</a>
     
-    <a href="http://blog.ryune.top/tags/https/">https</a>
+    <a href="https://ryune911.github.io/tags/https/">https</a>
     
-    <a href="http://blog.ryune.top/tags/laravel/">laravel</a>
+    <a href="https://ryune911.github.io/tags/laravel/">laravel</a>
     
-    <a href="http://blog.ryune.top/tags/mutex/">mutex</a>
+    <a href="https://ryune911.github.io/tags/mutex/">mutex</a>
     
-    <a href="http://blog.ryune.top/tags/nginx/">nginx</a>
+    <a href="https://ryune911.github.io/tags/nginx/">nginx</a>
     
-    <a href="http://blog.ryune.top/tags/oss/">oss</a>
+    <a href="https://ryune911.github.io/tags/oss/">oss</a>
     
-    <a href="http://blog.ryune.top/tags/php-fpm/">php-fpm</a>
+    <a href="https://ryune911.github.io/tags/php-fpm/">php-fpm</a>
     
-    <a href="http://blog.ryune.top/tags/redis/">redis</a>
+    <a href="https://ryune911.github.io/tags/redis/">redis</a>
     
-    <a href="http://blog.ryune.top/tags/rpc/">rpc</a>
+    <a href="https://ryune911.github.io/tags/rpc/">rpc</a>
     
-    <a href="http://blog.ryune.top/tags/supervisor/">supervisor</a>
+    <a href="https://ryune911.github.io/tags/supervisor/">supervisor</a>
     
-    <a href="http://blog.ryune.top/tags/ubuntu/">ubuntu</a>
+    <a href="https://ryune911.github.io/tags/ubuntu/">ubuntu</a>
     
-    <a href="http://blog.ryune.top/tags/webbench/">webbench</a>
+    <a href="https://ryune911.github.io/tags/webbench/">webbench</a>
     
-    <a href="http://blog.ryune.top/tags/%E4%BA%92%E6%96%A5%E9%94%81/">互斥锁</a>
+    <a href="https://ryune911.github.io/tags/%E4%BA%92%E6%96%A5%E9%94%81/">互斥锁</a>
     
-    <a href="http://blog.ryune.top/tags/%E4%BC%98%E5%8C%96/">优化</a>
+    <a href="https://ryune911.github.io/tags/%E4%BC%98%E5%8C%96/">优化</a>
     
-    <a href="http://blog.ryune.top/tags/%E5%8D%8F%E8%AE%AE/">协议</a>
+    <a href="https://ryune911.github.io/tags/%E5%8D%8F%E8%AE%AE/">协议</a>
     
-    <a href="http://blog.ryune.top/tags/%E6%B5%8B%E8%AF%95/">测试</a>
+    <a href="https://ryune911.github.io/tags/%E6%B5%8B%E8%AF%95/">测试</a>
     
-    <a href="http://blog.ryune.top/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议</a>
+    <a href="https://ryune911.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议</a>
     
-    <a href="http://blog.ryune.top/tags/%E8%B8%A9%E5%9D%91/">踩坑</a>
+    <a href="https://ryune911.github.io/tags/%E8%B8%A9%E5%9D%91/">踩坑</a>
     
 </div>
     </section>
@@ -338,7 +336,7 @@ user = nginx group = nginx listen.owner = nobody listen.group = nobody  处理 R
     <section class="widget">
         <h3 class="widget-title">其它</h3>
         <ul class="widget-list">
-            <li><a href="http://blog.ryune.top/index.xml">文章 RSS</a></li>
+            <li><a href="https://ryune911.github.io/index.xml">文章 RSS</a></li>
         </ul>
     </section>
 </div>
@@ -347,7 +345,7 @@ user = nginx group = nginx listen.owner = nobody listen.group = nobody  处理 R
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="http://blog.ryune.top/">Avatar&#39;s Blog By Avatar</a>.
+        &copy; 2020 <a href="https://ryune911.github.io/">Avatar&#39;s Blog By Avatar</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

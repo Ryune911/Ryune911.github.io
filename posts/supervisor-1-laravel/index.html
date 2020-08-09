@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.74.3" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,7 +20,7 @@
     <meta name="description" content="Supervisor: 管理 Laravel Queue">
         
     <meta name="author" content="Avatar">
-    <meta property="og:url" content="http://blog.ryune.top/posts/supervisor-1-laravel/">
+    <meta property="og:url" content="https://ryune911.github.io/posts/supervisor-1-laravel/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
@@ -43,7 +43,7 @@
         <div class="col-group">
             <div class="site-name ">
                 
-                    <a id="logo" href="http://blog.ryune.top/">
+                    <a id="logo" href="https://ryune911.github.io/">
                         Avatar&#39;s Blog
                     </a>
                 
@@ -51,11 +51,11 @@
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
-                    <a class="" href="http://blog.ryune.top/">首页</a>
+                    <a class="" href="https://ryune911.github.io/">首页</a>
                     
-                    <a  href="http://blog.ryune.top/archives/" title="归档">归档</a>
+                    <a  href="https://ryune911.github.io/archives/" title="归档">归档</a>
                     
-                    <a  href="http://blog.ryune.top/about/" title="关于">关于</a>
+                    <a  href="https://ryune911.github.io/about/" title="关于">关于</a>
                     
                 </nav>
             </div>
@@ -81,24 +81,17 @@
                         <div class="post-meta">
                             <span>|</span>
                             
-                                <span class="meta-category"><a href="http://blog.ryune.top/categories/supervisor">Supervisor</a></span>
+                                <span class="meta-category"><a href="https://ryune911.github.io/categories/supervisor">Supervisor</a></span>
                             
                         </div>
                         
                         
                         
                         <div class="post-content">
-                            
-
-<h3 id="安装-配置">安装 &amp; 配置</h3>
-
+                            <h3 id="安装--配置">安装 &amp; 配置</h3>
 <p>安装</p>
-
 <pre><code>yum install supervisor
-</code></pre>
-
-<p>配置</p>
-
+</code></pre><p>配置</p>
 <pre><code># 文件路径 /etc/supervisord.conf
 vim /etc/supervisord.conf
 # 使用 unix 
@@ -111,10 +104,7 @@ file=/var/run/supervisor/supervisor.sock   ; (the path to the socket file)
 # 添加新任务的配置文件
 [include]
 files=/etc/supervisord.d/conf.d/*.conf
-</code></pre>
-
-<h3 id="管理-laravel-队列任务">管理 laravel 队列任务</h3>
-
+</code></pre><h3 id="管理-laravel-队列任务">管理 laravel 队列任务</h3>
 <pre><code># 新建配置文件
 vim /etc/supervisord.d/conf.d/laravel-worker.conf
 # 编写配置
@@ -127,16 +117,12 @@ user=nginx
 numprocs=8
 redirect_stderr=true
 stdout_logfile=/var/log/supervisor/worker.log  
-</code></pre>
-
-<h3 id="命令">命令</h3>
-
+</code></pre><h3 id="命令">命令</h3>
 <pre><code># supervisord
 supervisord -c /etc/supervisord.conf
 # supervisorctl 进入命令行
 supervisorctl 
 </code></pre>
-
                         </div>
 
                         
@@ -149,9 +135,9 @@ supervisorctl
                             
                             <ul class="clearfix">
                                 
-                                <li><a href="http://blog.ryune.top/tags/supervisor">Supervisor</a></li>
+                                <li><a href="https://ryune911.github.io/tags/supervisor">Supervisor</a></li>
                                 
-                                <li><a href="http://blog.ryune.top/tags/laravel">Laravel</a></li>
+                                <li><a href="https://ryune911.github.io/tags/laravel">Laravel</a></li>
                                 
                             </ul>
                             
@@ -179,7 +165,7 @@ supervisorctl
         <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
       
       <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://blog.ryune.top/">
+      <input type="hidden" name="sitesearch" value="https://ryune911.github.io/">
       <button type="submit" class="submit icon-search"></button>
 </form>
     </section>
@@ -189,43 +175,43 @@ supervisorctl
 <ul class="widget-list">
     
     <li>
-        <a href="http://blog.ryune.top/posts/grpc-helloworld/" title="gRPC: helloworld ">gRPC: helloworld </a>
+        <a href="https://ryune911.github.io/posts/grpc-helloworld/" title="gRPC: helloworld ">gRPC: helloworld </a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/grpc-service/" title="gRPC: service ">gRPC: service </a>
+        <a href="https://ryune911.github.io/posts/grpc-service/" title="gRPC: service ">gRPC: service </a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/protocol-2-rpc/" title="网络协议：RPC">网络协议：RPC</a>
+        <a href="https://ryune911.github.io/posts/protocol-2-rpc/" title="网络协议：RPC">网络协议：RPC</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/protocol-1-osi/" title="网络协议：OSI 网络模型">网络协议：OSI 网络模型</a>
+        <a href="https://ryune911.github.io/posts/protocol-1-osi/" title="网络协议：OSI 网络模型">网络协议：OSI 网络模型</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/redis-mutex/" title="Redis: 互斥锁">Redis: 互斥锁</a>
+        <a href="https://ryune911.github.io/posts/redis-mutex/" title="Redis: 互斥锁">Redis: 互斥锁</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/golang-map/" title="Golang 基础：map">Golang 基础：map</a>
+        <a href="https://ryune911.github.io/posts/golang-map/" title="Golang 基础：map">Golang 基础：map</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/golang-slice/" title="Golang 基础：slice">Golang 基础：slice</a>
+        <a href="https://ryune911.github.io/posts/golang-slice/" title="Golang 基础：slice">Golang 基础：slice</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/golang-array/" title="Golang 基础：array">Golang 基础：array</a>
+        <a href="https://ryune911.github.io/posts/golang-array/" title="Golang 基础：array">Golang 基础：array</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/oss-path/" title="OSS 踩坑">OSS 踩坑</a>
+        <a href="https://ryune911.github.io/posts/oss-path/" title="OSS 踩坑">OSS 踩坑</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/supervisor-1-laravel/" title="Supervisor: 管理 Laravel Queue">Supervisor: 管理 Laravel Queue</a>
+        <a href="https://ryune911.github.io/posts/supervisor-1-laravel/" title="Supervisor: 管理 Laravel Queue">Supervisor: 管理 Laravel Queue</a>
     </li>
     
 </ul>
@@ -238,43 +224,43 @@ supervisorctl
 <ul class="widget-list">
     
     <li>
-        <a href="http://blog.ryune.top/categories/centos/">centos(4)</a>
+        <a href="https://ryune911.github.io/categories/centos/">centos(4)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/golang/">golang(3)</a>
+        <a href="https://ryune911.github.io/categories/golang/">golang(3)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/grpc/">grpc(2)</a>
+        <a href="https://ryune911.github.io/categories/grpc/">grpc(2)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/nginx/">nginx(3)</a>
+        <a href="https://ryune911.github.io/categories/nginx/">nginx(3)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/oss/">oss(1)</a>
+        <a href="https://ryune911.github.io/categories/oss/">oss(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/redis/">redis(1)</a>
+        <a href="https://ryune911.github.io/categories/redis/">redis(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/supervisor/">supervisor(1)</a>
+        <a href="https://ryune911.github.io/categories/supervisor/">supervisor(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/ubuntu/">ubuntu(1)</a>
+        <a href="https://ryune911.github.io/categories/ubuntu/">ubuntu(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/%E6%B5%8B%E8%AF%95/">测试(1)</a>
+        <a href="https://ryune911.github.io/categories/%E6%B5%8B%E8%AF%95/">测试(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议(2)</a>
+        <a href="https://ryune911.github.io/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议(2)</a>
     </li>
     
 </ul>
@@ -284,49 +270,49 @@ supervisorctl
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
-    <a href="http://blog.ryune.top/tags/centos/">centos</a>
+    <a href="https://ryune911.github.io/tags/centos/">centos</a>
     
-    <a href="http://blog.ryune.top/tags/firewalld/">firewalld</a>
+    <a href="https://ryune911.github.io/tags/firewalld/">firewalld</a>
     
-    <a href="http://blog.ryune.top/tags/go/">go</a>
+    <a href="https://ryune911.github.io/tags/go/">go</a>
     
-    <a href="http://blog.ryune.top/tags/golang/">golang</a>
+    <a href="https://ryune911.github.io/tags/golang/">golang</a>
     
-    <a href="http://blog.ryune.top/tags/grpc/">grpc</a>
+    <a href="https://ryune911.github.io/tags/grpc/">grpc</a>
     
-    <a href="http://blog.ryune.top/tags/https/">https</a>
+    <a href="https://ryune911.github.io/tags/https/">https</a>
     
-    <a href="http://blog.ryune.top/tags/laravel/">laravel</a>
+    <a href="https://ryune911.github.io/tags/laravel/">laravel</a>
     
-    <a href="http://blog.ryune.top/tags/mutex/">mutex</a>
+    <a href="https://ryune911.github.io/tags/mutex/">mutex</a>
     
-    <a href="http://blog.ryune.top/tags/nginx/">nginx</a>
+    <a href="https://ryune911.github.io/tags/nginx/">nginx</a>
     
-    <a href="http://blog.ryune.top/tags/oss/">oss</a>
+    <a href="https://ryune911.github.io/tags/oss/">oss</a>
     
-    <a href="http://blog.ryune.top/tags/php-fpm/">php-fpm</a>
+    <a href="https://ryune911.github.io/tags/php-fpm/">php-fpm</a>
     
-    <a href="http://blog.ryune.top/tags/redis/">redis</a>
+    <a href="https://ryune911.github.io/tags/redis/">redis</a>
     
-    <a href="http://blog.ryune.top/tags/rpc/">rpc</a>
+    <a href="https://ryune911.github.io/tags/rpc/">rpc</a>
     
-    <a href="http://blog.ryune.top/tags/supervisor/">supervisor</a>
+    <a href="https://ryune911.github.io/tags/supervisor/">supervisor</a>
     
-    <a href="http://blog.ryune.top/tags/ubuntu/">ubuntu</a>
+    <a href="https://ryune911.github.io/tags/ubuntu/">ubuntu</a>
     
-    <a href="http://blog.ryune.top/tags/webbench/">webbench</a>
+    <a href="https://ryune911.github.io/tags/webbench/">webbench</a>
     
-    <a href="http://blog.ryune.top/tags/%E4%BA%92%E6%96%A5%E9%94%81/">互斥锁</a>
+    <a href="https://ryune911.github.io/tags/%E4%BA%92%E6%96%A5%E9%94%81/">互斥锁</a>
     
-    <a href="http://blog.ryune.top/tags/%E4%BC%98%E5%8C%96/">优化</a>
+    <a href="https://ryune911.github.io/tags/%E4%BC%98%E5%8C%96/">优化</a>
     
-    <a href="http://blog.ryune.top/tags/%E5%8D%8F%E8%AE%AE/">协议</a>
+    <a href="https://ryune911.github.io/tags/%E5%8D%8F%E8%AE%AE/">协议</a>
     
-    <a href="http://blog.ryune.top/tags/%E6%B5%8B%E8%AF%95/">测试</a>
+    <a href="https://ryune911.github.io/tags/%E6%B5%8B%E8%AF%95/">测试</a>
     
-    <a href="http://blog.ryune.top/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议</a>
+    <a href="https://ryune911.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议</a>
     
-    <a href="http://blog.ryune.top/tags/%E8%B8%A9%E5%9D%91/">踩坑</a>
+    <a href="https://ryune911.github.io/tags/%E8%B8%A9%E5%9D%91/">踩坑</a>
     
 </div>
     </section>
@@ -351,7 +337,7 @@ supervisorctl
     <section class="widget">
         <h3 class="widget-title">其它</h3>
         <ul class="widget-list">
-            <li><a href="http://blog.ryune.top/index.xml">文章 RSS</a></li>
+            <li><a href="https://ryune911.github.io/index.xml">文章 RSS</a></li>
         </ul>
     </section>
 </div>
@@ -360,7 +346,7 @@ supervisorctl
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="http://blog.ryune.top/">Avatar&#39;s Blog By Avatar</a>.
+        &copy; 2020 <a href="https://ryune911.github.io/">Avatar&#39;s Blog By Avatar</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

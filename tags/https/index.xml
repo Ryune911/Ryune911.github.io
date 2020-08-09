@@ -1,26 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>HTTPS on Avatar&#39;s Blog</title>
-    <link>http://blog.ryune.top/tags/https/</link>
+    <link>https://ryune911.github.io/tags/https/</link>
     <description>Recent content in HTTPS on Avatar&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 02 Dec 2016 23:21:09 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.ryune.top/tags/https/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ryune911.github.io/tags/https/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Nginx: 多域名 HTTPS 配置</title>
-      <link>http://blog.ryune.top/posts/nginx-2/</link>
+      <link>https://ryune911.github.io/posts/nginx-2/</link>
       <pubDate>Fri, 02 Dec 2016 23:21:09 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/posts/nginx-2/</guid>
+      <guid>https://ryune911.github.io/posts/nginx-2/</guid>
       <description>SSL Server Test  https://www.ssllabs.com/ssltest/index.html
- SNI  生成 dhparams.pem 文件
-openssl dhparam -out /etc/nginx/ssl/dhparams.pem 2048  添加配置
-ssl_dhparam /etc/nginx/ssl/dhparam.pem;   reverse-proxy.conf server { listen 80; if ($host = &#39;api.aaa.com&#39;) { return 301 https://api.aaa.com$request_uri; } if ($host = &#39;admin.aaa.com&#39;) { return 301 https://admin.aaa.com$request_uri; } if ($host = &#39;www.bbb.com&#39;) { return 301 https://www.bbb.com$request_uri; } return 301 http://www.aaa.com$request_uri; } # Admin Server server { listen 443; server_name admin.aaa.com; ssl on; ssl_certificate /etc/nginx/ssl/cert/admin.</description>
+ SNI  生成 dhparams.pem 文件  openssl dhparam -out /etc/nginx/ssl/dhparams.pem 2048  添加配置  ssl_dhparam /etc/nginx/ssl/dhparam.pem; reverse-proxy.conf server { listen 80; if ($host = &#39;api.aaa.com&#39;) { return 301 https://api.aaa.com$request_uri; } if ($host = &#39;admin.aaa.com&#39;) { return 301 https://admin.aaa.com$request_uri; } if ($host = &#39;www.bbb.com&#39;) { return 301 https://www.bbb.com$request_uri; } return 301 http://www.aaa.com$request_uri; } # Admin Server server { listen 443; server_name admin.aaa.com; ssl on; ssl_certificate /etc/nginx/ssl/cert/admin.</description>
     </item>
     
   </channel>

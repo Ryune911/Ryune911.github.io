@@ -1,27 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ubuntu on Avatar&#39;s Blog</title>
-    <link>http://blog.ryune.top/tags/ubuntu/</link>
+    <link>https://ryune911.github.io/tags/ubuntu/</link>
     <description>Recent content in ubuntu on Avatar&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Mon, 26 Sep 2016 23:21:09 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.ryune.top/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ryune911.github.io/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Ubuntu: 完善-1</title>
-      <link>http://blog.ryune.top/posts/ubuntu-1/</link>
+      <link>https://ryune911.github.io/posts/ubuntu-1/</link>
       <pubDate>Mon, 26 Sep 2016 23:21:09 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/posts/ubuntu-1/</guid>
-      <description> Ubuntu 16.04 WPS无法输入中文  安装搜狗linux
-http://pinyin.sogou.com/linux/?r=pinyin  修改配置文件
- 修改wps
-vim /usr/bin/wps # 添加： export XMODIFIERS=&amp;quot;@im=fcitx&amp;quot; export QT_IM_MODULE=&amp;quot;fcitx&amp;quot;  修改et
-vim /usr/bin/et # 添加 export XMODIFIERS=&amp;quot;@im=fcitx&amp;quot; export QT_IM_MODULE=&amp;quot;fcitx&amp;quot;    点击launcher图标最小化 gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ launcher-minimize-window true  开启风扇 sudo find /sys | grep pwm echo 255 | sudo tee /sys/devices/platform/asus-nb-wmi/hwmon/hwmon3/pwm1  </description>
+      <guid>https://ryune911.github.io/posts/ubuntu-1/</guid>
+      <description>Ubuntu 16.04 WPS无法输入中文  安装搜狗linux  http://pinyin.sogou.com/linux/?r=pinyin 修改配置文件  修改wps  vim /usr/bin/wps # 添加： export XMODIFIERS=&amp;quot;@im=fcitx&amp;quot; export QT_IM_MODULE=&amp;quot;fcitx&amp;quot;  修改et  vim /usr/bin/et # 添加 export XMODIFIERS=&amp;quot;@im=fcitx&amp;quot; export QT_IM_MODULE=&amp;quot;fcitx&amp;quot;   点击launcher图标最小化 gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ launcher-minimize-window true 开启风扇 sudo find /sys | grep pwm echo 255 | sudo tee /sys/devices/platform/asus-nb-wmi/hwmon/hwmon3/pwm1 </description>
     </item>
     
   </channel>

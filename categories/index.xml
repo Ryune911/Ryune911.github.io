@@ -1,103 +1,103 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Avatar&#39;s Blog</title>
-    <link>http://blog.ryune.top/categories/</link>
+    <link>https://ryune911.github.io/categories/</link>
     <description>Recent content in Categories on Avatar&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Mon, 05 Aug 2019 15:01:39 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.ryune.top/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ryune911.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>gRPC</title>
-      <link>http://blog.ryune.top/categories/grpc/</link>
+      <link>https://ryune911.github.io/categories/grpc/</link>
       <pubDate>Mon, 05 Aug 2019 15:01:39 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/categories/grpc/</guid>
+      <guid>https://ryune911.github.io/categories/grpc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>网络协议</title>
-      <link>http://blog.ryune.top/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/</link>
+      <link>https://ryune911.github.io/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/</link>
       <pubDate>Fri, 02 Aug 2019 15:01:39 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/</guid>
+      <guid>https://ryune911.github.io/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Redis</title>
-      <link>http://blog.ryune.top/categories/redis/</link>
+      <link>https://ryune911.github.io/categories/redis/</link>
       <pubDate>Sun, 14 Jul 2019 23:21:09 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/categories/redis/</guid>
+      <guid>https://ryune911.github.io/categories/redis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Golang</title>
-      <link>http://blog.ryune.top/categories/golang/</link>
+      <link>https://ryune911.github.io/categories/golang/</link>
       <pubDate>Thu, 11 Jul 2019 16:49:09 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/categories/golang/</guid>
+      <guid>https://ryune911.github.io/categories/golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>OSS</title>
-      <link>http://blog.ryune.top/categories/oss/</link>
+      <link>https://ryune911.github.io/categories/oss/</link>
       <pubDate>Tue, 20 Mar 2018 23:21:09 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/categories/oss/</guid>
+      <guid>https://ryune911.github.io/categories/oss/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Supervisor</title>
-      <link>http://blog.ryune.top/categories/supervisor/</link>
+      <link>https://ryune911.github.io/categories/supervisor/</link>
       <pubDate>Tue, 05 Dec 2017 23:21:09 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/categories/supervisor/</guid>
+      <guid>https://ryune911.github.io/categories/supervisor/</guid>
       <description></description>
     </item>
     
     <item>
       <title>测试</title>
-      <link>http://blog.ryune.top/categories/%E6%B5%8B%E8%AF%95/</link>
+      <link>https://ryune911.github.io/categories/%E6%B5%8B%E8%AF%95/</link>
       <pubDate>Mon, 31 Jul 2017 23:21:09 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/categories/%E6%B5%8B%E8%AF%95/</guid>
+      <guid>https://ryune911.github.io/categories/%E6%B5%8B%E8%AF%95/</guid>
       <description></description>
     </item>
     
     <item>
       <title>centOS</title>
-      <link>http://blog.ryune.top/categories/centos/</link>
+      <link>https://ryune911.github.io/categories/centos/</link>
       <pubDate>Wed, 04 Jan 2017 23:21:09 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/categories/centos/</guid>
+      <guid>https://ryune911.github.io/categories/centos/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Nginx</title>
-      <link>http://blog.ryune.top/categories/nginx/</link>
+      <link>https://ryune911.github.io/categories/nginx/</link>
       <pubDate>Thu, 08 Dec 2016 23:21:09 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/categories/nginx/</guid>
+      <guid>https://ryune911.github.io/categories/nginx/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ubuntu</title>
-      <link>http://blog.ryune.top/categories/ubuntu/</link>
+      <link>https://ryune911.github.io/categories/ubuntu/</link>
       <pubDate>Mon, 26 Sep 2016 23:21:09 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/categories/ubuntu/</guid>
+      <guid>https://ryune911.github.io/categories/ubuntu/</guid>
       <description></description>
     </item>
     

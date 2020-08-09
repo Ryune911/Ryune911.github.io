@@ -1,23 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>oss on Avatar&#39;s Blog</title>
-    <link>http://blog.ryune.top/tags/oss/</link>
+    <link>https://ryune911.github.io/tags/oss/</link>
     <description>Recent content in oss on Avatar&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Tue, 20 Mar 2018 23:21:09 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.ryune.top/tags/oss/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ryune911.github.io/tags/oss/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>OSS 踩坑</title>
-      <link>http://blog.ryune.top/posts/oss-path/</link>
+      <link>https://ryune911.github.io/posts/oss-path/</link>
       <pubDate>Tue, 20 Mar 2018 23:21:09 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/posts/oss-path/</guid>
-      <description> 路径错误  自定义的文件路径，key 不能以 / 开头！  OSSException in OSSExceptionFactory.php line 16: The specified object is not valid. </description>
+      <guid>https://ryune911.github.io/posts/oss-path/</guid>
+      <description>路径错误  自定义的文件路径，key 不能以 / 开头！  OSSException in OSSExceptionFactory.php line 16: The specified object is not valid. </description>
     </item>
     
   </channel>

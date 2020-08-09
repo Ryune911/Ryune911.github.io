@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="generator" content="Hugo 0.74.3" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,7 +20,7 @@
     <meta name="description" content="gRPC: helloworld ">
         
     <meta name="author" content="Avatar">
-    <meta property="og:url" content="http://blog.ryune.top/posts/grpc-helloworld/">
+    <meta property="og:url" content="https://ryune911.github.io/posts/grpc-helloworld/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
@@ -43,7 +43,7 @@
         <div class="col-group">
             <div class="site-name ">
                 
-                    <a id="logo" href="http://blog.ryune.top/">
+                    <a id="logo" href="https://ryune911.github.io/">
                         Avatar&#39;s Blog
                     </a>
                 
@@ -51,11 +51,11 @@
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
-                    <a class="" href="http://blog.ryune.top/">首页</a>
+                    <a class="" href="https://ryune911.github.io/">首页</a>
                     
-                    <a  href="http://blog.ryune.top/archives/" title="归档">归档</a>
+                    <a  href="https://ryune911.github.io/archives/" title="归档">归档</a>
                     
-                    <a  href="http://blog.ryune.top/about/" title="关于">关于</a>
+                    <a  href="https://ryune911.github.io/about/" title="关于">关于</a>
                     
                 </nav>
             </div>
@@ -81,17 +81,14 @@
                         <div class="post-meta">
                             <span>|</span>
                             
-                                <span class="meta-category"><a href="http://blog.ryune.top/categories/grpc">gRPC</a></span>
+                                <span class="meta-category"><a href="https://ryune911.github.io/categories/grpc">gRPC</a></span>
                             
                         </div>
                         
                         
                         
                         <div class="post-content">
-                            
-
-<h2 id="概念">概念</h2>
-
+                            <h2 id="概念">概念</h2>
 <blockquote>
 <ol>
 <li>gRPC  是一个高性能, 开源和通用的 RPC 框架, 面向移动和 HTTP/2 设计. 目前提供 C, Java 和 Go 语言版本, 分别是：grpc, grpc-java, grpc-go. 其中 C 版本支持 C, C++, Node.js, Python, Ruby, Objective-C, PHP 和 C# 支持.</li>
@@ -100,20 +97,15 @@
 <li>使用 protocol buffers, 建议使用 proto3</li>
 </ol>
 </blockquote>
-
-<p><img src="/img/gRPC.png"></p>
-
+<!-- raw HTML omitted -->
 <h2 id="hello-wolrd">hello wolrd</h2>
-
 <h4 id="idl-定义服务">IDL 定义服务</h4>
-
 <ol>
 <li>定义方法 SayHello</li>
 <li>方法参数 HelloRequest</li>
 <li>方法返回 HelloReply</li>
 </ol>
-
-<pre><code class="language-IDL">syntax = &quot;proto3&quot;;
+<pre><code class="language-IDL" data-lang="IDL">syntax = &quot;proto3&quot;;
 
 package helloworld;
 
@@ -132,119 +124,98 @@ message HelloRequest {
 message HelloReply {
   string message = 1;
 }
-</code></pre>
-
-<h4 id="生成-grpc-代码">生成 gRPC 代码</h4>
-
+</code></pre><h4 id="生成-grpc-代码">生成 gRPC 代码</h4>
 <ul>
 <li>golang</li>
 </ul>
-
-<pre><code class="language-bash">// 注意 plugins=grpc
-protoc --go_out=plugins=grpc:. *.proto
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">// 注意 plugins<span style="color:#f92672">=</span>grpc
+protoc --go_out<span style="color:#f92672">=</span>plugins<span style="color:#f92672">=</span>grpc:. *.proto
 // 指定 proto 路径
-protoc -I=proto --go_out=plugins=grpc:. *.proto
+protoc -I<span style="color:#f92672">=</span>proto --go_out<span style="color:#f92672">=</span>plugins<span style="color:#f92672">=</span>grpc:. *.proto
 // 指定 proto 文件
-protoc -I=proto --go_out=plugins=grpc:. helloworld.proto
+protoc -I<span style="color:#f92672">=</span>proto --go_out<span style="color:#f92672">=</span>plugins<span style="color:#f92672">=</span>grpc:. helloworld.proto
 // 指定输出路径
-protoc -I=proto --go_out=plugins=grpc:../server helloworld.proto
-</code></pre>
-
-<ul>
+protoc -I<span style="color:#f92672">=</span>proto --go_out<span style="color:#f92672">=</span>plugins<span style="color:#f92672">=</span>grpc:../server helloworld.proto
+</code></pre></div><ul>
 <li>Node.js</li>
 </ul>
-
-<pre><code class="language-js">// 1. 动态生成
-var grpc = require('grpc');
-var hello_proto = grpc.load(PROTO_PATH).helloworld;
-</code></pre>
-
-<pre><code class="language-bash">// 2. 静态生成
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// 1. 动态生成
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">grpc</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;grpc&#39;</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">hello_proto</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">load</span>(<span style="color:#a6e22e">PROTO_PATH</span>).<span style="color:#a6e22e">helloworld</span>;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">// 2. 静态生成
 npm install -g grpc-tools
-grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./ --grpc_out=./ --plugin=protoc-gen-grpc=/usr/local/bin/grpc_tools_node_protoc_plugin *.proto
-</code></pre>
-
-<h4 id="server">Server</h4>
-
+grpc_tools_node_protoc --js_out<span style="color:#f92672">=</span>import_style<span style="color:#f92672">=</span>commonjs,binary:./ --grpc_out<span style="color:#f92672">=</span>./ --plugin<span style="color:#f92672">=</span>protoc-gen-grpc<span style="color:#f92672">=</span>/usr/local/bin/grpc_tools_node_protoc_plugin *.proto
+</code></pre></div><h4 id="server">Server</h4>
 <ol>
 <li>起一个服务监听网络请求</li>
 <li>实现 SayHello 接口</li>
 <li>注册服务, 返回结果</li>
 </ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-<pre><code class="language-go">package main
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;context&#34;</span>
+	<span style="color:#e6db74">&#34;log&#34;</span>
+	<span style="color:#e6db74">&#34;net&#34;</span>
 
-import (
-	&quot;context&quot;
-	&quot;log&quot;
-	&quot;net&quot;
+	<span style="color:#e6db74">&#34;google.golang.org/grpc&#34;</span>
+	<span style="color:#a6e22e">pb</span> <span style="color:#e6db74">&#34;grpc/protos&#34;</span>
+	<span style="color:#75715e">//pb &#34;google.golang.org/grpc/examples/helloworld/helloworld&#34;
+</span><span style="color:#75715e"></span>)
 
-	&quot;google.golang.org/grpc&quot;
-	pb &quot;grpc/protos&quot;
-	//pb &quot;google.golang.org/grpc/examples/helloworld/helloworld&quot;
+<span style="color:#66d9ef">const</span> (
+	<span style="color:#a6e22e">port</span> = <span style="color:#e6db74">&#34;:50051&#34;</span>
 )
 
-const (
-	port = &quot;:50051&quot;
-)
+<span style="color:#75715e">// server is used to implement helloworld.GreeterServer.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">server</span> <span style="color:#66d9ef">struct</span>{}
 
-// server is used to implement helloworld.GreeterServer.
-type server struct{}
-
-// SayHello implements helloworld.GreeterServer
-func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
-	log.Printf(&quot;Received: %v&quot;, in.Name)
-	return &amp;pb.HelloReply{Message: &quot;Hello &quot; + in.Name}, nil
+<span style="color:#75715e">// SayHello implements helloworld.GreeterServer
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">server</span>) <span style="color:#a6e22e">SayHello</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">in</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">pb</span>.<span style="color:#a6e22e">HelloRequest</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">pb</span>.<span style="color:#a6e22e">HelloReply</span>, <span style="color:#66d9ef">error</span>) {
+	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Received: %v&#34;</span>, <span style="color:#a6e22e">in</span>.<span style="color:#a6e22e">Name</span>)
+	<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">pb</span>.<span style="color:#a6e22e">HelloReply</span>{<span style="color:#a6e22e">Message</span>: <span style="color:#e6db74">&#34;Hello &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">in</span>.<span style="color:#a6e22e">Name</span>}, <span style="color:#66d9ef">nil</span>
 }
 
-func main() {
-	lis, err := net.Listen(&quot;tcp&quot;, port)
-	if err != nil {
-		log.Fatalf(&quot;failed to listen: %v&quot;, err)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">lis</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">net</span>.<span style="color:#a6e22e">Listen</span>(<span style="color:#e6db74">&#34;tcp&#34;</span>, <span style="color:#a6e22e">port</span>)
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;failed to listen: %v&#34;</span>, <span style="color:#a6e22e">err</span>)
 	}
-	s := grpc.NewServer()
-	pb.RegisterGreeterServer(s, &amp;server{})
-	if err := s.Serve(lis); err != nil {
-		log.Fatalf(&quot;failed to serve: %v&quot;, err)
+	<span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">NewServer</span>()
+	<span style="color:#a6e22e">pb</span>.<span style="color:#a6e22e">RegisterGreeterServer</span>(<span style="color:#a6e22e">s</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">server</span>{})
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">Serve</span>(<span style="color:#a6e22e">lis</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;failed to serve: %v&#34;</span>, <span style="color:#a6e22e">err</span>)
 	}
 }
-</code></pre>
-
-<h4 id="client">Client</h4>
-
+</code></pre></div><h4 id="client">Client</h4>
 <ol>
 <li>创建客户端</li>
 <li>获取参数</li>
 <li>调用方法</li>
 </ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">messages</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./protos/helloworld_pb&#39;</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">services</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./protos/helloworld_grpc_pb&#39;</span>);
 
-<pre><code class="language-js">var messages = require('./protos/helloworld_pb');
-var services = require('./protos/helloworld_grpc_pb');
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">grpc</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;grpc&#39;</span>);
 
-var grpc = require('grpc');
-
-function main() {
-  var client = new services.GreeterClient('localhost:50051', grpc.credentials.createInsecure());
-  var request = new messages.HelloRequest();
-  var user;
-  if (process.argv.length &gt;= 3) {
-    user = process.argv[2];
-  } else {
-    user = 'world';
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">main</span>() {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">client</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">services</span>.<span style="color:#a6e22e">GreeterClient</span>(<span style="color:#e6db74">&#39;localhost:50051&#39;</span>, <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">credentials</span>.<span style="color:#a6e22e">createInsecure</span>());
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">request</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">messages</span>.<span style="color:#a6e22e">HelloRequest</span>();
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">user</span>;
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">argv</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">3</span>) {
+    <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">argv</span>[<span style="color:#ae81ff">2</span>];
+  } <span style="color:#66d9ef">else</span> {
+    <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;world&#39;</span>;
   }
-  request.setName(user);
-  client.sayHello(request, function (err, response) {
-    console.log('Greeting:', response.getMessage());
+  <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">setName</span>(<span style="color:#a6e22e">user</span>);
+  <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">sayHello</span>(<span style="color:#a6e22e">request</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">response</span>) {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Greeting:&#39;</span>, <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">getMessage</span>());
   });
 }
 
-main();
-</code></pre>
-
-<h4 id="测试">测试</h4>
-
-<p><img src="/img/gRPC-server.png" style="height:156px; width:496px">
-<img src="/img/gRPC-client.png" style="height:156px; width:496px"></p>
+<span style="color:#a6e22e">main</span>();
+</code></pre></div><h4 id="测试">测试</h4>
+<!-- raw HTML omitted -->
 
                         </div>
 
@@ -269,9 +240,9 @@ main();
                             
                             <ul class="clearfix">
                                 
-                                <li><a href="http://blog.ryune.top/tags/rpc">RPC</a></li>
+                                <li><a href="https://ryune911.github.io/tags/rpc">RPC</a></li>
                                 
-                                <li><a href="http://blog.ryune.top/tags/grpc">gRPC</a></li>
+                                <li><a href="https://ryune911.github.io/tags/grpc">gRPC</a></li>
                                 
                             </ul>
                             
@@ -299,7 +270,7 @@ main();
         <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
       
       <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://blog.ryune.top/">
+      <input type="hidden" name="sitesearch" value="https://ryune911.github.io/">
       <button type="submit" class="submit icon-search"></button>
 </form>
     </section>
@@ -309,43 +280,43 @@ main();
 <ul class="widget-list">
     
     <li>
-        <a href="http://blog.ryune.top/posts/grpc-helloworld/" title="gRPC: helloworld ">gRPC: helloworld </a>
+        <a href="https://ryune911.github.io/posts/grpc-helloworld/" title="gRPC: helloworld ">gRPC: helloworld </a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/grpc-service/" title="gRPC: service ">gRPC: service </a>
+        <a href="https://ryune911.github.io/posts/grpc-service/" title="gRPC: service ">gRPC: service </a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/protocol-2-rpc/" title="网络协议：RPC">网络协议：RPC</a>
+        <a href="https://ryune911.github.io/posts/protocol-2-rpc/" title="网络协议：RPC">网络协议：RPC</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/protocol-1-osi/" title="网络协议：OSI 网络模型">网络协议：OSI 网络模型</a>
+        <a href="https://ryune911.github.io/posts/protocol-1-osi/" title="网络协议：OSI 网络模型">网络协议：OSI 网络模型</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/redis-mutex/" title="Redis: 互斥锁">Redis: 互斥锁</a>
+        <a href="https://ryune911.github.io/posts/redis-mutex/" title="Redis: 互斥锁">Redis: 互斥锁</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/golang-map/" title="Golang 基础：map">Golang 基础：map</a>
+        <a href="https://ryune911.github.io/posts/golang-map/" title="Golang 基础：map">Golang 基础：map</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/golang-slice/" title="Golang 基础：slice">Golang 基础：slice</a>
+        <a href="https://ryune911.github.io/posts/golang-slice/" title="Golang 基础：slice">Golang 基础：slice</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/golang-array/" title="Golang 基础：array">Golang 基础：array</a>
+        <a href="https://ryune911.github.io/posts/golang-array/" title="Golang 基础：array">Golang 基础：array</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/oss-path/" title="OSS 踩坑">OSS 踩坑</a>
+        <a href="https://ryune911.github.io/posts/oss-path/" title="OSS 踩坑">OSS 踩坑</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/posts/supervisor-1-laravel/" title="Supervisor: 管理 Laravel Queue">Supervisor: 管理 Laravel Queue</a>
+        <a href="https://ryune911.github.io/posts/supervisor-1-laravel/" title="Supervisor: 管理 Laravel Queue">Supervisor: 管理 Laravel Queue</a>
     </li>
     
 </ul>
@@ -358,43 +329,43 @@ main();
 <ul class="widget-list">
     
     <li>
-        <a href="http://blog.ryune.top/categories/centos/">centos(4)</a>
+        <a href="https://ryune911.github.io/categories/centos/">centos(4)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/golang/">golang(3)</a>
+        <a href="https://ryune911.github.io/categories/golang/">golang(3)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/grpc/">grpc(2)</a>
+        <a href="https://ryune911.github.io/categories/grpc/">grpc(2)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/nginx/">nginx(3)</a>
+        <a href="https://ryune911.github.io/categories/nginx/">nginx(3)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/oss/">oss(1)</a>
+        <a href="https://ryune911.github.io/categories/oss/">oss(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/redis/">redis(1)</a>
+        <a href="https://ryune911.github.io/categories/redis/">redis(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/supervisor/">supervisor(1)</a>
+        <a href="https://ryune911.github.io/categories/supervisor/">supervisor(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/ubuntu/">ubuntu(1)</a>
+        <a href="https://ryune911.github.io/categories/ubuntu/">ubuntu(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/%E6%B5%8B%E8%AF%95/">测试(1)</a>
+        <a href="https://ryune911.github.io/categories/%E6%B5%8B%E8%AF%95/">测试(1)</a>
     </li>
     
     <li>
-        <a href="http://blog.ryune.top/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议(2)</a>
+        <a href="https://ryune911.github.io/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议(2)</a>
     </li>
     
 </ul>
@@ -404,49 +375,49 @@ main();
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
-    <a href="http://blog.ryune.top/tags/centos/">centos</a>
+    <a href="https://ryune911.github.io/tags/centos/">centos</a>
     
-    <a href="http://blog.ryune.top/tags/firewalld/">firewalld</a>
+    <a href="https://ryune911.github.io/tags/firewalld/">firewalld</a>
     
-    <a href="http://blog.ryune.top/tags/go/">go</a>
+    <a href="https://ryune911.github.io/tags/go/">go</a>
     
-    <a href="http://blog.ryune.top/tags/golang/">golang</a>
+    <a href="https://ryune911.github.io/tags/golang/">golang</a>
     
-    <a href="http://blog.ryune.top/tags/grpc/">grpc</a>
+    <a href="https://ryune911.github.io/tags/grpc/">grpc</a>
     
-    <a href="http://blog.ryune.top/tags/https/">https</a>
+    <a href="https://ryune911.github.io/tags/https/">https</a>
     
-    <a href="http://blog.ryune.top/tags/laravel/">laravel</a>
+    <a href="https://ryune911.github.io/tags/laravel/">laravel</a>
     
-    <a href="http://blog.ryune.top/tags/mutex/">mutex</a>
+    <a href="https://ryune911.github.io/tags/mutex/">mutex</a>
     
-    <a href="http://blog.ryune.top/tags/nginx/">nginx</a>
+    <a href="https://ryune911.github.io/tags/nginx/">nginx</a>
     
-    <a href="http://blog.ryune.top/tags/oss/">oss</a>
+    <a href="https://ryune911.github.io/tags/oss/">oss</a>
     
-    <a href="http://blog.ryune.top/tags/php-fpm/">php-fpm</a>
+    <a href="https://ryune911.github.io/tags/php-fpm/">php-fpm</a>
     
-    <a href="http://blog.ryune.top/tags/redis/">redis</a>
+    <a href="https://ryune911.github.io/tags/redis/">redis</a>
     
-    <a href="http://blog.ryune.top/tags/rpc/">rpc</a>
+    <a href="https://ryune911.github.io/tags/rpc/">rpc</a>
     
-    <a href="http://blog.ryune.top/tags/supervisor/">supervisor</a>
+    <a href="https://ryune911.github.io/tags/supervisor/">supervisor</a>
     
-    <a href="http://blog.ryune.top/tags/ubuntu/">ubuntu</a>
+    <a href="https://ryune911.github.io/tags/ubuntu/">ubuntu</a>
     
-    <a href="http://blog.ryune.top/tags/webbench/">webbench</a>
+    <a href="https://ryune911.github.io/tags/webbench/">webbench</a>
     
-    <a href="http://blog.ryune.top/tags/%E4%BA%92%E6%96%A5%E9%94%81/">互斥锁</a>
+    <a href="https://ryune911.github.io/tags/%E4%BA%92%E6%96%A5%E9%94%81/">互斥锁</a>
     
-    <a href="http://blog.ryune.top/tags/%E4%BC%98%E5%8C%96/">优化</a>
+    <a href="https://ryune911.github.io/tags/%E4%BC%98%E5%8C%96/">优化</a>
     
-    <a href="http://blog.ryune.top/tags/%E5%8D%8F%E8%AE%AE/">协议</a>
+    <a href="https://ryune911.github.io/tags/%E5%8D%8F%E8%AE%AE/">协议</a>
     
-    <a href="http://blog.ryune.top/tags/%E6%B5%8B%E8%AF%95/">测试</a>
+    <a href="https://ryune911.github.io/tags/%E6%B5%8B%E8%AF%95/">测试</a>
     
-    <a href="http://blog.ryune.top/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议</a>
+    <a href="https://ryune911.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议</a>
     
-    <a href="http://blog.ryune.top/tags/%E8%B8%A9%E5%9D%91/">踩坑</a>
+    <a href="https://ryune911.github.io/tags/%E8%B8%A9%E5%9D%91/">踩坑</a>
     
 </div>
     </section>
@@ -471,7 +442,7 @@ main();
     <section class="widget">
         <h3 class="widget-title">其它</h3>
         <ul class="widget-list">
-            <li><a href="http://blog.ryune.top/index.xml">文章 RSS</a></li>
+            <li><a href="https://ryune911.github.io/index.xml">文章 RSS</a></li>
         </ul>
     </section>
 </div>
@@ -480,7 +451,7 @@ main();
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="http://blog.ryune.top/">Avatar&#39;s Blog By Avatar</a>.
+        &copy; 2020 <a href="https://ryune911.github.io/">Avatar&#39;s Blog By Avatar</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         

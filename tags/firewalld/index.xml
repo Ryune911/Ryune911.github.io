@@ -1,32 +1,32 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>firewalld on Avatar&#39;s Blog</title>
-    <link>http://blog.ryune.top/tags/firewalld/</link>
+    <link>https://ryune911.github.io/tags/firewalld/</link>
     <description>Recent content in firewalld on Avatar&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Wed, 21 Dec 2016 23:21:09 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.ryune.top/tags/firewalld/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ryune911.github.io/tags/firewalld/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>centOS: 防火墙</title>
-      <link>http://blog.ryune.top/posts/centos-2-firewalld/</link>
+      <link>https://ryune911.github.io/posts/centos-2-firewalld/</link>
       <pubDate>Wed, 21 Dec 2016 23:21:09 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/posts/centos-2-firewalld/</guid>
+      <guid>https://ryune911.github.io/posts/centos-2-firewalld/</guid>
       <description>开启 firewalld 服务：
-sudo systemctl start firewalld  移除
-firewall-cmd --zone=public --remove-port=6022/tcp --permanent  开放 SSH 自定义的端口
-sudo firewall-cmd --permanent --add-port=3333/tcp  开放 HTTP
-sudo firewall-cmd --permanent --add-service=http  开放 HTTPS
-sudo firewall-cmd --permanent --add-service=https  开放 SMTP
-sudo firewall-cmd --permanent --add-service=smtp  查看
-sudo firewall-cmd --get-services sudo firewall-cmd --permanent --list-all  重载服务
-sudo firewall-cmd --reload  开机启动
-sudo systemctl enable firewalld  </description>
+sudo systemctl start firewalld 移除
+firewall-cmd --zone=public --remove-port=6022/tcp --permanent 开放 SSH 自定义的端口
+sudo firewall-cmd --permanent --add-port=3333/tcp 开放 HTTP
+sudo firewall-cmd --permanent --add-service=http 开放 HTTPS
+sudo firewall-cmd --permanent --add-service=https 开放 SMTP
+sudo firewall-cmd --permanent --add-service=smtp 查看
+sudo firewall-cmd --get-services sudo firewall-cmd --permanent --list-all 重载服务
+sudo firewall-cmd --reload 开机启动
+sudo systemctl enable firewalld </description>
     </item>
     
   </channel>

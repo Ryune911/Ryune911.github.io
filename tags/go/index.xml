@@ -1,42 +1,42 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>go on Avatar&#39;s Blog</title>
-    <link>http://blog.ryune.top/tags/go/</link>
+    <link>https://ryune911.github.io/tags/go/</link>
     <description>Recent content in go on Avatar&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Thu, 11 Jul 2019 16:49:09 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.ryune.top/tags/go/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ryune911.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Golang 基础：map</title>
-      <link>http://blog.ryune.top/posts/golang-map/</link>
+      <link>https://ryune911.github.io/posts/golang-map/</link>
       <pubDate>Thu, 11 Jul 2019 16:49:09 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/posts/golang-map/</guid>
-      <description>map  无序 键值对集合 map 的传递不会拷贝副本，所以修改会影响所有该 map 的引用 如果要按顺序遍历 map  遍历 map，将所有 key 存入新 slice 对 slice 排序 遍历 slice，使用 map[key] 获取   package main import &amp;quot;fmt&amp;quot; func main() { // 无序 // 键值对集合 dict := map[string]int{&amp;quot;张三&amp;quot;: 1, &amp;quot;李四&amp;quot;: 2} fmt.Printf(&amp;quot;创建 dict: %T(%#v)\n&amp;quot;, dict, dict) for key, value := range dict { fmt.Printf(&amp;quot;无序 key: %#v, value: %#v\n&amp;quot;, key, value) } dict1 := map[int]string{1: &amp;quot;张三&amp;quot;, 2: &amp;quot;李四&amp;quot;} fmt.Printf(&amp;quot;创建 dict1: %T(%#v)\n&amp;quot;, dict1, dict1) for key, value := range dict1 { fmt.</description>
+      <guid>https://ryune911.github.io/posts/golang-map/</guid>
+      <description>map  无序 键值对集合 map 的传递不会拷贝副本，所以修改会影响所有该 map 的引用 如果要按顺序遍历 map  遍历 map，将所有 key 存入新 slice 对 slice 排序 遍历 slice，使用 map[key] 获取     package main import &amp;quot;fmt&amp;quot; func main() { // 无序 // 键值对集合 dict := map[string]int{&amp;quot;张三&amp;quot;: 1, &amp;quot;李四&amp;quot;: 2} fmt.Printf(&amp;quot;创建 dict: %T(%#v)\n&amp;quot;, dict, dict) for key, value := range dict { fmt.Printf(&amp;quot;无序 key: %#v, value: %#v\n&amp;quot;, key, value) } dict1 := map[int]string{1: &amp;quot;张三&amp;quot;, 2: &amp;quot;李四&amp;quot;} fmt.</description>
     </item>
     
     <item>
       <title>Golang 基础：slice</title>
-      <link>http://blog.ryune.top/posts/golang-slice/</link>
+      <link>https://ryune911.github.io/posts/golang-slice/</link>
       <pubDate>Thu, 11 Jul 2019 15:01:39 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/posts/golang-slice/</guid>
+      <guid>https://ryune911.github.io/posts/golang-slice/</guid>
       <description>slice 底层基于数组实现
 package main import &amp;quot;fmt&amp;quot; func main() { // 长度是5，容量也是5 slice := make([]int, 5) fmt.Printf(&amp;quot;slice: %T(%#v)\n&amp;quot;, slice, slice) // 长度是5，容量是10，容量必须 &amp;gt;= 长度，剩下5个需要扩充后才能访问 slice1 := make([]int, 5, 10) fmt.Printf(&amp;quot;slice1: %T(%#v)\n&amp;quot;, slice1, slice1) // 和创建数组很类似，不设置[]，会推导出来，并且长度和容量一致 slice2 := []int{ 4: 4, } fmt.Printf(&amp;quot;slice2: %T(%#v)\n&amp;quot;, slice2, slice2) // nil 切片：长度容量都是0，指向底层数组的指针为nil，表示一个不存在的切片 var slice3 []int fmt.Printf(&amp;quot;slice3: %T(%#v)\n&amp;quot;, slice3, slice3) // 空切片：长度容量都是0，表示一个空的切片 slice4 := []int{} fmt.Printf(&amp;quot;slice4: %T(%#v)\n&amp;quot;, slice4, slice4) // 基于现有的数组或切片创建 slice5 := slice2[:] fmt.Printf(&amp;quot;slice5: %T(%#v)\n&amp;quot;, slice5, slice5) slice6 := slice2[1:] fmt.</description>
     </item>
     
     <item>
       <title>Golang 基础：array</title>
-      <link>http://blog.ryune.top/posts/golang-array/</link>
+      <link>https://ryune911.github.io/posts/golang-array/</link>
       <pubDate>Wed, 10 Jul 2019 21:21:09 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/posts/golang-array/</guid>
-      <description>array  必须指定长度 传递数组指针修改数组内元素才有效  package main import &amp;quot;fmt&amp;quot; func main() { //var arr [5]int arr := [5]int{ 0: 1, } // 同类型，同长度才可相互赋值 // var arr1 [4]int // arr1 = arr fmt.Printf(&amp;quot;%T(%#v)\n&amp;quot;, arr, arr) fmt.Printf(&amp;quot;%T(%#v)\n&amp;quot;, arr[0], arr[0]) fmt.Printf(&amp;quot;%T(%#v)\n&amp;quot;, &amp;amp;arr[0], &amp;amp;arr[0]) for i, v := range arr { fmt.Printf(&amp;quot;索引:%d,值:%d\n&amp;quot;, i, v) } // 指针数组 ptrArr := [5]*int{ // 分配内存 1: new(int), // 其他索引为 nil } fmt.Printf(&amp;quot;%T(%#v)\n&amp;quot;, ptrArr, ptrArr) fmt.Printf(&amp;quot;%T(%#v)\n&amp;quot;, ptrArr[1], ptrArr[1]) fmt.</description>
+      <guid>https://ryune911.github.io/posts/golang-array/</guid>
+      <description>array  必须指定长度 传递数组指针修改数组内元素才有效   package main import &amp;quot;fmt&amp;quot; func main() { //var arr [5]int arr := [5]int{ 0: 1, } // 同类型，同长度才可相互赋值 // var arr1 [4]int // arr1 = arr fmt.Printf(&amp;quot;%T(%#v)\n&amp;quot;, arr, arr) fmt.Printf(&amp;quot;%T(%#v)\n&amp;quot;, arr[0], arr[0]) fmt.Printf(&amp;quot;%T(%#v)\n&amp;quot;, &amp;amp;arr[0], &amp;amp;arr[0]) for i, v := range arr { fmt.Printf(&amp;quot;索引:%d,值:%d\n&amp;quot;, i, v) } // 指针数组 ptrArr := [5]*int{ // 分配内存 1: new(int), // 其他索引为 nil } fmt.Printf(&amp;quot;%T(%#v)\n&amp;quot;, ptrArr, ptrArr) fmt.Printf(&amp;quot;%T(%#v)\n&amp;quot;, ptrArr[1], ptrArr[1]) fmt.</description>
     </item>
     
   </channel>

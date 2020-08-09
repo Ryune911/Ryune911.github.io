@@ -1,22 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>协议 on Avatar&#39;s Blog</title>
-    <link>http://blog.ryune.top/tags/%E5%8D%8F%E8%AE%AE/</link>
+    <link>https://ryune911.github.io/tags/%E5%8D%8F%E8%AE%AE/</link>
     <description>Recent content in 协议 on Avatar&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 02 Aug 2019 15:01:39 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.ryune.top/tags/%E5%8D%8F%E8%AE%AE/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ryune911.github.io/tags/%E5%8D%8F%E8%AE%AE/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>网络协议：RPC</title>
-      <link>http://blog.ryune.top/posts/protocol-2-rpc/</link>
+      <link>https://ryune911.github.io/posts/protocol-2-rpc/</link>
       <pubDate>Fri, 02 Aug 2019 15:01:39 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/posts/protocol-2-rpc/</guid>
+      <guid>https://ryune911.github.io/posts/protocol-2-rpc/</guid>
       <description>概念  RPC：Remote Procedure Call Protocol，远程过程调用。通过网络从远程计算机请求服务，而不需要了解底层网络技术的协议。 PRC 横跨了传输层与应用层 多用于微服务、分布式系统 C/S 模式  原理 &amp;amp; 框架 原理结构  这里 user 就是 client 端，当 user 想发起一个远程调用时，它实际是通过本地调用user-stub。user-stub 负责将调用的接口、方法和参数通过约定的协议规范进行编码并通过本地的 RPCRuntime 实例传输到远端的实例。
 远端 RPCRuntime 实例收到请求后交给 server-stub 进行解码后发起本地端调用，调用结果再返回给 user 端。
   User: 发起远程调用 User-stub: 将调用的接口、参数等按照协议编码后交给 client 的 RPCRuntime RPCRuntime: 发送/接收 Server-stub: 将接收到的内容解码后交给 Server Server: 发起本地调用  实现结构  RPC 服务方通过 RpcServer 去导出（export）远程接口方法，而客户方通过 RpcClient 去引入（import）远程接口方法。客户方像调用本地方法一样去调用远程接口方法，RPC 框架提供接口的代理实现，实际的调用将委托给代理RpcProxy 。代理封装调用信息并将调用转交给RpcInvoker 去实际执行。在客户端的RpcInvoker 通过连接器RpcConnector 去维持与服务端的通道RpcChannel，并使用RpcProtocol 执行协议编码（encode）并将编码后的请求消息通过通道发送给服务方。
@@ -25,11 +25,11 @@ RPC 服务端接收器 RpcAcceptor 接收客户端的调用请求，同样使用
     
     <item>
       <title>网络协议：OSI 网络模型</title>
-      <link>http://blog.ryune.top/posts/protocol-1-osi/</link>
+      <link>https://ryune911.github.io/posts/protocol-1-osi/</link>
       <pubDate>Sat, 27 Jul 2019 15:01:39 +0800</pubDate>
       
-      <guid>http://blog.ryune.top/posts/protocol-1-osi/</guid>
-      <description> 概念 互联网协议（Internet Protocol Suite）是对电脑相互如何链接、传输做的详细规定
+      <guid>https://ryune911.github.io/posts/protocol-1-osi/</guid>
+      <description>概念 互联网协议（Internet Protocol Suite）是对电脑相互如何链接、传输做的详细规定
 网络模型  OSI网络模型将网络通信分成了7层，从上到下依次为：应用层、表示层、会话层、传输层、网络层、链路层及物理层 越靠近上层越接近用户，越靠近下层越接近计算机硬件 各层间的无关性：上层通过低层接口使用其功能而不需要关注低层说使用的协议等  物理层  功能：为数据传输提供环境，确保两个数据终端设备链接起来形成一条通路，提供物理媒体以供数据通过，提供带宽减少拥堵 数据终端（DTE）即计算机等终端 数据通信终端（DCE）即调制解调器等 互联设备即LAN中各种电缆、插头、插座、接收器、发射器等 DTE-&amp;gt;互联设备-&amp;gt;DCE-&amp;gt;DCE-&amp;gt;互联设备-&amp;gt;DTE  链路层  功能：通过物理层建立的物理媒体，为终端设备提供传输媒体及其链接，为网络层数据传输提供服务 包括：建立、拆除、分离、帧（数据传输的单元是帧，即：定义数据包的组成，如以太网数据包）界定、帧同步、收发顺序控制 相关知识：交换机、MAC地址（与设备网卡一一绑定，用于子网内计算机数据的发送接收，即：广播。子网间的数据发送接收依靠网络层实现，即：通过网络层的 IP 寻址）、以太网数据包的组成（head+data）  网络层  建立网络连接和为上层提供服务 功能：寻址、激活与终止网络连接、网络链接复用、检测与恢复、排序、流量控制、服务选择与网络管理 相关知识点：路由器、IP数据包（head+data，即：以太网数据包的 data）、IP协议与子网掩码（用于确定2个IP的设备是否处于同一个子网）、ARP协议（通过发送 head 为 FF:FF:FF:FF:FF:FF 的以太网数据包，由链路层广播找到对应的设备）  传输层  数据通信时，第一个端到端的层级（也可以理解为端口到端口的通信，即：多个逻辑链接） 功能：通过合流与分流、网络链接复用（一个网络链接创建多个逻辑链接）与解复用进行端（client/port）与端的通信，调节通信子网差异（世界各地网络、子网、局域网性能差异大）为会话层提供稳定的通信环境 相关知识点：TCP/UDP（数据包 head+data，即：IP数据包的 data）  会话层  建立和维持会话，并保持会话同步 通过检查点，在通信失效时将其恢复  表示层  为通信提供一种公共语言，如：编码不同  应用层  与其他终端进行通信的一个应用 为对应的应用提供通信服务 HTTP、SMTP 等  </description>
     </item>
     
