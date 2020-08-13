@@ -128,93 +128,93 @@ message HelloReply {
 <ul>
 <li>golang</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">// 注意 plugins<span style="color:#f92672">=</span>grpc
-protoc --go_out<span style="color:#f92672">=</span>plugins<span style="color:#f92672">=</span>grpc:. *.proto
+<pre><code>// 注意 plugins=grpc
+protoc --go_out=plugins=grpc:. *.proto
 // 指定 proto 路径
-protoc -I<span style="color:#f92672">=</span>proto --go_out<span style="color:#f92672">=</span>plugins<span style="color:#f92672">=</span>grpc:. *.proto
+protoc -I=proto --go_out=plugins=grpc:. *.proto
 // 指定 proto 文件
-protoc -I<span style="color:#f92672">=</span>proto --go_out<span style="color:#f92672">=</span>plugins<span style="color:#f92672">=</span>grpc:. helloworld.proto
+protoc -I=proto --go_out=plugins=grpc:. helloworld.proto
 // 指定输出路径
-protoc -I<span style="color:#f92672">=</span>proto --go_out<span style="color:#f92672">=</span>plugins<span style="color:#f92672">=</span>grpc:../server helloworld.proto
-</code></pre></div><ul>
+protoc -I=proto --go_out=plugins=grpc:../server helloworld.proto
+</code></pre><ul>
 <li>Node.js</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// 1. 动态生成
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">grpc</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;grpc&#39;</span>);
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">hello_proto</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">load</span>(<span style="color:#a6e22e">PROTO_PATH</span>).<span style="color:#a6e22e">helloworld</span>;
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">// 2. 静态生成
+<pre><code>// 1. 动态生成
+var grpc = require('grpc');
+var hello_proto = grpc.load(PROTO_PATH).helloworld;
+</code></pre><pre><code>// 2. 静态生成
 npm install -g grpc-tools
-grpc_tools_node_protoc --js_out<span style="color:#f92672">=</span>import_style<span style="color:#f92672">=</span>commonjs,binary:./ --grpc_out<span style="color:#f92672">=</span>./ --plugin<span style="color:#f92672">=</span>protoc-gen-grpc<span style="color:#f92672">=</span>/usr/local/bin/grpc_tools_node_protoc_plugin *.proto
-</code></pre></div><h4 id="server">Server</h4>
+grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./ --grpc_out=./ --plugin=protoc-gen-grpc=/usr/local/bin/grpc_tools_node_protoc_plugin *.proto
+</code></pre><h4 id="server">Server</h4>
 <ol>
 <li>起一个服务监听网络请求</li>
 <li>实现 SayHello 接口</li>
 <li>注册服务, 返回结果</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+<pre><code>package main
 
-<span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;context&#34;</span>
-	<span style="color:#e6db74">&#34;log&#34;</span>
-	<span style="color:#e6db74">&#34;net&#34;</span>
+import (
+	&quot;context&quot;
+	&quot;log&quot;
+	&quot;net&quot;
 
-	<span style="color:#e6db74">&#34;google.golang.org/grpc&#34;</span>
-	<span style="color:#a6e22e">pb</span> <span style="color:#e6db74">&#34;grpc/protos&#34;</span>
-	<span style="color:#75715e">//pb &#34;google.golang.org/grpc/examples/helloworld/helloworld&#34;
-</span><span style="color:#75715e"></span>)
-
-<span style="color:#66d9ef">const</span> (
-	<span style="color:#a6e22e">port</span> = <span style="color:#e6db74">&#34;:50051&#34;</span>
+	&quot;google.golang.org/grpc&quot;
+	pb &quot;grpc/protos&quot;
+	//pb &quot;google.golang.org/grpc/examples/helloworld/helloworld&quot;
 )
 
-<span style="color:#75715e">// server is used to implement helloworld.GreeterServer.
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">server</span> <span style="color:#66d9ef">struct</span>{}
+const (
+	port = &quot;:50051&quot;
+)
 
-<span style="color:#75715e">// SayHello implements helloworld.GreeterServer
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">server</span>) <span style="color:#a6e22e">SayHello</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">in</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">pb</span>.<span style="color:#a6e22e">HelloRequest</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">pb</span>.<span style="color:#a6e22e">HelloReply</span>, <span style="color:#66d9ef">error</span>) {
-	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Received: %v&#34;</span>, <span style="color:#a6e22e">in</span>.<span style="color:#a6e22e">Name</span>)
-	<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">pb</span>.<span style="color:#a6e22e">HelloReply</span>{<span style="color:#a6e22e">Message</span>: <span style="color:#e6db74">&#34;Hello &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">in</span>.<span style="color:#a6e22e">Name</span>}, <span style="color:#66d9ef">nil</span>
+// server is used to implement helloworld.GreeterServer.
+type server struct{}
+
+// SayHello implements helloworld.GreeterServer
+func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
+	log.Printf(&quot;Received: %v&quot;, in.Name)
+	return &amp;pb.HelloReply{Message: &quot;Hello &quot; + in.Name}, nil
 }
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-	<span style="color:#a6e22e">lis</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">net</span>.<span style="color:#a6e22e">Listen</span>(<span style="color:#e6db74">&#34;tcp&#34;</span>, <span style="color:#a6e22e">port</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;failed to listen: %v&#34;</span>, <span style="color:#a6e22e">err</span>)
+func main() {
+	lis, err := net.Listen(&quot;tcp&quot;, port)
+	if err != nil {
+		log.Fatalf(&quot;failed to listen: %v&quot;, err)
 	}
-	<span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">NewServer</span>()
-	<span style="color:#a6e22e">pb</span>.<span style="color:#a6e22e">RegisterGreeterServer</span>(<span style="color:#a6e22e">s</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">server</span>{})
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">Serve</span>(<span style="color:#a6e22e">lis</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatalf</span>(<span style="color:#e6db74">&#34;failed to serve: %v&#34;</span>, <span style="color:#a6e22e">err</span>)
+	s := grpc.NewServer()
+	pb.RegisterGreeterServer(s, &amp;server{})
+	if err := s.Serve(lis); err != nil {
+		log.Fatalf(&quot;failed to serve: %v&quot;, err)
 	}
 }
-</code></pre></div><h4 id="client">Client</h4>
+</code></pre><h4 id="client">Client</h4>
 <ol>
 <li>创建客户端</li>
 <li>获取参数</li>
 <li>调用方法</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">messages</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./protos/helloworld_pb&#39;</span>);
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">services</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./protos/helloworld_grpc_pb&#39;</span>);
+<pre><code>var messages = require('./protos/helloworld_pb');
+var services = require('./protos/helloworld_grpc_pb');
 
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">grpc</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;grpc&#39;</span>);
+var grpc = require('grpc');
 
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">main</span>() {
-  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">client</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">services</span>.<span style="color:#a6e22e">GreeterClient</span>(<span style="color:#e6db74">&#39;localhost:50051&#39;</span>, <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">credentials</span>.<span style="color:#a6e22e">createInsecure</span>());
-  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">request</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">messages</span>.<span style="color:#a6e22e">HelloRequest</span>();
-  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">user</span>;
-  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">argv</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">3</span>) {
-    <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">argv</span>[<span style="color:#ae81ff">2</span>];
-  } <span style="color:#66d9ef">else</span> {
-    <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;world&#39;</span>;
+function main() {
+  var client = new services.GreeterClient('localhost:50051', grpc.credentials.createInsecure());
+  var request = new messages.HelloRequest();
+  var user;
+  if (process.argv.length &gt;= 3) {
+    user = process.argv[2];
+  } else {
+    user = 'world';
   }
-  <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">setName</span>(<span style="color:#a6e22e">user</span>);
-  <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">sayHello</span>(<span style="color:#a6e22e">request</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">response</span>) {
-    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Greeting:&#39;</span>, <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">getMessage</span>());
+  request.setName(user);
+  client.sayHello(request, function (err, response) {
+    console.log('Greeting:', response.getMessage());
   });
 }
 
-<span style="color:#a6e22e">main</span>();
-</code></pre></div><h4 id="测试">测试</h4>
+main();
+</code></pre><h4 id="测试">测试</h4>
 <!-- raw HTML omitted -->
 
                         </div>
@@ -280,6 +280,10 @@ grpc_tools_node_protoc --js_out<span style="color:#f92672">=</span>import_style<
 <ul class="widget-list">
     
     <li>
+        <a href="https://ryune911.github.io/posts/rancher-install/" title="Rancher-1: 安装">Rancher-1: 安装</a>
+    </li>
+    
+    <li>
         <a href="https://ryune911.github.io/posts/grpc-helloworld/" title="gRPC: helloworld ">gRPC: helloworld </a>
     </li>
     
@@ -315,10 +319,6 @@ grpc_tools_node_protoc --js_out<span style="color:#f92672">=</span>import_style<
         <a href="https://ryune911.github.io/posts/oss-path/" title="OSS 踩坑">OSS 踩坑</a>
     </li>
     
-    <li>
-        <a href="https://ryune911.github.io/posts/supervisor-1-laravel/" title="Supervisor: 管理 Laravel Queue">Supervisor: 管理 Laravel Queue</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -338,6 +338,10 @@ grpc_tools_node_protoc --js_out<span style="color:#f92672">=</span>import_style<
     
     <li>
         <a href="https://ryune911.github.io/categories/grpc/">grpc(2)</a>
+    </li>
+    
+    <li>
+        <a href="https://ryune911.github.io/categories/k8s/">k8s(1)</a>
     </li>
     
     <li>
@@ -387,6 +391,8 @@ grpc_tools_node_protoc --js_out<span style="color:#f92672">=</span>import_style<
     
     <a href="https://ryune911.github.io/tags/https/">https</a>
     
+    <a href="https://ryune911.github.io/tags/k8s/">k8s</a>
+    
     <a href="https://ryune911.github.io/tags/laravel/">laravel</a>
     
     <a href="https://ryune911.github.io/tags/mutex/">mutex</a>
@@ -396,6 +402,8 @@ grpc_tools_node_protoc --js_out<span style="color:#f92672">=</span>import_style<
     <a href="https://ryune911.github.io/tags/oss/">oss</a>
     
     <a href="https://ryune911.github.io/tags/php-fpm/">php-fpm</a>
+    
+    <a href="https://ryune911.github.io/tags/rancher/">rancher</a>
     
     <a href="https://ryune911.github.io/tags/redis/">redis</a>
     

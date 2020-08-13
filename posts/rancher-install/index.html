@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.74.3" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Rancher-1: 安装 | Avatar&#39;s Blog</title>
+    <meta property="og:title" content="Rancher-1: 安装 - Avatar&#39;s Blog">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2020-08-10T16:16:41&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2020-08-10T16:16:41&#43;08:00">
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="Rancher-1: 安装">
+        
+    <meta name="author" content="Avatar">
+    <meta property="og:url" content="https://ryune911.github.io/posts/rancher-install/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://ryune911.github.io/">
+                        Avatar&#39;s Blog
+                    </a>
+                
+                <p class="description">Molly 的小跟班儿</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="https://ryune911.github.io/">首页</a>
+                    
+                    <a  href="https://ryune911.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://ryune911.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Rancher-1: 安装</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2020年8月10日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="https://ryune911.github.io/categories/k8s">K8S</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            <p><a href="https://rancher2.docs.rancher.cn/">官方文档传送门</a></p>
+<p><code>本文采用单节点 Kubernetes 集群上安装 Rancher</code></p>
+<h2 id="基础设施">基础设施</h2>
+<p>工具机所需 CLI 工具：</p>
+<ul>
+<li>kubectl</li>
+<li>rke</li>
+<li>helm</li>
+</ul>
+<p>集群要求：</p>
+<ul>
+<li>docker</li>
+<li>单节点（使用 ubuntu server 18.04）</li>
+<li>1个负载均衡器</li>
+<li>DNS 指向负载均衡器</li>
+</ul>
+<h4 id="安装-kubectl">安装 kubectl</h4>
+<pre><code>curl -LO &quot;https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl&quot;
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+kubectl version --client
+</code></pre><h4 id="安装-rke">安装 rke</h4>
+<pre><code>wget https://github.com/rancher/rke/releases/download/v1.1.4/rke_darwin-amd64
+mv rke_darwin-amd64 rke
+chmod +x rke
+rke --version
+</code></pre><h4 id="安装-helm">安装 helm</h4>
+<pre><code>wget https://get.helm.sh/helm-v2.16.9-darwin-amd64.tar.gz
+tar -zxvf helm-v2.16.9-darwin-amd64.tar.gz
+mv darwin-amd64/helm ./
+</code></pre><h4 id="负载均衡器">负载均衡器</h4>
+<p><code>单节点暂时未使用</code></p>
+<pre><code>vim /etc/apt/sources.list.d/nginx.list
+// 添加
+deb https://nginx.org/packages/ubuntu/ bionic nginx
+deb-src https://nginx.org/packages/ubuntu/ bionic nginx
+
+sudo apt-get update
+sudo apt-get install nginx
+
+// sign 问题
+wget http://nginx.org/keys/nginx_signing.key
+sudo apt-key add nginx_signing.key
+</code></pre><h4 id="运行-rke">运行 RKE</h4>
+<pre><code>vim rancher-cluster.yml
+// 添加
+nodes:
+  - address: 192.168.67.157
+    user: root
+    role: [controlplane, worker, etcd]
+
+services:
+  etcd:
+    snapshot: true
+    creation: 6h
+    retention: 24h
+
+# 当使用外部 TLS 终止，并且使用 ingress-nginx v0.22或以上版本时，必须。
+ingress:
+  provider: nginx
+  options:
+    use-forwarded-headers: &quot;true&quot;
+
+// 执行
+rke up --config ./rancher-cluster.yml
+
+// 测试集群
+mkdir $HOME/.kube &amp;&amp; mv ./rancher-cluster.yml $HOME/.kube/config
+kubectl get nodes
+kubectl get pods --all-namespaces
+</code></pre><h4 id="安装-rancher">安装 Rancher</h4>
+<ul>
+<li>添加 helm 仓库</li>
+</ul>
+<pre><code>helm repo add rancher-stable http://rancher-mirror.oss-cn-beijing.aliyuncs.com/server-charts/stable
+</code></pre><ul>
+<li>为 Rancher 创建 Namespace</li>
+</ul>
+<pre><code>kubectl create namespace cattle-system
+</code></pre><ul>
+<li>配置 Rancher 自签名证书</li>
+</ul>
+<pre><code>kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.15.0/cert-manager.crds.yaml
+kubectl create namespace cert-manager
+helm repo add jetstack https://charts.jetstack.io
+helm repo update
+helm install \
+ --name cert-manager \
+ --namespace cert-manager \
+ --version v0.15.0 \
+ jetstack/cert-manager
+
+// 解决 tiller pod not found 
+helm init --upgrade --tiller-image registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.16.6
+
+// 解决 Error: release cert-manager failed: namespaces &quot;cert-manager&quot; is forbidden: User &quot;system:serviceaccount:kube-system:default&quot; cannot get resource &quot;namespaces&quot; in API group &quot;&quot; in the namespace &quot;cert-manager&quot;
+kubectl create serviceaccount --namespace kube-system tiller
+kubectl create clusterrolebinding tiller \
+ --clusterrole=cluster-admin \
+ --clusterrole=cluster-admin \
+ --serviceaccount=kube-system:tiller
+kubectl delete deployment tiller-deploy --namespace kube-system
+kubectl delete service tiller-deploy --namespace kube-system
+helm init --service-account tiller --tiller-image registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.16.6
+</code></pre><ul>
+<li>安装 Rancher</li>
+</ul>
+<pre><code>helm install \
+ --name rancher \
+ --namespace cattle-system \
+ --set hostname=&lt;YOURDOMAIN&gt; \
+ rancher-stable/rancher
+
+// 验证安装完成
+kubectl get all --all-namespaces
+
+NAMESPACE       NAME                                           READY   STATUS      RESTARTS   AGE
+cattle-system   pod/cattle-cluster-agent-6bb85fff85-fbx99      1/1     Running     0          8h
+cattle-system   pod/cattle-node-agent-h4k65                    1/1     Running     0          8h
+cattle-system   pod/rancher-658cd9fb6b-gfh7z                   1/1     Running     0          22h
+cattle-system   pod/rancher-658cd9fb6b-kncvm                   1/1     Running     0          22h
+cattle-system   pod/rancher-658cd9fb6b-nsgk9                   1/1     Running     0          22h
+cert-manager    pod/cert-manager-75c47d6ddd-g4llc              1/1     Running     0          23h
+cert-manager    pod/cert-manager-cainjector-7d89795557-9gpv8   1/1     Running     0          23h
+cert-manager    pod/cert-manager-webhook-7d678577c6-x8ncz      1/1     Running     0          23h
+ingress-nginx   pod/default-http-backend-598b7d7dbd-sgh42      1/1     Running     0          36h
+ingress-nginx   pod/nginx-ingress-controller-njk4b             1/1     Running     0          36h
+kube-system     pod/canal-4t622                                2/2     Running     0          36h
+kube-system     pod/coredns-849545576b-bhlqp                   1/1     Running     0          36h
+kube-system     pod/coredns-autoscaler-5dcd676cbd-n6s9v        1/1     Running     0          36h
+kube-system     pod/metrics-server-697746ff48-lw5d4            1/1     Running     0          36h
+kube-system     pod/rke-coredns-addon-deploy-job-hc4d2         0/1     Completed   0          36h
+kube-system     pod/rke-ingress-controller-deploy-job-42sfk    0/1     Completed   0          36h
+kube-system     pod/rke-metrics-addon-deploy-job-xbcqc         0/1     Completed   0          36h
+kube-system     pod/rke-network-plugin-deploy-job-c8r9z        0/1     Completed   0          36h
+kube-system     pod/tiller-deploy-57d54b6d77-jgg5b             1/1     Running     0          23h
+
+NAMESPACE       NAME                           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                  AGE
+cattle-system   service/rancher                ClusterIP   10.43.184.1     &lt;none&gt;        80/TCP                   22h
+cert-manager    service/cert-manager           ClusterIP   10.43.195.74    &lt;none&gt;        9402/TCP                 23h
+cert-manager    service/cert-manager-webhook   ClusterIP   10.43.20.0      &lt;none&gt;        443/TCP                  23h
+default         service/kubernetes             ClusterIP   10.43.0.1       &lt;none&gt;        443/TCP                  36h
+ingress-nginx   service/default-http-backend   ClusterIP   10.43.136.210   &lt;none&gt;        80/TCP                   36h
+kube-system     service/kube-dns               ClusterIP   10.43.0.10      &lt;none&gt;        53/UDP,53/TCP,9153/TCP   36h
+kube-system     service/metrics-server         ClusterIP   10.43.114.157   &lt;none&gt;        443/TCP                  36h
+kube-system     service/tiller-deploy          ClusterIP   10.43.41.253    &lt;none&gt;        44134/TCP                23h
+
+NAMESPACE       NAME                                      DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+cattle-system   daemonset.apps/cattle-node-agent          1         1         1       1            1           &lt;none&gt;                   8h
+ingress-nginx   daemonset.apps/nginx-ingress-controller   1         1         1       1            1           &lt;none&gt;                   36h
+kube-system     daemonset.apps/canal                      1         1         1       1            1           kubernetes.io/os=linux   36h
+
+NAMESPACE       NAME                                      READY   UP-TO-DATE   AVAILABLE   AGE
+cattle-system   deployment.apps/cattle-cluster-agent      1/1     1            1           8h
+cattle-system   deployment.apps/rancher                   3/3     3            3           22h
+cert-manager    deployment.apps/cert-manager              1/1     1            1           23h
+cert-manager    deployment.apps/cert-manager-cainjector   1/1     1            1           23h
+cert-manager    deployment.apps/cert-manager-webhook      1/1     1            1           23h
+ingress-nginx   deployment.apps/default-http-backend      1/1     1            1           36h
+kube-system     deployment.apps/coredns                   1/1     1            1           36h
+kube-system     deployment.apps/coredns-autoscaler        1/1     1            1           36h
+kube-system     deployment.apps/metrics-server            1/1     1            1           36h
+kube-system     deployment.apps/tiller-deploy             1/1     1            1           23h
+
+NAMESPACE       NAME                                                 DESIRED   CURRENT   READY   AGE
+cattle-system   replicaset.apps/cattle-cluster-agent-6bb85fff85      1         1         1       8h
+cattle-system   replicaset.apps/rancher-658cd9fb6b                   3         3         3       22h
+cert-manager    replicaset.apps/cert-manager-75c47d6ddd              1         1         1       23h
+cert-manager    replicaset.apps/cert-manager-cainjector-7d89795557   1         1         1       23h
+cert-manager    replicaset.apps/cert-manager-webhook-7d678577c6      1         1         1       23h
+ingress-nginx   replicaset.apps/default-http-backend-598b7d7dbd      1         1         1       36h
+kube-system     replicaset.apps/coredns-849545576b                   1         1         1       36h
+kube-system     replicaset.apps/coredns-autoscaler-5dcd676cbd        1         1         1       36h
+kube-system     replicaset.apps/metrics-server-697746ff48            1         1         1       36h
+kube-system     replicaset.apps/tiller-deploy-57d54b6d77             1         1         1       23h
+
+NAMESPACE     NAME                                          COMPLETIONS   DURATION   AGE
+kube-system   job.batch/rke-coredns-addon-deploy-job        1/1           2s         36h
+kube-system   job.batch/rke-ingress-controller-deploy-job   1/1           2s         36h
+kube-system   job.batch/rke-metrics-addon-deploy-job        1/1           3s         36h
+kube-system   job.batch/rke-network-plugin-deploy-job       1/1           2s         36h
+</code></pre><!-- raw HTML omitted -->
+
+                        </div>
+
+                        
+
+
+                        
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="https://ryune911.github.io/tags/rancher">Rancher</a></li>
+                                
+                                <li><a href="https://ryune911.github.io/tags/k8s">K8S</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "Ryune911/utteranc"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://ryune911.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://ryune911.github.io/posts/rancher-install/" title="Rancher-1: 安装">Rancher-1: 安装</a>
+    </li>
+    
+    <li>
+        <a href="https://ryune911.github.io/posts/grpc-helloworld/" title="gRPC: helloworld ">gRPC: helloworld </a>
+    </li>
+    
+    <li>
+        <a href="https://ryune911.github.io/posts/grpc-service/" title="gRPC: service ">gRPC: service </a>
+    </li>
+    
+    <li>
+        <a href="https://ryune911.github.io/posts/protocol-2-rpc/" title="网络协议：RPC">网络协议：RPC</a>
+    </li>
+    
+    <li>
+        <a href="https://ryune911.github.io/posts/protocol-1-osi/" title="网络协议：OSI 网络模型">网络协议：OSI 网络模型</a>
+    </li>
+    
+    <li>
+        <a href="https://ryune911.github.io/posts/redis-mutex/" title="Redis: 互斥锁">Redis: 互斥锁</a>
+    </li>
+    
+    <li>
+        <a href="https://ryune911.github.io/posts/golang-map/" title="Golang 基础：map">Golang 基础：map</a>
+    </li>
+    
+    <li>
+        <a href="https://ryune911.github.io/posts/golang-slice/" title="Golang 基础：slice">Golang 基础：slice</a>
+    </li>
+    
+    <li>
+        <a href="https://ryune911.github.io/posts/golang-array/" title="Golang 基础：array">Golang 基础：array</a>
+    </li>
+    
+    <li>
+        <a href="https://ryune911.github.io/posts/oss-path/" title="OSS 踩坑">OSS 踩坑</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://ryune911.github.io/categories/centos/">centos(4)</a>
+    </li>
+    
+    <li>
+        <a href="https://ryune911.github.io/categories/golang/">golang(3)</a>
+    </li>
+    
+    <li>
+        <a href="https://ryune911.github.io/categories/grpc/">grpc(2)</a>
+    </li>
+    
+    <li>
+        <a href="https://ryune911.github.io/categories/k8s/">k8s(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://ryune911.github.io/categories/nginx/">nginx(3)</a>
+    </li>
+    
+    <li>
+        <a href="https://ryune911.github.io/categories/oss/">oss(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://ryune911.github.io/categories/redis/">redis(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://ryune911.github.io/categories/supervisor/">supervisor(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://ryune911.github.io/categories/ubuntu/">ubuntu(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://ryune911.github.io/categories/%E6%B5%8B%E8%AF%95/">测试(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://ryune911.github.io/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议(2)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://ryune911.github.io/tags/centos/">centos</a>
+    
+    <a href="https://ryune911.github.io/tags/firewalld/">firewalld</a>
+    
+    <a href="https://ryune911.github.io/tags/go/">go</a>
+    
+    <a href="https://ryune911.github.io/tags/golang/">golang</a>
+    
+    <a href="https://ryune911.github.io/tags/grpc/">grpc</a>
+    
+    <a href="https://ryune911.github.io/tags/https/">https</a>
+    
+    <a href="https://ryune911.github.io/tags/k8s/">k8s</a>
+    
+    <a href="https://ryune911.github.io/tags/laravel/">laravel</a>
+    
+    <a href="https://ryune911.github.io/tags/mutex/">mutex</a>
+    
+    <a href="https://ryune911.github.io/tags/nginx/">nginx</a>
+    
+    <a href="https://ryune911.github.io/tags/oss/">oss</a>
+    
+    <a href="https://ryune911.github.io/tags/php-fpm/">php-fpm</a>
+    
+    <a href="https://ryune911.github.io/tags/rancher/">rancher</a>
+    
+    <a href="https://ryune911.github.io/tags/redis/">redis</a>
+    
+    <a href="https://ryune911.github.io/tags/rpc/">rpc</a>
+    
+    <a href="https://ryune911.github.io/tags/supervisor/">supervisor</a>
+    
+    <a href="https://ryune911.github.io/tags/ubuntu/">ubuntu</a>
+    
+    <a href="https://ryune911.github.io/tags/webbench/">webbench</a>
+    
+    <a href="https://ryune911.github.io/tags/%E4%BA%92%E6%96%A5%E9%94%81/">互斥锁</a>
+    
+    <a href="https://ryune911.github.io/tags/%E4%BC%98%E5%8C%96/">优化</a>
+    
+    <a href="https://ryune911.github.io/tags/%E5%8D%8F%E8%AE%AE/">协议</a>
+    
+    <a href="https://ryune911.github.io/tags/%E6%B5%8B%E8%AF%95/">测试</a>
+    
+    <a href="https://ryune911.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议</a>
+    
+    <a href="https://ryune911.github.io/tags/%E8%B8%A9%E5%9D%91/">踩坑</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://totoval.com" title="Totoval">Totoval</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="https://totoval.com/docs/introduction/introduction/" title="Totovali Docs">Totoval Docs</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://ryune911.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://ryune911.github.io/">Avatar&#39;s Blog By Avatar</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>
