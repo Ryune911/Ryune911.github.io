@@ -6,11 +6,7 @@
     <description>Recent content in go on Avatar&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 11 Jul 2019 16:49:09 +0800</lastBuildDate>
-    
-	<atom:link href="https://ryune911.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 11 Jul 2019 16:49:09 +0800</lastBuildDate><atom:link href="https://ryune911.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Golang 基础：map</title>
       <link>https://ryune911.github.io/posts/golang-map/</link>

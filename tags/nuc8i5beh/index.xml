@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NUC8i5BEH on Avatar&#39;s Blog</title>
+    <link>https://ryune911.github.io/tags/nuc8i5beh/</link>
+    <description>Recent content in NUC8i5BEH on Avatar&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 25 Aug 2019 23:21:09 +0800</lastBuildDate><atom:link href="https://ryune911.github.io/tags/nuc8i5beh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hackintash-NUC8i5BEH</title>
+      <link>https://ryune911.github.io/posts/hackintash-nuc8i5beh/</link>
+      <pubDate>Sun, 25 Aug 2019 23:21:09 +0800</pubDate>
+      
+      <guid>https://ryune911.github.io/posts/hackintash-nuc8i5beh/</guid>
+      <description>起因 一直使用的 Ubuntu 笔记本咸鱼出掉了，一时间没有电脑用。听闻 tonymacx86 有大神在搞 NUC8 这个型号且比较完美，搞起。
+组装 着急用等不了什么618，买的都偏贵。SSD是去年购买后一直闲置中，NUC8购于淘宝
+   项 单价     NUC8i5BEH 2350.00   骇客神条DDR4 16GB 650.00   860 EVO 500G 530.00   博通96360CS2 220.00   电源适配器 66.00   合计 3816.00    关于 Airdrop Handoff 与 nvme SSD 取舍
+ Airdrop Handoff 要用的时候会发现真香 开发工作，SSD 读写速度差一些完全体会不到 如果不介意失去三年保修，有大神研究出了鱼和熊掌兼得的方案  制作u盘 安装系统 完善 </description>
+    </item>
+    
+  </channel>
+</rss>

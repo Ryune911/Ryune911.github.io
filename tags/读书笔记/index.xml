@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>读书笔记 on Avatar&#39;s Blog</title>
+    <link>https://ryune911.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+    <description>Recent content in 读书笔记 on Avatar&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 01 Sep 2019 23:21:09 +0800</lastBuildDate><atom:link href="https://ryune911.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>读书笔记: 程序员的数学1</title>
+      <link>https://ryune911.github.io/posts/book-note-1/</link>
+      <pubDate>Sun, 01 Sep 2019 23:21:09 +0800</pubDate>
+      
+      <guid>https://ryune911.github.io/posts/book-note-1/</guid>
+      <description>0的故事  指数法则: Na* Nb= Na+b 假药的例子  逻辑   命题: 可判断对错的陈述句
+ 真命题 &amp;amp; 假命题 完整性: 有没有遗漏 排他性: 有没有重复    逻辑非: 不是 A
+ 真值表: 真值表没有遗漏和重复, 即坚固了完整性和排他性 双重否定=肯定 文氏图: 表示集合关系的图, 外围的矩形为全集    逻辑与: A 并且 B
+  </description>
+    </item>
+    
+  </channel>
+</rss>

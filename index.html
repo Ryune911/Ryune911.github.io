@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.74.3" />
+    <meta name="generator" content="Hugo 0.78.1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -91,6 +91,58 @@
 vim /etc/apt/sources.list.d/nginx.list // 添加 deb https://nginx.……
                             </div>
                             <p class="readmore"><a href="https://ryune911.github.io/posts/rancher-install/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://ryune911.github.io/posts/book-note-1/" title="读书笔记: 程序员的数学1" >读书笔记: 程序员的数学1</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月1日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://ryune911.github.io/categories/lock">lock</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                0的故事  指数法则: Na* Nb= Na+b 假药的例子  逻辑   命题: 可判断对错的陈述句
+ 真命题 &amp; 假命题 完整性: 有没有遗漏 排他性: 有没有重复    逻辑非: 不是 A
+ 真值表: 真值表没有遗漏和重复, 即坚固了完整性和排他性 双重否定=肯定 文氏图: 表示集合关系的图, 外围的矩形为全集    逻辑与: A 并且 B
+  ……
+                            </div>
+                            <p class="readmore"><a href="https://ryune911.github.io/posts/book-note-1/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://ryune911.github.io/posts/hackintash-nuc8i5beh/" title="hackintash-NUC8i5BEH" >hackintash-NUC8i5BEH</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年8月25日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://ryune911.github.io/categories/hackintash">hackintash</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                起因 一直使用的 Ubuntu 笔记本咸鱼出掉了，一时间没有电脑用。听闻 tonymacx86 有大神在搞 NUC8 这个型号且比较完美，搞起。
+组装 着急用等不了什么618，买的都偏贵。SSD是去年购买后一直闲置中，NUC8购于淘宝
+   项 单价     NUC8i5BEH 2350.00   骇客神条DDR4 16GB 650.00   860 EVO 500G 530.00   博通96360CS2 220.00   电源适配器 66.00   合计 3816.00    关于 Airdrop Handoff 与 nvme SSD 取舍
+ Airdrop Handoff 要用的时候会发现真香 开发工作，SSD 读写速度差一些完全体会不到 如果不介意失去三年保修，有大神研究出了鱼和熊掌兼得的方案  制作u盘 安装系统 完善 ……
+                            </div>
+                            <p class="readmore"><a href="https://ryune911.github.io/posts/hackintash-nuc8i5beh/">阅读全文</a></p>
                         </article>
                     
                         <article class="post">
@@ -265,45 +317,6 @@ package main import &quot;fmt&quot; func main() { // 长度是5，容量也是5 
                             <p class="readmore"><a href="https://ryune911.github.io/posts/golang-slice/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://ryune911.github.io/posts/golang-array/" title="Golang 基础：array" >Golang 基础：array</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年7月10日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="https://ryune911.github.io/categories/golang">Golang</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                array  必须指定长度 传递数组指针修改数组内元素才有效   package main import &quot;fmt&quot; func main() { //var arr [5]int arr := [5]int{ 0: 1, } // 同类型，同长度才可相互赋值 // var arr1 [4]int // arr1 = arr fmt.Printf(&quot;%T(%#v)\n&quot;, arr, arr) fmt.Printf(&quot;%T(%#v)\n&quot;, arr[0], arr[0]) fmt.Printf(&quot;%T(%#v)\n&quot;, &amp;arr[0], &amp;arr[0]) for i, v := range arr { fmt.Printf(&quot;索引:%d,值:%d\n&quot;, i, v) } // 指针数组 ptrArr := [5]*int{ // 分配内存 1: new(int), // 其他索引为 nil } fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr, ptrArr) fmt.Printf(&quot;%T(%#v)\n&quot;, ptrArr[1], ptrArr[1]) fmt.……
-                            </div>
-                            <p class="readmore"><a href="https://ryune911.github.io/posts/golang-array/">阅读全文</a></p>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://ryune911.github.io/about/" title="About" >About</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年7月9日
-                            </date>
-                            
-                            <div class="post-content">
-                                ……
-                            </div>
-                            <p class="readmore"><a href="https://ryune911.github.io/about/">阅读全文</a></p>
-                        </article>
-                    
                     
 
 
@@ -356,6 +369,14 @@ package main import &quot;fmt&quot; func main() { // 长度是5，容量也是5 
     </li>
     
     <li>
+        <a href="https://ryune911.github.io/posts/book-note-1/" title="读书笔记: 程序员的数学1">读书笔记: 程序员的数学1</a>
+    </li>
+    
+    <li>
+        <a href="https://ryune911.github.io/posts/hackintash-nuc8i5beh/" title="hackintash-NUC8i5BEH">hackintash-NUC8i5BEH</a>
+    </li>
+    
+    <li>
         <a href="https://ryune911.github.io/posts/grpc-helloworld/" title="gRPC: helloworld ">gRPC: helloworld </a>
     </li>
     
@@ -383,14 +404,6 @@ package main import &quot;fmt&quot; func main() { // 长度是5，容量也是5 
         <a href="https://ryune911.github.io/posts/golang-slice/" title="Golang 基础：slice">Golang 基础：slice</a>
     </li>
     
-    <li>
-        <a href="https://ryune911.github.io/posts/golang-array/" title="Golang 基础：array">Golang 基础：array</a>
-    </li>
-    
-    <li>
-        <a href="https://ryune911.github.io/posts/oss-path/" title="OSS 踩坑">OSS 踩坑</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -413,7 +426,15 @@ package main import &quot;fmt&quot; func main() { // 长度是5，容量也是5 
     </li>
     
     <li>
+        <a href="https://ryune911.github.io/categories/hackintash/">hackintash(1)</a>
+    </li>
+    
+    <li>
         <a href="https://ryune911.github.io/categories/k8s/">k8s(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://ryune911.github.io/categories/lock/">lock(1)</a>
     </li>
     
     <li>
@@ -461,6 +482,8 @@ package main import &quot;fmt&quot; func main() { // 长度是5，容量也是5 
     
     <a href="https://ryune911.github.io/tags/grpc/">grpc</a>
     
+    <a href="https://ryune911.github.io/tags/hackintash/">hackintash</a>
+    
     <a href="https://ryune911.github.io/tags/https/">https</a>
     
     <a href="https://ryune911.github.io/tags/k8s/">k8s</a>
@@ -470,6 +493,8 @@ package main import &quot;fmt&quot; func main() { // 长度是5，容量也是5 
     <a href="https://ryune911.github.io/tags/mutex/">mutex</a>
     
     <a href="https://ryune911.github.io/tags/nginx/">nginx</a>
+    
+    <a href="https://ryune911.github.io/tags/nuc8i5beh/">nuc8i5beh</a>
     
     <a href="https://ryune911.github.io/tags/oss/">oss</a>
     
@@ -495,7 +520,11 @@ package main import &quot;fmt&quot; func main() { // 长度是5，容量也是5 
     
     <a href="https://ryune911.github.io/tags/%E6%B5%8B%E8%AF%95/">测试</a>
     
+    <a href="https://ryune911.github.io/tags/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E6%95%B0%E5%AD%A6/">程序员的数学</a>
+    
     <a href="https://ryune911.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议</a>
+    
+    <a href="https://ryune911.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
     
     <a href="https://ryune911.github.io/tags/%E8%B8%A9%E5%9D%91/">踩坑</a>
     

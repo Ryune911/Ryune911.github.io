@@ -6,11 +6,7 @@
     <description>Recent content on Avatar&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 10 Aug 2020 16:16:41 +0800</lastBuildDate>
-    
-	<atom:link href="https://ryune911.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 10 Aug 2020 16:16:41 +0800</lastBuildDate><atom:link href="https://ryune911.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rancher-1: 安装</title>
       <link>https://ryune911.github.io/posts/rancher-install/</link>
@@ -23,6 +19,30 @@
  kubectl rke helm  集群要求：
  docker 单节点（使用 ubuntu server 18.04） 1个负载均衡器 DNS 指向负载均衡器  安装 kubectl curl -LO &amp;quot;https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl&amp;quot; chmod +x ./kubectl sudo mv ./kubectl /usr/local/bin/kubectl kubectl version --client 安装 rke wget https://github.com/rancher/rke/releases/download/v1.1.4/rke_darwin-amd64 mv rke_darwin-amd64 rke chmod +x rke rke --version 安装 helm wget https://get.helm.sh/helm-v2.16.9-darwin-amd64.tar.gz tar -zxvf helm-v2.16.9-darwin-amd64.tar.gz mv darwin-amd64/helm ./ 负载均衡器 单节点暂时未使用
 vim /etc/apt/sources.list.d/nginx.list // 添加 deb https://nginx.</description>
+    </item>
+    
+    <item>
+      <title>读书笔记: 程序员的数学1</title>
+      <link>https://ryune911.github.io/posts/book-note-1/</link>
+      <pubDate>Sun, 01 Sep 2019 23:21:09 +0800</pubDate>
+      
+      <guid>https://ryune911.github.io/posts/book-note-1/</guid>
+      <description>0的故事  指数法则: Na* Nb= Na+b 假药的例子  逻辑   命题: 可判断对错的陈述句
+ 真命题 &amp;amp; 假命题 完整性: 有没有遗漏 排他性: 有没有重复    逻辑非: 不是 A
+ 真值表: 真值表没有遗漏和重复, 即坚固了完整性和排他性 双重否定=肯定 文氏图: 表示集合关系的图, 外围的矩形为全集    逻辑与: A 并且 B
+  </description>
+    </item>
+    
+    <item>
+      <title>hackintash-NUC8i5BEH</title>
+      <link>https://ryune911.github.io/posts/hackintash-nuc8i5beh/</link>
+      <pubDate>Sun, 25 Aug 2019 23:21:09 +0800</pubDate>
+      
+      <guid>https://ryune911.github.io/posts/hackintash-nuc8i5beh/</guid>
+      <description>起因 一直使用的 Ubuntu 笔记本咸鱼出掉了，一时间没有电脑用。听闻 tonymacx86 有大神在搞 NUC8 这个型号且比较完美，搞起。
+组装 着急用等不了什么618，买的都偏贵。SSD是去年购买后一直闲置中，NUC8购于淘宝
+   项 单价     NUC8i5BEH 2350.00   骇客神条DDR4 16GB 650.00   860 EVO 500G 530.00   博通96360CS2 220.00   电源适配器 66.00   合计 3816.00    关于 Airdrop Handoff 与 nvme SSD 取舍
+ Airdrop Handoff 要用的时候会发现真香 开发工作，SSD 读写速度差一些完全体会不到 如果不介意失去三年保修，有大神研究出了鱼和熊掌兼得的方案  制作u盘 安装系统 完善 </description>
     </item>
     
     <item>
