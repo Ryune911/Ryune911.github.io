@@ -7,22 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Ubuntu | Avatar&#39;s Blog</title>
-    <meta property="og:title" content="Ubuntu - Avatar&#39;s Blog">
+    <title>常用锁的区别及应用场景 | Avatar&#39;s Blog</title>
+    <meta property="og:title" content="常用锁的区别及应用场景 - Avatar&#39;s Blog">
     <meta property="og:type" content="article">
         
+    <meta property="article:published_time" content="2020-11-06T13:21:09&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2020-11-06T13:21:09&#43;08:00">
         
     <meta name="Keywords" content="">
-    <meta name="description" content="Ubuntu">
+    <meta name="description" content="常用锁的区别及应用场景">
         
     <meta name="author" content="Avatar">
-    <meta property="og:url" content="https://ryune911.github.io/categories/ubuntu/">
+    <meta property="og:url" content="https://ryune911.github.io/posts/lock/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
     
+        <link rel="stylesheet" href="/css/prism.css">
+    
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="alternate" type="application/rss+xml+xml" href="https://ryune911.github.io/categories/ubuntu/index.xml" title="Avatar's Blog" />
     <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 
     
@@ -31,7 +36,6 @@
     
     
 </head>
-
 
 <body>
 <header id="header" class="clearfix">
@@ -66,48 +70,101 @@
 
             <div class="col-8" id="main">
                 <div class="res-cons">
-                    
-                    <h3 class="archive-title">
-                        分类
-                        <span class="keyword">Ubuntu</span>
-                        中的文章
-                    </h3>
-                    
-
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://ryune911.github.io/posts/ubuntu-1/">Ubuntu: 完善-1</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2016年9月26日
-                            </date>
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">常用锁的区别及应用场景</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2020年11月6日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
                             
-                            <div class="post-meta meta-category">
-                                |
-                                
-                                    <a href="https://ryune911.github.io/categories/ubuntu">Ubuntu</a>
-                                
-                            </div>
+                                <span class="meta-category"><a href="https://ryune911.github.io/categories/lock">lock</a></span>
                             
-                            <div class="post-content">
-                                Ubuntu 16.04 WPS无法输入中文  安装搜狗linux  http://pinyin.sogou.com/linux/?r=pinyin 修改配置文件  修改wps  vim /usr/bin/wps # 添加： export XMODIFIERS=&quot;@im=fcitx&quot; export QT_IM_MODULE=&quot;fcitx&quot;  修改et  vim /usr/bin/et # 添加 export XMODIFIERS=&quot;@im=fcitx&quot; export QT_IM_MODULE=&quot;fcitx&quot;   点击launcher图标最小化 gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ launcher-minimize-window true 开启风扇 sudo find /sys | grep pwm echo 255 | sudo tee /sys/devices/platform/asus-nb-wmi/hwmon/hwmon3/pwm1 ……
-                                <p class="readmore"><a href="https://ryune911.github.io/posts/ubuntu-1/">阅读全文</a></p>
-                            </div>
-                        </article>
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            <h3 id="最基本的锁互斥锁和自旋锁">最基本的锁：互斥锁和自旋锁</h3>
+<ul>
+<li>互斥锁：未拿到锁，释放 CPU 等待唤醒、线程切换</li>
+<li>自旋锁：未拿到锁，忙等待</li>
+<li>场景：互斥锁切换线程需要消耗时间与自旋锁加锁的代码的执行时间对比等综合情况来选择</li>
+</ul>
+<h3 id="读写锁">读写锁</h3>
+<ul>
+<li>读锁：只读操作用读锁加锁</li>
+<li>写锁：只写操作用写锁加锁</li>
+<li>工作原理
+<ul>
+<li>当写锁没有被持有时，多个线程可以并发的持有读锁</li>
+<li>当写锁被持有时，读锁、写锁的线程都会阻塞</li>
+<li>适合能区分读写操作且多读少写的场景</li>
+<li>进化：读优先锁、写优先锁。如果一直有读/写锁，那么写/读锁就会&quot;饿死&quot;</li>
+<li>公平读写锁：将获取锁的线程放入队列</li>
+</ul>
+</li>
+</ul>
+<h3 id="乐观锁和悲观锁">乐观锁和悲观锁</h3>
+<ul>
+<li>乐观锁（无锁编程）：认为出现冲突的几率比较低，先修改资源，再验证是否存在冲突，没有则操作完成、有则放弃本次操作。
+<ul>
+<li>如：在线文档多人编辑，如果使用悲观锁，一人编辑时其他用户就无法打开该文档了。</li>
+<li>如：git、svn</li>
+</ul>
+</li>
+<li>悲观锁：认为出现冲突的几率比较高，互斥锁、自旋锁、读写锁都是悲观锁。</li>
+</ul>
+
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/redis-mutex/">Redis: 互斥锁</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="https://ryune911.github.io/tags/%E8%87%AA%E6%97%8B%E9%94%81">自旋锁</a></li>
+                                
+                                <li><a href="https://ryune911.github.io/tags/%E4%BA%92%E6%96%A5%E9%94%81">互斥锁</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
                     
+    
 
-                    
-
-
-
-
-
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "Ryune911/utteranc"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
                 </div>
             </div>
-
             <div id="secondary">
     <section class="widget">
         <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
@@ -328,9 +385,24 @@
 </footer>
 
 
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
 <a id="rocket" href="#top"></a>
 <script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
-
 
 
 

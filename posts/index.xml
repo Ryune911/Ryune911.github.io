@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Avatar&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 10 Aug 2020 16:16:41 +0800</lastBuildDate><atom:link href="https://ryune911.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 06 Nov 2020 13:21:09 +0800</lastBuildDate><atom:link href="https://ryune911.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>常用锁的区别及应用场景</title>
+      <link>https://ryune911.github.io/posts/lock/</link>
+      <pubDate>Fri, 06 Nov 2020 13:21:09 +0800</pubDate>
+      
+      <guid>https://ryune911.github.io/posts/lock/</guid>
+      <description>最基本的锁：互斥锁和自旋锁  互斥锁：未拿到锁，释放 CPU 等待唤醒、线程切换 自旋锁：未拿到锁，忙等待 场景：互斥锁切换线程需要消耗时间与自旋锁加锁的代码的执行时间对比等综合情况来选择  读写锁  读锁：只读操作用读锁加锁 写锁：只写操作用写锁加锁 工作原理  当写锁没有被持有时，多个线程可以并发的持有读锁 当写锁被持有时，读锁、写锁的线程都会阻塞 适合能区分读写操作且多读少写的场景 进化：读优先锁、写优先锁。如果一直有读/写锁，那么写/读锁就会&amp;quot;饿死&amp;quot; 公平读写锁：将获取锁的线程放入队列    乐观锁和悲观锁  乐观锁（无锁编程）：认为出现冲突的几率比较低，先修改资源，再验证是否存在冲突，没有则操作完成、有则放弃本次操作。  如：在线文档多人编辑，如果使用悲观锁，一人编辑时其他用户就无法打开该文档了。 如：git、svn   悲观锁：认为出现冲突的几率比较高，互斥锁、自旋锁、读写锁都是悲观锁。  </description>
+    </item>
+    
     <item>
       <title>Rancher-1: 安装</title>
       <link>https://ryune911.github.io/posts/rancher-install/</link>

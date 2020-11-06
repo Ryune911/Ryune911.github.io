@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>lock on Avatar&#39;s Blog</title>
-    <link>https://ryune911.github.io/categories/lock/</link>
-    <description>Recent content in lock on Avatar&#39;s Blog</description>
+    <title>自旋锁 on Avatar&#39;s Blog</title>
+    <link>https://ryune911.github.io/tags/%E8%87%AA%E6%97%8B%E9%94%81/</link>
+    <description>Recent content in 自旋锁 on Avatar&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 06 Nov 2020 13:21:09 +0800</lastBuildDate><atom:link href="https://ryune911.github.io/categories/lock/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 06 Nov 2020 13:21:09 +0800</lastBuildDate><atom:link href="https://ryune911.github.io/tags/%E8%87%AA%E6%97%8B%E9%94%81/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>常用锁的区别及应用场景</title>
       <link>https://ryune911.github.io/posts/lock/</link>
@@ -14,18 +14,6 @@
       
       <guid>https://ryune911.github.io/posts/lock/</guid>
       <description>最基本的锁：互斥锁和自旋锁  互斥锁：未拿到锁，释放 CPU 等待唤醒、线程切换 自旋锁：未拿到锁，忙等待 场景：互斥锁切换线程需要消耗时间与自旋锁加锁的代码的执行时间对比等综合情况来选择  读写锁  读锁：只读操作用读锁加锁 写锁：只写操作用写锁加锁 工作原理  当写锁没有被持有时，多个线程可以并发的持有读锁 当写锁被持有时，读锁、写锁的线程都会阻塞 适合能区分读写操作且多读少写的场景 进化：读优先锁、写优先锁。如果一直有读/写锁，那么写/读锁就会&amp;quot;饿死&amp;quot; 公平读写锁：将获取锁的线程放入队列    乐观锁和悲观锁  乐观锁（无锁编程）：认为出现冲突的几率比较低，先修改资源，再验证是否存在冲突，没有则操作完成、有则放弃本次操作。  如：在线文档多人编辑，如果使用悲观锁，一人编辑时其他用户就无法打开该文档了。 如：git、svn   悲观锁：认为出现冲突的几率比较高，互斥锁、自旋锁、读写锁都是悲观锁。  </description>
-    </item>
-    
-    <item>
-      <title>读书笔记: 程序员的数学1</title>
-      <link>https://ryune911.github.io/posts/book-note-1/</link>
-      <pubDate>Sun, 01 Sep 2019 23:21:09 +0800</pubDate>
-      
-      <guid>https://ryune911.github.io/posts/book-note-1/</guid>
-      <description>0的故事  指数法则: Na* Nb= Na+b 假药的例子  逻辑   命题: 可判断对错的陈述句
- 真命题 &amp;amp; 假命题 完整性: 有没有遗漏 排他性: 有没有重复    逻辑非: 不是 A
- 真值表: 真值表没有遗漏和重复, 即坚固了完整性和排他性 双重否定=肯定 文氏图: 表示集合关系的图, 外围的矩形为全集    逻辑与: A 并且 B
-  </description>
     </item>
     
   </channel>
