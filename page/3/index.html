@@ -68,6 +68,38 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://ryune911.github.io/posts/centos-2-firewalld/" title="centOS: 防火墙" >centOS: 防火墙</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2016年12月21日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://ryune911.github.io/categories/centos">centOS</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                开启 firewalld 服务：
+sudo systemctl start firewalld 移除
+firewall-cmd --zone=public --remove-port=6022/tcp --permanent 开放 SSH 自定义的端口
+sudo firewall-cmd --permanent --add-port=3333/tcp 开放 HTTP
+sudo firewall-cmd --permanent --add-service=http 开放 HTTPS
+sudo firewall-cmd --permanent --add-service=https 开放 SMTP
+sudo firewall-cmd --permanent --add-service=smtp 查看
+sudo firewall-cmd --get-services sudo firewall-cmd --permanent --list-all 重载服务
+sudo firewall-cmd --reload 开机启动
+sudo systemctl enable firewalld ……
+                            </div>
+                            <p class="readmore"><a href="https://ryune911.github.io/posts/centos-2-firewalld/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://ryune911.github.io/posts/centos-1-config/" title="centOS: 基本配置" >centOS: 基本配置</a>
                                 </h1>
                             </header>
@@ -240,6 +272,10 @@ user = nginx group = nginx listen.owner = nobody listen.group = nobody 处理 Re
 <ul class="widget-list">
     
     <li>
+        <a href="https://ryune911.github.io/posts/macos-tips-1/" title="MacOS Tips：清除 dock 应用最近使用">MacOS Tips：清除 dock 应用最近使用</a>
+    </li>
+    
+    <li>
         <a href="https://ryune911.github.io/posts/lock/" title="常用锁的区别及应用场景">常用锁的区别及应用场景</a>
     </li>
     
@@ -273,10 +309,6 @@ user = nginx group = nginx listen.owner = nobody listen.group = nobody 处理 Re
     
     <li>
         <a href="https://ryune911.github.io/posts/redis-mutex/" title="Redis: 互斥锁">Redis: 互斥锁</a>
-    </li>
-    
-    <li>
-        <a href="https://ryune911.github.io/posts/golang-map/" title="Golang 基础：map">Golang 基础：map</a>
     </li>
     
 </ul>

@@ -68,6 +68,29 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://ryune911.github.io/posts/golang-map/" title="Golang 基础：map" >Golang 基础：map</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年7月11日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://ryune911.github.io/categories/golang">Golang</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                map  无序 键值对集合 map 的传递不会拷贝副本，所以修改会影响所有该 map 的引用 如果要按顺序遍历 map  遍历 map，将所有 key 存入新 slice 对 slice 排序 遍历 slice，使用 map[key] 获取     package main import &quot;fmt&quot; func main() { // 无序 // 键值对集合 dict := map[string]int{&quot;张三&quot;: 1, &quot;李四&quot;: 2} fmt.Printf(&quot;创建 dict: %T(%#v)\n&quot;, dict, dict) for key, value := range dict { fmt.Printf(&quot;无序 key: %#v, value: %#v\n&quot;, key, value) } dict1 := map[int]string{1: &quot;张三&quot;, 2: &quot;李四&quot;} fmt.……
+                            </div>
+                            <p class="readmore"><a href="https://ryune911.github.io/posts/golang-map/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://ryune911.github.io/posts/golang-slice/" title="Golang 基础：slice" >Golang 基础：slice</a>
                                 </h1>
                             </header>
@@ -269,38 +292,6 @@ sudo fdisk -l 磁盘 /dev/sdb：107.4 GB, 107374182400字节，209715200个扇�
                             <p class="readmore"><a href="https://ryune911.github.io/posts/centos-3-disk/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://ryune911.github.io/posts/centos-2-firewalld/" title="centOS: 防火墙" >centOS: 防火墙</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2016年12月21日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="https://ryune911.github.io/categories/centos">centOS</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                开启 firewalld 服务：
-sudo systemctl start firewalld 移除
-firewall-cmd --zone=public --remove-port=6022/tcp --permanent 开放 SSH 自定义的端口
-sudo firewall-cmd --permanent --add-port=3333/tcp 开放 HTTP
-sudo firewall-cmd --permanent --add-service=http 开放 HTTPS
-sudo firewall-cmd --permanent --add-service=https 开放 SMTP
-sudo firewall-cmd --permanent --add-service=smtp 查看
-sudo firewall-cmd --get-services sudo firewall-cmd --permanent --list-all 重载服务
-sudo firewall-cmd --reload 开机启动
-sudo systemctl enable firewalld ……
-                            </div>
-                            <p class="readmore"><a href="https://ryune911.github.io/posts/centos-2-firewalld/">阅读全文</a></p>
-                        </article>
-                    
                     
 
 
@@ -353,6 +344,10 @@ sudo systemctl enable firewalld ……
 <ul class="widget-list">
     
     <li>
+        <a href="https://ryune911.github.io/posts/macos-tips-1/" title="MacOS Tips：清除 dock 应用最近使用">MacOS Tips：清除 dock 应用最近使用</a>
+    </li>
+    
+    <li>
         <a href="https://ryune911.github.io/posts/lock/" title="常用锁的区别及应用场景">常用锁的区别及应用场景</a>
     </li>
     
@@ -386,10 +381,6 @@ sudo systemctl enable firewalld ……
     
     <li>
         <a href="https://ryune911.github.io/posts/redis-mutex/" title="Redis: 互斥锁">Redis: 互斥锁</a>
-    </li>
-    
-    <li>
-        <a href="https://ryune911.github.io/posts/golang-map/" title="Golang 基础：map">Golang 基础：map</a>
     </li>
     
 </ul>
