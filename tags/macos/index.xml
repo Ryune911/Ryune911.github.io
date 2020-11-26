@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>macOS on Avatar&#39;s Blog</title>
+    <link>https://ryune911.github.io/tags/macos/</link>
+    <description>Recent content in macOS on Avatar&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 26 Nov 2020 11:25:34 +0800</lastBuildDate><atom:link href="https://ryune911.github.io/tags/macos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MacOS Tips：清除 dock 应用最近使用</title>
+      <link>https://ryune911.github.io/posts/macos-tips-1/</link>
+      <pubDate>Thu, 26 Nov 2020 11:25:34 +0800</pubDate>
+      
+      <guid>https://ryune911.github.io/posts/macos-tips-1/</guid>
+      <description>背景：最近使用 paw 发现 dock 上一些历史因改名、删除等原因，无法打开。需要清除 recent 记录 clear menu 尝试 通过应用自带的 open recent ，clear menu
+删除 share 文件 使用方法一清除后，File open recent 清除成功，但 dock 上历史清除无效  打开 Finder shift+command+G 前往/Library/ 搜索 lsshare 删除 com.luckymarmot.paw.sfl2  </description>
+    </item>
+    
+  </channel>
+</rss>
